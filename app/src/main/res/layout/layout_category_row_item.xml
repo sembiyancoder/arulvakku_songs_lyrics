@@ -18,11 +18,11 @@
         app:cardElevation="1dp">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
@@ -35,7 +35,16 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
-        </LinearLayout>
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/txt_category_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="10"
+                android:text="@{category.count}"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
 
 
     </com.google.android.material.card.MaterialCardView>

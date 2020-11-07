@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arulvakku.lyrics.app.activities.BaseActivity
+import com.arulvakku.lyrics.app.activities.SongTitlesActivity
 import com.arulvakku.lyrics.app.adapters.CategoryAdapter
 import com.arulvakku.lyrics.app.data.Category
 import com.arulvakku.lyrics.app.utilities.getJsonDataFromAsset
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity(), CellClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         //reading songs categories from the assets
         prepareCategory()
@@ -51,7 +53,7 @@ class MainActivity : BaseActivity(), CellClickListener {
      * On category selected item call back
      */
     override fun onCellClickListener(item: String) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SongTitlesActivity::class.java)
         intent.putExtra("category_name", item)
         startActivity(intent)
     }

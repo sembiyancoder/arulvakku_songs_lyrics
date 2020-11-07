@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">arulvakku_songs_lyrics</string>
+    <string name="app_name">அருள்வாக்கு பாடல்கள்</string>
     <string name="about_1">Track EHS is an enterprise-grade software designed to make safety processes easy, efficient and intelligent. The software is secure, configurable and customizable to suit the diverse workflows of enterprises, as well as the demanding needs of Safety, Health and Environment Professionals.</string>
     <string name="about_2">This mobile app is a small precursor to the immense possibilities of digitizing your EHS practices including Incident Lifecycle Management, Health Register, Work Permit Systems, Safety Walks, Document Management System, Audits and Inspections, Safety Training and Compliance Calendar, and more. We look forward to hearing from you and help integrate Track EHS within your enterprise framework.</string>
     <string name="about_3">Visit www.trackehs.com</string>
@@ -14,6 +14,6 @@
     <string name="url">www.trackehs.com</string>
 
     // Needs to be changed
-    <string name="email">info@trackehs.com</string>
+    <string name="email">info@trackehs.com,info@trackehs.com</string>
     <string name="base_url">"http://www.trackehs.com/"</string>
 </resources>

@@ -18,9 +18,7 @@ class AboutActivity : AppCompatActivity() {
 
     private fun initActions() {
         back.setOnClickListener { finish() }
-
         nineth_one.setOnClickListener { openMail() }
-
         fourth_one.setOnClickListener { openBrowser()  }
     }
 
