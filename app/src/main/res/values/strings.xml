@@ -16,4 +16,5 @@
     // Needs to be changed
     <string name="email">info@trackehs.com,info@trackehs.com</string>
     <string name="base_url">"http://www.trackehs.com/"</string>
+    <string name="send_to">Send to</string>
 </resources>

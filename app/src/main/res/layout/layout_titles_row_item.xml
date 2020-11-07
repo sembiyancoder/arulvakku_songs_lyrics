@@ -11,9 +11,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:listPreferredItemHeight"
-        android:foreground="?selectableItemBackgroundBorderless"
-        android:padding="8dp">
+        android:layout_height="?listPreferredItemHeightSmall"
+        android:padding="8dp"
+        android:foreground="?selectableItemBackgroundBorderless">
 
         <ImageView
             android:id="@+id/musicImage"
