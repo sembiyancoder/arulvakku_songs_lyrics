@@ -2,7 +2,10 @@ package com.arulvakku.lyrics.app.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.adapters.TitlesAdapter
@@ -25,12 +28,20 @@ class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
         prepareSongTitles()
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.title_menu, menu)
+        return true
+    }
+
+
     private fun prepareSongTitles() {
         val jsonFileString = getJsonDataFromAsset(applicationContext, "avksongs.json")
         val gson = Gson()
         val listCategory = object : TypeToken<List<Song>>() {}.type
         var allTitles: List<Song> = gson.fromJson(jsonFileString, listCategory)
-        titles = allTitles.filter { s -> s.category == categoryName }
+        titles =
+            allTitles.filter { s -> s.category == categoryName } // filtering songs with category name
         setCategoriesAdapter()
     }
 
@@ -38,10 +49,15 @@ class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
     fun setCategoriesAdapter() {
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(this@SongTitlesActivity)
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    LinearLayoutManager.VERTICAL
+                )
+            )
             adapter = TitlesAdapter(this@SongTitlesActivity, titles, this@SongTitlesActivity)
         }
     }
-
 
     override fun onTitleCellClickListener(categoryName: String, title: String, song: String) {
         val intent = Intent(this, SongTitlesActivity::class.java)
@@ -49,6 +65,17 @@ class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
         intent.putExtra("title", title)
         intent.putExtra("song", song)
         startActivity(intent)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.itemId
+        return when (id) {
+            R.id.filter -> {
+                startActivity(Intent(applicationContext, AboutActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }
