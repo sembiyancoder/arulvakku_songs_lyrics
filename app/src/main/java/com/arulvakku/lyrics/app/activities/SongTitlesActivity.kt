@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
+class SongTitlesActivity : BaseActivity(), TitleCellClickListener {
     lateinit var categoryName: String
     private lateinit var titles: List<Song>
 
@@ -60,7 +60,7 @@ class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
     }
 
     override fun onTitleCellClickListener(categoryName: String, title: String, song: String) {
-        val intent = Intent(this, SongTitlesActivity::class.java)
+        val intent = Intent(this, LyricsScreen::class.java)
         intent.putExtra("category_name", categoryName)
         intent.putExtra("title", title)
         intent.putExtra("song", song)

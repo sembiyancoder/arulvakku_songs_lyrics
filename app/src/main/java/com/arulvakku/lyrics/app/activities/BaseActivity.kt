@@ -28,6 +28,10 @@ open class BaseActivity : AppCompatActivity() {
                 startActivity(Intent(applicationContext, AboutActivity::class.java))
                 true
             }
+            android.R.id.home -> {
+                finish()
+                return true
+            }
             R.id.feedback -> {
                 openMail()
                 true
