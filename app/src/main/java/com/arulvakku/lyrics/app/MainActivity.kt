@@ -2,8 +2,8 @@ package com.arulvakku.lyrics.app
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.arulvakku.lyrics.app.activities.BaseActivity
 import com.arulvakku.lyrics.app.adapters.CategoryAdapter
 import com.arulvakku.lyrics.app.data.Category
 import com.arulvakku.lyrics.app.utilities.getJsonDataFromAsset
@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken
 import com.sembiyan.songs.app.listeners.CellClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), CellClickListener {
+class MainActivity : BaseActivity(), CellClickListener {
 
     private lateinit var categories: List<Category>
 
