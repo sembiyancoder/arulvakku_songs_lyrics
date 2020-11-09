@@ -14,6 +14,7 @@ class AboutActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         initActions()
+
     }
 
     private fun initActions() {
@@ -23,8 +24,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun openMail() {
-        val email =
-            Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.email), null))
+        val email = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.email), null))
         startActivity(Intent.createChooser(email, getString(R.string.app_name)))
     }
 

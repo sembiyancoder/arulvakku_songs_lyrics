@@ -4,28 +4,37 @@
     android:id="@+id/persistent_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="@drawable/rounded_dialog"
     android:orientation="vertical"
-    android:padding="16dp"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_width="50dp"
         android:layout_gravity="center"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_baseline_maximize_24" />
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        app:title="Sort"
+        android:layout_height="wrap_content"/>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorStatusBarColor" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="16sp"
         android:id="@+id/filterRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnClearFilter"
+        android:id="@+id/clearButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

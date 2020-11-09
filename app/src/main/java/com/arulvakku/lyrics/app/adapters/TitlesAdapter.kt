@@ -80,7 +80,7 @@ class TitlesAdapter(
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                countryFilterList = results?.values as ArrayList<Song>
+                countryFilterList = results?.values as List<Song>
                 notifyDataSetChanged()
             }
 

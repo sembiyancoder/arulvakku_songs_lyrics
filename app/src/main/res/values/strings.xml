@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">அருள்வாக்கு பாடல்கள்</string>
-    <string name="about_1">Track EHS is an enterprise-grade software designed to make safety processes easy, efficient and intelligent. The software is secure, configurable and customizable to suit the diverse workflows of enterprises, as well as the demanding needs of Safety, Health and Environment Professionals.</string>
+    <string name="about_1">Arulvakku is the first in the internet media that serves the Tamil speaking Christian community across the world, by giving Holy Bible online, Online Radio and Online Bible Study. Easy Bible reading and searching, receiving daily emails with daily liturgical readings and reflections both in English and Tamil, Rosaries and prayers, videos and hymns are some of the resources available online at arulvakku.com for Tamil Christians.</string>
     <string name="about_2">This mobile app is a small precursor to the immense possibilities of digitizing your EHS practices including Incident Lifecycle Management, Health Register, Work Permit Systems, Safety Walks, Document Management System, Audits and Inspections, Safety Training and Compliance Calendar, and more. We look forward to hearing from you and help integrate Track EHS within your enterprise framework.</string>
     <string name="about_3">Visit www.trackehs.com</string>
-    <string name="about_4">To know more,  email  </string>
-    <string name="about_6">  \u0020\u0020     info@trackehs.com</string>
+    <string name="about_4">To know more,</string>
+    <string name="about_6">  \u0020\u0020 arulvakkudevelopment@gmail.com</string>
     <string name="main_screen_text">Target near-zero incidents for a safer,\nhealthier workplace.</string>
-    <string name="about_5">email info@trackehs.com</string>
+    <string name="about_5">email arulvakkudevelopment@gmail.com</string>
     <string name="About">About</string>
     <string name="have_question">Have a question? Write to us.</string>
     <string name="visit">Visit</string>
     <string name="feedback">Feedback</string>
-    <string name="url">www.trackehs.com</string>
+    <string name="url">https://www.arulvakku.com/</string>
 
     // Needs to be changed
-    <string name="email">info@trackehs.com,info@trackehs.com</string>
-    <string name="base_url">"http://www.trackehs.com/"</string>
+    <string name="email">arulvakkudevelopment@gmail.com</string>
+    <string name="base_url">https://www.arulvakku.com/</string>
     <string name="send_to">Send to</string>
 </resources>
