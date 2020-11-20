@@ -36,6 +36,10 @@ open class BaseActivity : AppCompatActivity() {
                 openMail()
                 true
             }
+            R.id.search -> {
+                startActivity(Intent(applicationContext, SongSearchActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

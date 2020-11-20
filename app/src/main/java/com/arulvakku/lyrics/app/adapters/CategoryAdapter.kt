@@ -4,59 +4,49 @@ import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.arulvakku.lyrics.app.BR
-import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.data.Category
 import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
 import com.sembiyan.songs.app.listeners.CellClickListener
-import kotlinx.android.synthetic.main.layout_category_row_item.view.*
 
 class CategoryAdapter(
-    var context: Context,
-    private val items: List<Category>,
-    private val cellClickListener: CellClickListener
+        var context: Context,
+        private val categoryItems: List<Category>,
+        private val cellClickListener: CellClickListener
 ) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+        RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CategoryAdapter.ViewHolder {
-        val binding: LayoutCategoryRowItemBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.layout_category_row_item, parent, false
-        )
-        return CategoryAdapter.ViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = categoryItems.size
 
     override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
-        holder.bind(items.get(position))
-
-        holder.itemView.materialCardView.setCardBackgroundColor(Color.parseColor(items.get(position).color_code))
-        holder.itemView.materialCardView.radius = 10F
-        holder.itemView.materialCardView.elevation = 5F
-
+        val category = categoryItems[position]
+        holder.bind(category.title, category.count, category.color_code)
         holder.itemView.setOnClickListener {
-            cellClickListener.onCellClickListener(items.get(position).title)
-        }
-    }
-
-    // Creating ViewHolder
-    class ViewHolder(val binding: LayoutCategoryRowItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(data: Any) {
-            binding.setVariable(
-                BR.category,
-                data
-            ) //BR - generated class; BR.user - 'user' is variable name declared in layout
-            binding.executePendingBindings()
+            cellClickListener.onCellClickListener(categoryItems.get(position).title)
         }
     }
 
 
+    class ViewHolder private constructor(private val binding: LayoutCategoryRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(name: String, count: String, colorCode: String) {
+            binding.txtCategoryTitle.text = name
+            binding.txtCategoryCount.text = count
+            binding.materialCardView.setCardBackgroundColor(Color.parseColor(colorCode))
+            binding.materialCardView.radius = 10F
+            binding.materialCardView.elevation = 5F
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = LayoutCategoryRowItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
+    }
 }

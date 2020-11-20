@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/materialCardView"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="1dp">
 
-    <data>
-
-        <variable
-            name="category"
-            type="com.arulvakku.lyrics.app.data.Category" />
-    </data>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="1dp">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/txtCategoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:hint="Arulvakku Song"
+            android:textAppearance="?textAppearanceListItem"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txt_category_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Arulvakku Song"
-                android:text="@{category.title}"
-                android:textAppearance="?textAppearanceListItem"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtCategoryCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:hint="10"
+            android:textColor="@android:color/white" />
 
-            <TextView
-                android:layout_alignParentBottom="true"
-                android:id="@+id/txt_category_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="10"
-                android:text="@{category.count}"
-                android:textColor="@android:color/white" />
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>
 
 
-</layout>
+

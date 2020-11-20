@@ -24,7 +24,6 @@
                 android:id="@+id/lyricsTExt"
                 android:layout_width="match_parent"
                 android:textAlignment="textStart"
-                android:textColor="@color/colorStatusBarColor"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textStyle="normal"
                 android:textSize="20sp"

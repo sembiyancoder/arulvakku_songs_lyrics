@@ -2,14 +2,12 @@ package com.arulvakku.lyrics.app.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.data.Song
+import com.arulvakku.lyrics.app.databinding.LayoutTitlesRowItemBinding
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,47 +19,55 @@ class TitlesAdapter(
 ) :
     RecyclerView.Adapter<TitlesAdapter.ViewHolder>(), Filterable {
 
-    private var countryFilterList: List<Song>
+    private var titleFilterList: List<Song>
 
     init {
-        countryFilterList = items
+        titleFilterList = items
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitlesAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_titles_row_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
 
-    override fun getItemCount(): Int = countryFilterList.size
+    override fun getItemCount(): Int = titleFilterList.size
 
     override fun onBindViewHolder(holder: TitlesAdapter.ViewHolder, position: Int) {
-        holder.bindItems(countryFilterList.get(position))
-
+        val song = titleFilterList[position]
+        holder.bind(song.title)
         holder.itemView.setOnClickListener {
             cellClickListener.onTitleCellClickListener(
-                countryFilterList.get(position).category,
-                countryFilterList.get(position).title,
-                countryFilterList.get(position).song
+                titleFilterList.get(position).category,
+                titleFilterList.get(position).title,
+                titleFilterList.get(position).song
             )
         }
     }
 
-    // Creating ViewHolder
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(song: Song) {
-            val textViewName = itemView.findViewById(R.id.txt_category_title) as TextView
-            textViewName.text = song.title.trim()
+
+    class ViewHolder private constructor(private val binding: LayoutTitlesRowItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(name: String) {
+            binding.txtSongTitle.text = name
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = LayoutTitlesRowItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
         }
     }
+
 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    countryFilterList = items
+                    titleFilterList = items
                 } else {
                     val resultList = ArrayList<Song>()
                     for (row in items) {
@@ -71,16 +77,16 @@ class TitlesAdapter(
                             resultList.add(row)
                         }
                     }
-                    countryFilterList = resultList
+                    titleFilterList = resultList
                 }
                 val filterResults = FilterResults()
-                filterResults.values = countryFilterList
+                filterResults.values = titleFilterList
                 return filterResults
             }
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                countryFilterList = results?.values as List<Song>
+                titleFilterList = results?.values as List<Song>
                 notifyDataSetChanged()
             }
 
