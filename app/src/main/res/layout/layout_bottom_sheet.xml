@@ -18,14 +18,6 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_baseline_maximize_24" />
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        app:title="Sort"
-        android:layout_height="wrap_content"/>
-
-    <View android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorStatusBarColor" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:padding="16sp"
@@ -42,6 +34,6 @@
         android:layout_margin="5dp"
         android:drawableLeft="@drawable/ic_baseline_clear_24"
         android:text="Clear Filter"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </LinearLayout>

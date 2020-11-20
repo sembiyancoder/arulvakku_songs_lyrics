@@ -49,7 +49,7 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
 
     private fun inflateXMLView() {
         bottomSheetBehavior = BottomSheetBehavior.from<LinearLayout>(binding.bottomLayout.persistentBottomSheet)
-        clearButton.setOnClickListener {
+        binding.bottomLayout.clearButton.setOnClickListener {
             clearFilterSelection()
         }
 
