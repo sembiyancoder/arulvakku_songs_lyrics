@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.adapters
+package com.arulvakku.lyrics.app.activities.search.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,17 +7,17 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.data.Song
-import com.arulvakku.lyrics.app.databinding.LayoutTitlesRowItemBinding
+import com.arulvakku.lyrics.app.databinding.LayoutSearchTitlesRowItemBinding
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TitlesAdapter(
+class SongSearchAdapter(
     var context: Context,
     private val items: List<Song>,
     private val cellClickListener: TitleCellClickListener
 ) :
-    RecyclerView.Adapter<TitlesAdapter.ViewHolder>(), Filterable {
+    RecyclerView.Adapter<SongSearchAdapter.ViewHolder>(), Filterable {
 
     private var titleFilterList: List<Song>
 
@@ -25,16 +25,19 @@ class TitlesAdapter(
         titleFilterList = items
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitlesAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): SongSearchAdapter.ViewHolder {
         return ViewHolder.from(parent)
     }
 
 
     override fun getItemCount(): Int = titleFilterList.size
 
-    override fun onBindViewHolder(holder: TitlesAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SongSearchAdapter.ViewHolder, position: Int) {
         val song = titleFilterList[position]
-        holder.bind(song.title)
+        holder.bind(song.title, song.song)
         holder.itemView.setOnClickListener {
             cellClickListener.onTitleCellClickListener(
                 titleFilterList.get(position).category,
@@ -45,17 +48,19 @@ class TitlesAdapter(
     }
 
 
-    class ViewHolder private constructor(private val binding: LayoutTitlesRowItemBinding) :
+    class ViewHolder private constructor(private val binding: LayoutSearchTitlesRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(name: String) {
+        fun bind(name: String, lyrics: String) {
             binding.txtSongTitle.text = name
+            binding.txtLyrics.text = lyrics
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = LayoutTitlesRowItemBinding.inflate(layoutInflater, parent, false)
+                val binding =
+                    LayoutSearchTitlesRowItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

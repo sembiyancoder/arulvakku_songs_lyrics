@@ -1,10 +1,13 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.activities.search
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.arulvakku.lyrics.app.activities.LyricsScreenActivity
+import com.arulvakku.lyrics.app.activities.search.adapter.SongSearchAdapter
 import com.arulvakku.lyrics.app.adapters.TitlesAdapter
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.ActivitySongSearchBinding
@@ -17,7 +20,7 @@ class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
 
     private lateinit var binding: ActivitySongSearchBinding
     private lateinit var titles: List<Song>
-    lateinit var mSongTitlesAdapter: TitlesAdapter
+    lateinit var mSongTitlesAdapter: SongSearchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,19 @@ class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
 
         prepareSongTitles()
         setSongTitleAdapter()
+
+
+        binding.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mSongTitlesAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
     }
 
 
@@ -37,7 +53,7 @@ class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
     }
 
     private fun setSongTitleAdapter() {
-        mSongTitlesAdapter = TitlesAdapter(
+        mSongTitlesAdapter = SongSearchAdapter(
             this@SongSearchActivity,
             titles.sortedBy { it.title.toString() },
             this@SongSearchActivity

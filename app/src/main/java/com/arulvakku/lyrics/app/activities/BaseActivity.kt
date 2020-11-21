@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.R
+import com.arulvakku.lyrics.app.activities.search.SongSearchActivity
 
 
 open class BaseActivity : AppCompatActivity() {

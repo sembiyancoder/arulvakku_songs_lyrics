@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,19 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         supportActionBar?.title = intent.getStringExtra("category_name")
         inflateXMLView();
         prepareSongTitles()
+
+        binding.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mSongTitlesAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
     }
 
     private fun inflateXMLView() {

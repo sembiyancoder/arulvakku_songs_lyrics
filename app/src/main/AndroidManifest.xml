@@ -16,7 +16,7 @@
             android:name=".activities.home.HomeActivity" />
 
         <activity
-            android:name=".activities.SongSearchActivity"
+            android:name=".activities.search.SongSearchActivity"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.SongTitlesActivity"

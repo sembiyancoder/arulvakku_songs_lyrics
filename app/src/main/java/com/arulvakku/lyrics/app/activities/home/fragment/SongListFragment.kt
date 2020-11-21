@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +56,20 @@ class SongListFragment : Fragment(), TitleCellClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSongListBinding.bind(view)
         setAdapter();
+
+        binding!!.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mSongTitlesAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
+
     }
 
     private fun setAdapter() {
