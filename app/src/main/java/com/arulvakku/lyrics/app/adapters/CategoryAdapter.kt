@@ -35,10 +35,7 @@ class CategoryAdapter(
 
         fun bind(name: String, count: String, colorCode: String) {
             binding.txtCategoryTitle.text = name
-            binding.txtCategoryCount.text = count
-            binding.materialCardView.setCardBackgroundColor(Color.parseColor(colorCode))
-            binding.materialCardView.radius = 10F
-            binding.materialCardView.elevation = 5F
+            binding.materialCardView.setBackgroundColor(Color.parseColor(colorCode))
         }
 
         companion object {

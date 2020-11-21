@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/materialCardView"
+    style="@style/Widget.MaterialComponents.CardView"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="?listPreferredItemHeight"
     android:layout_margin="8dp"
     app:cardCornerRadius="5dp"
     app:cardElevation="1dp">
 
     <RelativeLayout
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:padding="8dp">
 
         <TextView
             android:id="@+id/txtCategoryTitle"
-            android:layout_width="wrap_content"
+            android:layout_toLeftOf="@+id/imageArrow"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Arulvakku Song"
             android:textAppearance="?textAppearanceListItem"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/txtCategoryCount"
+
+        <ImageView
+            android:id="@+id/imageArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:hint="10"
-            android:textColor="@android:color/white" />
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_arrow_right_24" />
 
     </RelativeLayout>
 
