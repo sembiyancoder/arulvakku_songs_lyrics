@@ -41,6 +41,10 @@ open class BaseActivity : AppCompatActivity() {
                 startActivity(Intent(applicationContext, SongSearchActivity::class.java))
                 true
             }
+            R.id.settings -> {
+                startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
