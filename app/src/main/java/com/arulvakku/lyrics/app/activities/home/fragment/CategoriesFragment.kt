@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.SongTitlesActivity
 import com.arulvakku.lyrics.app.adapters.CategoryAdapter
@@ -70,7 +71,7 @@ class CategoriesFragment : Fragment(), CellClickListener {
     fun setAdapter() {
         categories = activity?.let { getSongCategories(it) }!!
         binding?.recyclerView?.apply {
-            layoutManager = GridLayoutManager(activity, 2)
+            layoutManager = LinearLayoutManager(activity)
             adapter = activity?.let { CategoryAdapter(it, categories, this@CategoriesFragment) }
         }
     }

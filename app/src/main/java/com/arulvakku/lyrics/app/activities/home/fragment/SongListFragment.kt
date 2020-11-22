@@ -82,12 +82,6 @@ class SongListFragment : Fragment(), TitleCellClickListener {
         )
         binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.setHasFixedSize(true)
-        binding?.recyclerView?.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                LinearLayoutManager.VERTICAL
-            )
-        )
         binding?.recyclerView?.adapter = mSongTitlesAdapter
 
     }

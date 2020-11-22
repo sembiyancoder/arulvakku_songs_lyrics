@@ -1,6 +1,7 @@
 package com.arulvakku.lyrics.app.activities.home
 
 import android.os.Bundle
+import android.view.View
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.BaseActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.ViewPagerAdapter
@@ -18,7 +19,8 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        binding.toolbar.setTitleTextColor(resources.getColor(R.color.tabIndicatorColor))
         setSupportActionBar(toolbar)
 
         val adapter = ViewPagerAdapter(supportFragmentManager)

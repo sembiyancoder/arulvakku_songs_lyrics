@@ -34,7 +34,7 @@ class TitlesAdapter(
 
     override fun onBindViewHolder(holder: TitlesAdapter.ViewHolder, position: Int) {
         val song = titleFilterList[position]
-        holder.bind(song.title)
+        holder.bind(song.title, position)
         holder.itemView.setOnClickListener {
             cellClickListener.onTitleCellClickListener(
                 titleFilterList.get(position).category,
@@ -48,8 +48,10 @@ class TitlesAdapter(
     class ViewHolder private constructor(private val binding: LayoutTitlesRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(name: String) {
-            binding.txtSongTitle.text = name
+        fun bind(name: String, count: Int) {
+            binding.txtSongTitle.text = name.trim()
+            val rowCount = count + 1
+            binding.txtCount.text = "$rowCount. "
         }
 
         companion object {

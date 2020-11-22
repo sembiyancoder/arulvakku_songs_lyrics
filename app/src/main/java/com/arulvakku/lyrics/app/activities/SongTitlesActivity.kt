@@ -1,6 +1,7 @@
 package com.arulvakku.lyrics.app.activities
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.sembiyan.songs.app.listeners.CellFilterClickListener
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_bottom_sheet.*
 
 class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterClickListener {
@@ -41,10 +44,10 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySongTitelsBinding.inflate(layoutInflater)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         setContentView(binding.root)
-
         supportActionBar?.title = intent.getStringExtra("category_name")
-        inflateXMLView();
+        inflateXMLView()
         prepareSongTitles()
 
         binding.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -122,12 +125,6 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         )
         binding.songTitleRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.songTitleRecyclerView.setHasFixedSize(true)
-        binding.songTitleRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                LinearLayoutManager.VERTICAL
-            )
-        )
         binding.songTitleRecyclerView.adapter = mSongTitlesAdapter
     }
 

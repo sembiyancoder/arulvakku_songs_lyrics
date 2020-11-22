@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:titleTextColor="@android:color/black"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <com.google.android.material.tabs.TabLayout
@@ -30,7 +31,7 @@
             app:tabIndicatorColor="@color/colorAccent"
             app:tabIndicatorHeight="5dp"
             app:tabMode="fixed"
-            app:tabTextColor="@android:color/white" />
+            app:tabTextColor="@color/tabIndicatorColor" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

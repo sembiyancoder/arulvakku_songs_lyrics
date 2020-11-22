@@ -35,7 +35,6 @@ class CategoryAdapter(
 
         fun bind(name: String, count: String, colorCode: String) {
             binding.txtCategoryTitle.text = name
-            binding.materialCardView.setBackgroundColor(Color.parseColor(colorCode))
         }
 
         companion object {
