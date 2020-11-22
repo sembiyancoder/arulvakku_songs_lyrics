@@ -6,6 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.home.HomeActivity
+import com.arulvakku.lyrics.app.utilities.Constants
+import com.arulvakku.lyrics.app.utilities.CustomPreferences
 import java.lang.Thread.sleep
 
 class SplashActivity : AppCompatActivity() {
@@ -21,16 +23,23 @@ class SplashActivity : AppCompatActivity() {
     private fun startMainActivity() {
 
         val intent = Intent(this, HomeActivity::class.java)
-        Thread {
-            try {
-                sleep(1000)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            } finally {
-                startActivity(intent)
-                finish()
-            }
-        }.start()
+
+        if (CustomPreferences.read(Constants.IS_FIRST_TIME,true)){
+            Thread {
+                try {
+                    sleep(3000)
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                } finally {
+                    startActivity(intent)
+                    finish()
+                }
+            }.start()
+        }else{
+            startActivity(intent)
+            finish()
+        }
+
     }
 
 }
