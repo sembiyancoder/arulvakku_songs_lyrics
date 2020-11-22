@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.arulvakku.lyrics.app.MainActivity
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.home.HomeActivity
+import java.lang.Thread.sleep
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,10 +19,21 @@ class SplashActivity : AppCompatActivity() {
 
 
     private fun startMainActivity() {
+
         val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-        finish()
+        Thread {
+            try {
+                sleep(1000)
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            } finally {
+                startActivity(intent)
+                finish()
+            }
+        }.start()
     }
 
-
 }
+
+
+
