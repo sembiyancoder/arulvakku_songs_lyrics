@@ -9,7 +9,7 @@ import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.home.HomeActivity
 import com.arulvakku.lyrics.app.utilities.Constants
 import com.arulvakku.lyrics.app.utilities.Prefs
-import com.arulvakku.lyrics.app.utilities.Constants
+
 import com.arulvakku.lyrics.app.utilities.CustomPreferences
 import java.lang.Thread.sleep
 
