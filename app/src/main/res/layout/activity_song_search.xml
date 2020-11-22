@@ -11,18 +11,21 @@
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        >
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/country_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@color/white"
-            app:queryHint="தேடல்"
+            android:layout_height="@dimen/search_box_height"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/search_background"
             android:textCursorDrawable="@null"
             app:iconifiedByDefault="false"
-            app:queryBackground="@null" />
+            app:queryBackground="@null"
+            app:queryHint="தேடல்" />
 
     </RelativeLayout>
 

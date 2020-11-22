@@ -2,10 +2,10 @@ package com.arulvakku.lyrics.app
 
 import android.app.Application
 import android.content.ContextWrapper
+import com.arulvakku.lyrics.app.utilities.CustomPreferences
 import com.arulvakku.lyrics.app.utilities.Prefs
 
-class MyApplication : Application(){
-
+class AppController : Application() {
 
     companion object {
         var CURRENT_CLASS_NAME = ""
@@ -13,13 +13,14 @@ class MyApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
-        // Initialize the Prefs class
+        CustomPreferences.init(applicationContext);
+
+        //need to change
         Prefs.Builder()
             .setContext(this)
             .setMode(ContextWrapper.MODE_PRIVATE)
             .setPrefsName(packageName)
             .setUseDefaultSharedPreference(true)
             .build()
-
     }
 }
