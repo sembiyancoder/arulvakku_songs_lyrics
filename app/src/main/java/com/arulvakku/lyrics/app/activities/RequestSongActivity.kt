@@ -26,7 +26,7 @@ class RequestSongActivity : AppCompatActivity() {
             if (!edtSongRequested.text.toString().trim().equals("")) {
                 BackgroundMail.newBuilder(this)
                     .withUsername("sembiyanteam@gmail.com")
-                    .withPassword("Jl29ients**")
+                    .withPassword("sembiyan@2020")
                     .withMailto("arulvakkudevteam@gmail.com")
                     .withType(BackgroundMail.TYPE_PLAIN)
                     .withSubject("Request for songs")
