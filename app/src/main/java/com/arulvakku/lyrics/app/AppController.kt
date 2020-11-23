@@ -7,7 +7,6 @@ import com.arulvakku.lyrics.app.utilities.Prefs
 class AppController : Application() {
 
 
-
     override fun onCreate() {
         super.onCreate()
 
