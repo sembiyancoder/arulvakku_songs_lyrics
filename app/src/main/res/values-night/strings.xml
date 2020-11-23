@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">பெயர்</string>
+    <string name="request_song">பாடலின் விவரங்களை உள்ளிடுக</string>
+</resources>
