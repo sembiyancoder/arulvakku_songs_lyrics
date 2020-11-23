@@ -25,9 +25,9 @@ class RequestSongActivity : AppCompatActivity() {
         btnSend.setOnClickListener {
             if (!edtSongRequested.text.toString().trim().equals("")) {
                 BackgroundMail.newBuilder(this)
-                    .withUsername("From email")
-                    .withPassword("password")
-                    .withMailto("to address")
+                    .withUsername("sembiyanteam@gmail.com")
+                    .withPassword("Jl29ients**")
+                    .withMailto("arulvakkudevteam@gmail.com")
                     .withType(BackgroundMail.TYPE_PLAIN)
                     .withSubject("Request for songs")
                     .withBody(edtSongRequested.text.toString().trim())
