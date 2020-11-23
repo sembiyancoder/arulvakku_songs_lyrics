@@ -62,10 +62,16 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
 
         })
 
+
+        binding.bottomLayout.imgClose.setOnClickListener {
+            expandCollapseSheet()
+        }
+
     }
 
     private fun inflateXMLView() {
         bottomSheetBehavior = BottomSheetBehavior.from<LinearLayout>(binding.bottomLayout.persistentBottomSheet)
+
         binding.bottomLayout.clearButton.setOnClickListener {
             clearFilterSelection()
         }

@@ -18,6 +18,13 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_baseline_maximize_24" />
 
+    <ImageView
+        android:id="@+id/imgClose"
+       android:layout_marginRight="16dp"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_clear_24"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filterRecyclerView"
@@ -32,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_margin="5dp"
-        android:drawableLeft="@drawable/ic_baseline_clear_24"
+        android:textColor="@color/tabIndicatorColor"
         android:text="Clear Filter"
         android:visibility="visible" />
 

@@ -10,10 +10,12 @@ import com.arulvakku.lyrics.app.activities.home.HomeActivity
 import com.arulvakku.lyrics.app.utilities.Constants
 import com.arulvakku.lyrics.app.utilities.Prefs
 
-import com.arulvakku.lyrics.app.utilities.CustomPreferences
 import java.lang.Thread.sleep
 
 class SplashActivity : AppCompatActivity() {
+
+    var splashTime: Long =  1000;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -38,10 +40,17 @@ class SplashActivity : AppCompatActivity() {
     private fun startMainActivity() {
         val intent = Intent(this, HomeActivity::class.java)
 
-        if (CustomPreferences.read(Constants.IS_FIRST_TIME,true)){
+        //showing splash screen 3 seconds  only for the fist time then 1 seconds
+        splashTime = if (Prefs.getBoolean(Constants.IS_FIRST_TIME,true)){
+            3000
+        } else {
+            500
+        }
+
+
             Thread {
                 try {
-                    sleep(3000)
+                    sleep(splashTime)
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 } finally {
@@ -49,11 +58,6 @@ class SplashActivity : AppCompatActivity() {
                     finish()
                 }
             }.start()
-        }else{
-            startActivity(intent)
-            finish()
-        }
-
     }
 
 }

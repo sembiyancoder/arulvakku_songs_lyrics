@@ -37,10 +37,6 @@ open class BaseActivity : AppCompatActivity() {
                 openMail()
                 true
             }
-            R.id.search -> {
-                startActivity(Intent(applicationContext, SongSearchActivity::class.java))
-                true
-            }
             R.id.settings -> {
                 startActivity(Intent(applicationContext, SettingsActivity::class.java))
                 true
