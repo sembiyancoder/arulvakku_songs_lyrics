@@ -6,4 +6,5 @@
     <color name="colorStatusBarColor">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="tabIndicatorColor">@android:color/white</color>
+
 </resources>

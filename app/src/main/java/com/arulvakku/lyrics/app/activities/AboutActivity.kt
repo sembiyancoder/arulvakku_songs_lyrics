@@ -20,7 +20,7 @@ class AboutActivity : AppCompatActivity() {
 
     private fun initActions() {
         nineth_one.setOnClickListener { openMail1() }
-        fourth_one.setOnClickListener { openMail1()  }
+        fourth_one.setOnClickListener { openBrowser()  }
     }
 
     private fun openMail1() {
