@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.activities.LyricsScreenActivity
-import com.arulvakku.lyrics.app.adapters.TitlesAdapter
+import com.arulvakku.lyrics.app.activities.lyrics.LyricsScreenActivity
+import com.arulvakku.lyrics.app.activities.home.adapter.TitlesAdapter
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.FragmentSongListBinding
 import com.arulvakku.lyrics.app.utilities.getSongList

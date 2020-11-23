@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.activities.SongTitlesActivity
-import com.arulvakku.lyrics.app.adapters.CategoryAdapter
+import com.arulvakku.lyrics.app.activities.category.SongTitlesActivity
+import com.arulvakku.lyrics.app.activities.home.adapter.CategoryAdapter
 import com.arulvakku.lyrics.app.data.Category
 import com.arulvakku.lyrics.app.databinding.FragmentCatgoriesBinding
 import com.arulvakku.lyrics.app.utilities.getSongCategories

@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.arulvakku.lyrics.app.activities.LyricsScreenActivity
+import com.arulvakku.lyrics.app.activities.lyrics.LyricsScreenActivity
 import com.arulvakku.lyrics.app.activities.search.adapter.SongSearchAdapter
-import com.arulvakku.lyrics.app.adapters.TitlesAdapter
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.ActivitySongSearchBinding
 import com.arulvakku.lyrics.app.utilities.getJsonDataFromAsset

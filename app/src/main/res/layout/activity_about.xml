@@ -35,7 +35,7 @@
                 android:gravity="start"
                 android:text="@string/about_1"
                 android:textColor="@color/tabIndicatorColor"
-                android:textSize="16sp" />
+                android:textSize="@dimen/medium" />
 
 
 
@@ -46,7 +46,7 @@
                 android:lineSpacingExtra="8dp"
                 android:text="@string/have_question"
                 android:textColor="@color/tabIndicatorColor"
-                android:textSize="16sp" />
+                android:textSize="@dimen/medium" />
 
             <TextView
                 android:layout_marginTop="5dp"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/about_6"
                 android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
+                android:textSize="@dimen/medium" />
 
 
             <LinearLayout
@@ -68,7 +68,7 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/about_4"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/medium" />
 
 
                 <TextView
@@ -79,7 +79,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/url"
                     android:textColor="@color/colorAccent"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/medium" />
 
             </LinearLayout>
 

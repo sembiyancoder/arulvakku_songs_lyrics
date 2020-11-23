@@ -14,7 +14,7 @@
         android:layout_toLeftOf="@+id/imageArrow"
         android:hint="இயேசுவின் வழியில் ஓர் அணியாக"
         android:maxLines="1"
-        android:textSize="@dimen/textListItem"
+        android:textSize="@dimen/medium"
         android:textAppearance="?textAppearanceListItem" />
 
     <ImageView

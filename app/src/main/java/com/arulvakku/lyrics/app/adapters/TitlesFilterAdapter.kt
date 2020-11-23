@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.activities.SongTitlesActivity
+import com.arulvakku.lyrics.app.activities.category.SongTitlesActivity
 import com.sembiyan.songs.app.listeners.CellFilterClickListener
 import kotlinx.android.synthetic.main.layout_filter_row_item.view.*
 

@@ -1,15 +1,19 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.activities.lyrics
 
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.arulvakku.lyrics.app.R
+import com.arulvakku.lyrics.app.activities.BaseActivity
+import com.arulvakku.lyrics.app.utilities.Constants
+import com.arulvakku.lyrics.app.utilities.Prefs
 import kotlinx.android.synthetic.main.activity_lyrics_screen.*
 
 
@@ -22,6 +26,8 @@ class LyricsScreenActivity : BaseActivity() {
     private val song by lazy {
         intent.getStringExtra("song")
     }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +43,18 @@ class LyricsScreenActivity : BaseActivity() {
     private fun setData() {
         supportActionBar?.title = title
         lyricsTExt.text = song
+        val font = Prefs.getString(Constants.SP_KEYS.FONT_SIZE,"Medium")
+        when {
+            font.equals("Small") -> {
+                lyricsTExt.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
+            }
+            font.equals("Large") -> {
+                lyricsTExt.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
+            }
+            else -> {
+                lyricsTExt.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

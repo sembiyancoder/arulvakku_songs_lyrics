@@ -1,7 +1,10 @@
 package com.arulvakku.lyrics.app.activities.home
 
+import android.app.UiModeManager
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.BaseActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.ViewPagerAdapter
@@ -12,14 +15,19 @@ import com.arulvakku.lyrics.app.utilities.Constants
 import com.arulvakku.lyrics.app.utilities.Prefs
 import kotlinx.android.synthetic.main.activity_home.*
 
+
 class HomeActivity : BaseActivity() {
 
     lateinit var binding: ActivityHomeBinding
+
+    private var uiModeManager: UiModeManager? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        uiModeManager = getSystemService(UI_MODE_SERVICE) as UiModeManager?;
 
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)
@@ -34,5 +42,13 @@ class HomeActivity : BaseActivity() {
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
+        isDarkModeOn()
     }
+
+    private fun isDarkModeOn(): Boolean {
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        Toast.makeText(this, "" + currentNightMode, Toast.LENGTH_SHORT).show()
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
+    }
+
 }

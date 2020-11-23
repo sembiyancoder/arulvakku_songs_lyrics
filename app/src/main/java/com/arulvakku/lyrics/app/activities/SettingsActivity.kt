@@ -3,6 +3,8 @@ package com.arulvakku.lyrics.app.activities
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.arulvakku.lyrics.app.R
@@ -16,8 +18,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        supportActionBar?.hide()
-        initActions()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 
         Font_Size_Tv.setOnClickListener {
             showFontDialog()
@@ -26,11 +27,31 @@ class SettingsActivity : AppCompatActivity() {
         Theme_Tv.setOnClickListener {
             showThemeDialog()
         }
+
+        changeFontSizes()
+
     }
 
-    private fun initActions() {
-        back.setOnClickListener { finish() }
 
+    private fun changeFontSizes(){
+        val font = Prefs.getString(Constants.SP_KEYS.FONT_SIZE,"Medium")
+        when {
+            font.equals("Small") -> {
+                Font_Size_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
+                txtDisplayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
+                Theme_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
+            }
+            font.equals("Large") -> {
+                Font_Size_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
+                txtDisplayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
+                Theme_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
+            }
+            else -> {
+                Font_Size_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
+                txtDisplayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
+                Theme_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
+            }
+        }
     }
 
     private fun showFontDialog() {
@@ -40,11 +61,11 @@ class SettingsActivity : AppCompatActivity() {
         var checkedItem = -1
 
         // Show Selected position enable
-        if (size == "Small") {
+        if (size == "Small") { //14sp
             checkedItem = 0
-        } else if (size == "Medium") {
+        } else if (size == "Medium") { //17sp
             checkedItem = 1
-        } else if (size == "Large") {
+        } else if (size == "Large") { // 24sp
             checkedItem = 2
         } else {
             checkedItem = -1
@@ -54,13 +75,14 @@ class SettingsActivity : AppCompatActivity() {
 
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("Change Font Size...")
+        builder.setTitle("Font Size")
 
         // Set the single choice items for alert dialog with initial selection
         builder.setSingleChoiceItems(array, checkedItem) { _, which ->
             size = array[which]
             try {
                 Prefs.putString(Constants.SP_KEYS.FONT_SIZE, size)
+                changeFontSizes()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -72,8 +94,8 @@ class SettingsActivity : AppCompatActivity() {
         }
         dialog = builder.create()
         dialog.show()
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            .setTextColor(resources.getColor(R.color.colorAccent));
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.colorAccent));
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.colorAccent));
 
     }
 
@@ -94,11 +116,11 @@ class SettingsActivity : AppCompatActivity() {
             checkedItem = -1
         }
 
-        val array = arrayOf("Light", "Dark", "Follow System(Default)")
+        val array = arrayOf("System Default", "Light", "Dark")
 
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("Change Theme Mode...")
+        builder.setTitle("Choose Theme")
 
         // Set the single choice items for alert dialog with initial selection
         builder.setSingleChoiceItems(array, checkedItem) { _, which ->

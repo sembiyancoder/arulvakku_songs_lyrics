@@ -1,20 +1,18 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.activities.category
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.adapters.TitlesAdapter
+import com.arulvakku.lyrics.app.activities.BaseActivity
+import com.arulvakku.lyrics.app.activities.lyrics.LyricsScreenActivity
+import com.arulvakku.lyrics.app.activities.home.adapter.TitlesAdapter
 import com.arulvakku.lyrics.app.adapters.TitlesFilterAdapter
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.ActivitySongTitelsBinding
@@ -24,8 +22,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.sembiyan.songs.app.listeners.CellFilterClickListener
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.layout_bottom_sheet.*
 
 class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterClickListener {
 
