@@ -15,9 +15,9 @@
         android:id="@+id/settings"
         android:title="@string/settings" />
 
-
-
-
+    <item
+        android:id="@+id/requestSongs"
+        android:title="@string/request_songs" />
 
 
 </menu>
