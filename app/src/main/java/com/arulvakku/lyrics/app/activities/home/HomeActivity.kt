@@ -20,14 +20,10 @@ class HomeActivity : BaseActivity() {
 
     lateinit var binding: ActivityHomeBinding
 
-    private var uiModeManager: UiModeManager? = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        uiModeManager = getSystemService(UI_MODE_SERVICE) as UiModeManager?;
 
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)
@@ -42,13 +38,8 @@ class HomeActivity : BaseActivity() {
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
-        isDarkModeOn()
+
     }
 
-    private fun isDarkModeOn(): Boolean {
-        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        Toast.makeText(this, "" + currentNightMode, Toast.LENGTH_SHORT).show()
-        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
-    }
 
 }

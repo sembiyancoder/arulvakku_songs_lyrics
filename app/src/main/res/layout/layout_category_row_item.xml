@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:gravity="center_vertical"
         android:layout_toLeftOf="@+id/imageArrow"
-        android:hint="இயேசுவின் வழியில் ஓர் அணியாக"
+        android:hint="இயேசுவின் வழியில்"
         android:maxLines="1"
-        android:textSize="@dimen/medium"
+        android:textSize="@dimen/large"
         android:textAppearance="?textAppearanceListItem" />
 
     <ImageView

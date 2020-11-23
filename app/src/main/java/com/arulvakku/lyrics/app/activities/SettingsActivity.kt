@@ -106,11 +106,11 @@ class SettingsActivity : AppCompatActivity() {
         var checkedItem = -1
 
         // Show Selected position enable
-        if (theme == "Light") {
+        if (theme == "System Default") {
             checkedItem = 0
-        } else if (theme == "Dark") {
+        } else if (theme == "Light") {
             checkedItem = 1
-        } else if (theme == "Follow System(Default)") {
+        } else if (theme == "Dark") {
             checkedItem = 2
         } else {
             checkedItem = -1
