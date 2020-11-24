@@ -38,17 +38,14 @@ class SettingsActivity : AppCompatActivity() {
         when {
             font.equals("Small") -> {
                 Font_Size_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
-                txtDisplayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
                 Theme_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,14f)
             }
             font.equals("Large") -> {
                 Font_Size_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
-                txtDisplayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
                 Theme_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f)
             }
             else -> {
                 Font_Size_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
-                txtDisplayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
                 Theme_Tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,17f)
             }
         }

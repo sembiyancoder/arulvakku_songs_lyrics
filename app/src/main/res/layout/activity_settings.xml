@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/txtDisplayLabel"
             android:layout_width="match_parent"
             android:layout_height="?listPreferredItemHeight"
@@ -25,7 +26,6 @@
         <TextView
             android:id="@+id/Font_Size_Tv"
             android:layout_width="match_parent"
-            android:textAppearance="?textAppearanceListItem"
             android:gravity="center_vertical"
             android:foreground="?selectableItemBackgroundBorderless"
             android:layout_height="?listPreferredItemHeight"
@@ -36,7 +36,6 @@
             android:gravity="center_vertical"
             android:id="@+id/Theme_Tv"
             android:layout_width="match_parent"
-            android:textAppearance="?textAppearanceListItem"
             android:foreground="?selectableItemBackgroundBorderless"
             android:layout_height="?listPreferredItemHeight"
             android:textSize="@dimen/medium"
