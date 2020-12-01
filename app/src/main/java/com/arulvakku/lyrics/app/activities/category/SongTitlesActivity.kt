@@ -40,7 +40,7 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySongTitelsBinding.inflate(layoutInflater)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+
         setContentView(binding.root)
         supportActionBar?.title = intent.getStringExtra("category_name")
         inflateXMLView()

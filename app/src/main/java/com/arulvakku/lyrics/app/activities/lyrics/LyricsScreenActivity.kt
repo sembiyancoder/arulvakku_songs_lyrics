@@ -41,7 +41,7 @@ class LyricsScreenActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lyrics_screen)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         setData()
     }

@@ -1,11 +1,11 @@
 package com.arulvakku.lyrics.app.activities.home
 
-import android.app.UiModeManager
-import android.content.res.Configuration
+
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import com.arulvakku.lyrics.app.R
+import com.arulvakku.lyrics.app.activities.AboutActivity
 import com.arulvakku.lyrics.app.activities.BaseActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.ViewPagerAdapter
 import com.arulvakku.lyrics.app.activities.home.fragment.CategoriesFragment
@@ -25,12 +25,9 @@ class HomeActivity : BaseActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)
-
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        binding.toolbar.setTitleTextColor(resources.getColor(R.color.tabIndicatorColor))
-        setSupportActionBar(toolbar)
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(CategoriesFragment(), "பிரிவுகள்")
@@ -38,7 +35,9 @@ class HomeActivity : BaseActivity() {
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
-
+        binding.imgAboutApp.setOnClickListener {
+            startActivity(Intent(applicationContext, AboutActivity::class.java))
+        }
     }
 
 
