@@ -24,6 +24,7 @@
         android:layout_toRightOf="@+id/txtCount"
         android:hint="இயேசுவின் அணியாக அணியாக"
         android:maxLines="1"
+        android:singleLine="true"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:textAppearance="?textAppearanceListItem"

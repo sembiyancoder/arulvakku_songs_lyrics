@@ -15,6 +15,7 @@
         android:layout_toLeftOf="@+id/imageArrow"
         android:hint="இயேசுவின் வழியில்"
         android:maxLines="1"
+        android:singleLine="true"
         android:textSize="@dimen/large"
         android:textAppearance="?textAppearanceListItem" />
 
