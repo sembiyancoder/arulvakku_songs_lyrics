@@ -9,8 +9,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.activities.lyrics.LyricsScreenActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.TitlesAdapter
+import com.arulvakku.lyrics.app.activities.lyrics.LyricsActivity
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.FragmentSongListBinding
 import com.arulvakku.lyrics.app.utilities.getSongList
@@ -56,7 +56,7 @@ class SongListFragment : Fragment(), TitleCellClickListener {
         binding = FragmentSongListBinding.bind(view)
         setAdapter();
 
-        binding!!.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        binding!!.countrySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -106,11 +106,19 @@ class SongListFragment : Fragment(), TitleCellClickListener {
             }
     }
 
-    override fun onTitleCellClickListener(categoryName: String, title: String, lyrics: String) {
-        val intent = Intent(activity, LyricsScreenActivity::class.java)
+    override fun onTitleCellClickListener(
+        position: Int,
+        categoryName: String,
+        title: String,
+        lyrics: String
+    ) {
+        val intent = Intent(activity, LyricsActivity::class.java)
+        intent.putExtra("position", position)
         intent.putExtra("category_name", categoryName)
         intent.putExtra("title", title)
         intent.putExtra("song", lyrics)
+        intent.putExtra("isFromAllSong", true)
         startActivity(intent)
     }
+
 }

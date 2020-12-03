@@ -2,9 +2,7 @@ package com.arulvakku.lyrics.app.activities.home
 
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import com.arulvakku.lyrics.app.activities.AboutActivity
 import com.arulvakku.lyrics.app.activities.BaseActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.ViewPagerAdapter
@@ -24,7 +22,6 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)

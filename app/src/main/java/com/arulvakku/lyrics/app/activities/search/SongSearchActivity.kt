@@ -68,13 +68,15 @@ class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
         binding.songTitleRecyclerView.adapter = mSongTitlesAdapter
     }
 
-    override fun onTitleCellClickListener(categoryName: String, title: String, lyrics: String) {
+    override fun onTitleCellClickListener(position: Int,categoryName: String, title: String, lyrics: String) {
         val intent = Intent(this, LyricsScreenActivity::class.java)
         intent.putExtra("category_name", categoryName)
         intent.putExtra("title", title)
         intent.putExtra("song", lyrics)
         startActivity(intent)
     }
+
+
 
 
 }

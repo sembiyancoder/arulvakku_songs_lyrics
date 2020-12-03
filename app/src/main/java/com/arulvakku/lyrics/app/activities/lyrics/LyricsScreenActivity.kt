@@ -37,12 +37,9 @@ class LyricsScreenActivity : BaseActivity() {
         intent.getStringExtra("song")
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lyrics_screen)
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
         setData()
     }
 
