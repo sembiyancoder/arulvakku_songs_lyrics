@@ -6,25 +6,26 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.R
-import kotlinx.android.synthetic.main.activity_about.*
+import com.arulvakku.lyrics.app.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityAboutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initActions()
-
     }
 
     private fun initActions() {
-        nineth_one.setOnClickListener { openMail1() }
-        fourth_one.setOnClickListener { openBrowser()  }
+        binding.txtEmail.setOnClickListener { openMail1() }
+        binding.txtWebsite.setOnClickListener { openBrowser() }
     }
 
     private fun openMail1() {
-        val email = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.email), null))
+        val email =
+            Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.email), null))
         startActivity(Intent.createChooser(email, getString(R.string.app_name)))
     }
 

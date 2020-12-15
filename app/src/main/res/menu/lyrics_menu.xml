@@ -13,11 +13,14 @@
         android:id="@+id/copy"
         android:icon="@drawable/ic_baseline_file_copy_24"
         android:orderInCategory="100"
-        android:title="Copy"
-        app:showAsAction="always" />
+        android:title="Copy" />
 
     <item
         android:id="@+id/settings"
-        android:title="@string/settings" />
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:orderInCategory="100"
+        android:title="Copy"
+        app:showAsAction="always" />
+
 
 </menu>

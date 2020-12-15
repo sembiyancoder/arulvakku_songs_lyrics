@@ -40,9 +40,10 @@ class SongSearchAdapter(
         holder.bind(song.title, song.song)
         holder.itemView.setOnClickListener {
             cellClickListener.onTitleCellClickListener(
-                titleFilterList.get(position).category,
-                titleFilterList.get(position).title,
-                titleFilterList.get(position).song
+                position,
+                titleFilterList[position].category,
+                titleFilterList[position].title,
+                titleFilterList[position].song
             )
         }
     }

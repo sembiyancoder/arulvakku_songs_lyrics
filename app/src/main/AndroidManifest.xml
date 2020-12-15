@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.arulvakku.lyrics.app">
+
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".AppController"
@@ -12,11 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.RequestSongActivity"
+
+        <activity
+            android:name=".activities.lyrics.LyricsActivity"
+            android:parentActivityName=".activities.home.HomeActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".activities.RequestSongActivity"
             android:label="நீங்கள் விரும்பும் பாடல்கள் "
             android:parentActivityName=".activities.home.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.home.HomeActivity"
             android:label="@string/app_name"

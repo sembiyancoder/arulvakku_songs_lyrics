@@ -1,5 +1,5 @@
 package com.sembiyan.songs.app.listeners
 
 interface TitleCellClickListener {
-    fun onTitleCellClickListener(categoryName: String, title: String, lyrics: String)
+    fun onTitleCellClickListener(position: Int, categoryName: String, title: String, lyrics: String)
 }
