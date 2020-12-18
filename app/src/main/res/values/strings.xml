@@ -21,6 +21,5 @@
     <string name="name">பெயர்</string>
     <string name="request_song">பாடலின் விவரங்களை உள்ளிடுக</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
