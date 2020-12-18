@@ -76,7 +76,7 @@ class SongListFragment : Fragment(), TitleCellClickListener {
 
         mSongTitlesAdapter = TitlesAdapter(
             context!!,
-            titles.sortedBy { it.title.toString() },
+            titles.sortedBy { it.sSong.toString() },
             this@SongListFragment
         )
         binding?.recyclerView?.layoutManager = LinearLayoutManager(context)

@@ -42,7 +42,7 @@ class LyricsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLyricsBinding.bind(view)
-        binding.txtLyrics.text = paramLyrics
+        binding.txtLyrics.loadDataWithBaseURL(null, paramLyrics, "text/html", "utf-8", null);
     }
 
     companion object {
@@ -50,8 +50,8 @@ class LyricsFragment : Fragment() {
         fun newInstance(song: Song) =
             LyricsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1_LYRICS, song.song)
-                    putString(ARG_PARAM2_TITLE, song.title)
+                    putString(ARG_PARAM1_LYRICS, song.sSong)
+                    putString(ARG_PARAM2_TITLE, song.sTitle)
                 }
             }
     }

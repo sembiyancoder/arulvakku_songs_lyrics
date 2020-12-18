@@ -54,7 +54,7 @@ class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
     private fun setSongTitleAdapter() {
         mSongTitlesAdapter = SongSearchAdapter(
             this@SongSearchActivity,
-            titles.sortedBy { it.title.toString() },
+            titles.sortedBy { it.sTitle.toString() },
             this@SongSearchActivity
         )
         binding.songTitleRecyclerView.layoutManager = LinearLayoutManager(this)

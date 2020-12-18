@@ -7,15 +7,10 @@
     android:scrollbars="none"
     tools:context=".activities.lyrics.fragment.LyricsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <WebView
         android:id="@+id/txtLyrics"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:lineSpacingExtra="8dp"
-        android:text="@string/hello_blank_fragment"
-        android:textAlignment="textStart"
-        android:textAppearance="?textAppearanceListItem"
-        android:textSize="@dimen/medium" />
+        android:layout_height="wrap_content" />
 
 </ScrollView>
