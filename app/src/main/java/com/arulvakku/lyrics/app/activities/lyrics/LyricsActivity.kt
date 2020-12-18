@@ -51,7 +51,7 @@ class LyricsActivity : AppCompatActivity() {
                 positionOffsetPixels: Int
             ) {
 
-                updateToolbarTitle(songs[position].title)
+                updateToolbarTitle(songs[position].sTitle)
                 currentSong = songs[position] // current song
             }
 
@@ -74,10 +74,10 @@ class LyricsActivity : AppCompatActivity() {
         val listCategory = object : TypeToken<List<Song>>() {}.type
         var allTitles: List<Song> = gson.fromJson(jsonFileString, listCategory)
         if (isFromAllSong) {
-            songs = allTitles.sortedBy { it.title.toString() }
+            songs = allTitles.sortedBy { it.sTitle.toString() }
         } else {
-            songs = allTitles.filter { s -> s.category == intent.getStringExtra("category_name") }
-                .sortedBy { it.title.toString() } // filtering songs with category name
+            songs = allTitles.filter { s -> s.sCategory == intent.getStringExtra("category_name") }
+                .sortedBy { it.sTitle.toString() } // filtering songs with category name
         }
     }
 
@@ -91,11 +91,11 @@ class LyricsActivity : AppCompatActivity() {
         val id: Int = item.itemId
         return when (id) {
             R.id.share -> {
-                shareSong(currentSong.song);
+                shareSong(currentSong.sSong);
                 true
             }
             R.id.copy -> {
-                copyTextToClipboard(currentSong.song)
+                copyTextToClipboard(currentSong.sSong)
                 true
             }
             R.id.settings -> {

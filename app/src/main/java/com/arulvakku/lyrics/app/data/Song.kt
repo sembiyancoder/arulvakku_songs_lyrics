@@ -1,5 +1,5 @@
 package com.arulvakku.lyrics.app.data
 
-data class Song(val date: String, val title: String, val category: String, val song: String) {
+data class Song(val sSongId: String, val sTitle: String, val sCategory: String, val sSong: String) {
 
 }

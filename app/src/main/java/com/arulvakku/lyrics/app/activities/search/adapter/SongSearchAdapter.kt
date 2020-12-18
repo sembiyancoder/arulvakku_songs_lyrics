@@ -37,13 +37,13 @@ class SongSearchAdapter(
 
     override fun onBindViewHolder(holder: SongSearchAdapter.ViewHolder, position: Int) {
         val song = titleFilterList[position]
-        holder.bind(song.title, song.song)
+        holder.bind(song.sTitle, song.sSong)
         holder.itemView.setOnClickListener {
             cellClickListener.onTitleCellClickListener(
                 position,
-                titleFilterList[position].category,
-                titleFilterList[position].title,
-                titleFilterList[position].song
+                titleFilterList[position].sCategory,
+                titleFilterList[position].sTitle,
+                titleFilterList[position].sSong
             )
         }
     }
@@ -77,7 +77,7 @@ class SongSearchAdapter(
                 } else {
                     val resultList = ArrayList<Song>()
                     for (row in items) {
-                        if (row.title.toLowerCase(Locale.ROOT)
+                        if (row.sTitle.toLowerCase(Locale.ROOT)
                                 .contains(charSearch.toLowerCase(Locale.ROOT))
                         ) {
                             resultList.add(row)

@@ -111,10 +111,10 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         val gson = Gson()
         val listCategory = object : TypeToken<List<Song>>() {}.type
         var allTitles: List<Song> = gson.fromJson(jsonFileString, listCategory)
-        titles = allTitles.filter { s -> s.category == intent.getStringExtra("category_name") } // filtering songs with category name
+        titles = allTitles.filter { s -> s.sCategory == intent.getStringExtra("category_name") } // filtering songs with category name
 
         titles.forEach {
-            val firstLetter = it.title.substring(0, 1)
+            val firstLetter = it.sTitle.substring(0, 1)
             filterTitles.add(firstLetter)
         }
         setSongTitleAdapter()
@@ -125,7 +125,7 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
     private fun setSongTitleAdapter() {
         mSongTitlesAdapter = TitlesAdapter(
             this@SongTitlesActivity,
-            titles.sortedBy { it.title.toString() },
+            titles.sortedBy { it.sTitle.toString() },
             this@SongTitlesActivity
         )
         binding.songTitleRecyclerView.layoutManager = LinearLayoutManager(this)
