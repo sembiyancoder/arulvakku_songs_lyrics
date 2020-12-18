@@ -18,8 +18,6 @@
     <string name="display_settings">Display Settings</string>
     <string name="arulvaaku_paadal">அருள்வாக்கு பாடல்கள்</string>
     <string name="www_arulvakku_com">www.arulvakku.com</string>
-    <string name="name">பெயர்</string>
-    <string name="request_song">பாடலின் விவரங்களை உள்ளிடுக</string>
     <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

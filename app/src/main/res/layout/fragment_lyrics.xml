@@ -9,6 +9,7 @@
 
 
     <WebView
+        android:background="@color/textFontColor"
         android:id="@+id/txtLyrics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

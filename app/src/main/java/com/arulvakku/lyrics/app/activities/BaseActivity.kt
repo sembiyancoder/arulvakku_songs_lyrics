@@ -43,7 +43,7 @@ open class BaseActivity : AppCompatActivity() {
             }
 
             R.id.requestSongs -> {
-                startActivity(Intent(applicationContext, RequestSongActivity::class.java))
+
                 true
             }
             else -> super.onOptionsItemSelected(item)

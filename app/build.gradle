@@ -31,23 +31,38 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.13'
+
+    def  app_compat = "1.2.0"
+    implementation "androidx.appcompat:appcompat:$app_compat"
+
+    def legacy_support = "1.0.0"
+    implementation "androidx.legacy:legacy-support-v4:$legacy_support"
+
+    def junit = "4.13"
+    testImplementation "junit:junit:$junit"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.google.android.material:material:1.3.0-alpha03'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.github.yesidlazaro:GmailBackground:1.2.0'
 
-    //in-app updates
-    implementation 'com.google.android.play:core:1.6.0'
+    def espresso_core = "3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+
+    def constraint_layout =  "2.0.4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
+    def material = "1.3.0-alpha03"
+    implementation "com.google.android.material:material:$material"
 
 
-    //circularimageview
-    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+    def  gson = "2.8.5"
+    implementation "com.google.code.gson:gson:$gson"
+
+
+    def play_core = "1.6.0"
+    implementation "com.google.android.play:core:$play_core"
+
+    def  circular_imageview = "4.2.0"
+    implementation "com.mikhaellopez:circularimageview:$circular_imageview"
 
 }
