@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.data.Song
@@ -43,6 +44,18 @@ class LyricsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLyricsBinding.bind(view)
         binding.txtLyrics.loadDataWithBaseURL(null, paramLyrics, "text/html", "utf-8", null);
+
+        var webSettings = binding.txtLyrics.getSettings();
+
+        webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSettings.setAppCacheEnabled(false)
+        webSettings.setBlockNetworkImage(true)
+        webSettings.setLoadsImagesAutomatically(false);
+        webSettings.setGeolocationEnabled(false)
+        webSettings.setNeedInitialFocus(false)
+        webSettings.setSaveFormData(false)
+        webSettings.setDefaultFontSize(20)
     }
 
     companion object {
