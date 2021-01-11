@@ -1,10 +1,14 @@
 package com.arulvakku.lyrics.app.activities.home.fragment
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +34,8 @@ class SongListFragment : Fragment(), TitleCellClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private val REQ_CODE_SPEECH_INPUT = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,11 +68,21 @@ class SongListFragment : Fragment(), TitleCellClickListener {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    binding!!.imgVoiceSearch.visibility = View.VISIBLE
+                }else{
+                    binding!!.imgVoiceSearch.visibility = View.GONE
+                }
                 mSongTitlesAdapter.filter.filter(newText)
                 return false
             }
 
         })
+
+
+        binding!!.imgVoiceSearch.setOnClickListener {
+            startVoidSearch()
+        }
 
 
     }
@@ -119,6 +135,35 @@ class SongListFragment : Fragment(), TitleCellClickListener {
         intent.putExtra("song", lyrics)
         intent.putExtra("isFromAllSong", true)
         startActivity(intent)
+    }
+
+    private fun startVoidSearch() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ta-IN")
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
+        } catch (a: ActivityNotFoundException) {
+            Toast.makeText(
+                activity,
+                "Oops! Your device doesn't support Speech to Text",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == AppCompatActivity.RESULT_OK && null != data) {
+            val result: ArrayList<String> =
+                data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            if (result[0].isNotEmpty()) {
+                binding!!.countrySearch.setQuery(result[0], false)
+            }
+        }
     }
 
 }

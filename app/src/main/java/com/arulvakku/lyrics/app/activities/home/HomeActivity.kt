@@ -18,11 +18,11 @@ class HomeActivity : BaseActivity() {
 
     lateinit var binding: ActivityHomeBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)
 
@@ -35,6 +35,8 @@ class HomeActivity : BaseActivity() {
         binding.imgAboutApp.setOnClickListener {
             startActivity(Intent(applicationContext, AboutActivity::class.java))
         }
+
+
     }
 
 

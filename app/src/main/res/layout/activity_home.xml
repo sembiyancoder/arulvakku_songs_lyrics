@@ -61,7 +61,6 @@
             app:tabBackground="@color/colorPrimary"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorAccent"
-            app:tabIndicatorHeight="5dp"
             app:tabMode="fixed"
             app:tabTextColor="@color/tabIndicatorColor" />
     </com.google.android.material.appbar.AppBarLayout>

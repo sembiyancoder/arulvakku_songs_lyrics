@@ -7,11 +7,15 @@
     android:scrollbars="none"
     tools:context=".activities.lyrics.fragment.LyricsFragment">
 
-
-    <WebView
-        android:background="@color/textFontColor"
+    <TextView
         android:id="@+id/txtLyrics"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="5dp"
+        android:textAlignment="textStart"
+        android:hint="இயேசுவின் அணியாக அணியாக"
+        android:textAppearance="?textAppearanceListItem"
+        android:textColor="@color/textFontColor"
+        android:textSize="@dimen/medium" />
 
 </ScrollView>

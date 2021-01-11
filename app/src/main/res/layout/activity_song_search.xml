@@ -8,12 +8,12 @@
     tools:context=".activities.search.SongSearchActivity">
 
     <RelativeLayout
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:layout_margin="5dp">
 
         <androidx.appcompat.widget.SearchView
+            android:layout_toLeftOf="@+id/imgVoiceSearch"
             android:id="@+id/country_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_box_height"
@@ -26,6 +26,8 @@
             app:iconifiedByDefault="false"
             app:queryBackground="@null"
             app:queryHint="தேடல்" />
+
+
 
     </RelativeLayout>
 

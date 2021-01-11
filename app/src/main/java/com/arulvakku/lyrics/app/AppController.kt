@@ -4,8 +4,11 @@ import android.app.Application
 import android.content.ContextWrapper
 import com.arulvakku.lyrics.app.utilities.Prefs
 
-class AppController : Application() {
 
+
+
+
+class AppController : Application() {
 
     override fun onCreate() {
         super.onCreate()

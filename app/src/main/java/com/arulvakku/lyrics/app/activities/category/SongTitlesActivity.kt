@@ -1,11 +1,15 @@
 package com.arulvakku.lyrics.app.activities.category
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +27,7 @@ import com.google.gson.reflect.TypeToken
 import com.sembiyan.songs.app.listeners.CellFilterClickListener
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
 
+
 class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterClickListener {
 
     private lateinit var titles: List<Song>
@@ -32,6 +37,8 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
     lateinit var mSongTitlesAdapter: TitlesAdapter
     lateinit var mSongFilterTitleAdapter: TitlesFilterAdapter
     private lateinit var binding: ActivitySongTitelsBinding
+
+    private val REQ_CODE_SPEECH_INPUT = 100
 
     companion object {
         var pos: Int = -1
@@ -47,11 +54,17 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         prepareSongTitles()
 
         binding.countrySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    binding.imgVoiceSearch.visibility = View.VISIBLE
+                }else{
+                    binding.imgVoiceSearch.visibility = View.GONE
+                }
                 mSongTitlesAdapter.filter.filter(newText)
                 return false
             }
@@ -63,6 +76,11 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         binding.bottomLayout.imgClose.setOnClickListener {
             expandCollapseSheet()
         }
+
+        binding.imgVoiceSearch.setOnClickListener {
+            startVoidSearch()
+        }
+
 
     }
 
@@ -111,7 +129,8 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         val gson = Gson()
         val listCategory = object : TypeToken<List<Song>>() {}.type
         var allTitles: List<Song> = gson.fromJson(jsonFileString, listCategory)
-        titles = allTitles.filter { s -> s.sCategory == intent.getStringExtra("category_name") } // filtering songs with category name
+        titles =
+            allTitles.filter { s -> s.sCategory == intent.getStringExtra("category_name") } // filtering songs with category name
 
         titles.forEach {
             val firstLetter = it.sTitle.substring(0, 1)
@@ -182,6 +201,35 @@ class SongTitlesActivity : BaseActivity(), TitleCellClickListener, CellFilterCli
         mSongTitlesAdapter.filter.filter(item)
         pos = position
         mSongFilterTitleAdapter.notifyDataSetChanged()
+    }
+
+    private fun startVoidSearch() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ta-IN")
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
+        } catch (a: ActivityNotFoundException) {
+            Toast.makeText(
+                this,
+                "Oops! Your device doesn't support Speech to Text",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && null != data) {
+            val result: ArrayList<String> =
+                data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            if (result[0].isNotEmpty()) {
+                binding.countrySearch.setQuery(result[0], false)
+            }
+        }
     }
 
 }

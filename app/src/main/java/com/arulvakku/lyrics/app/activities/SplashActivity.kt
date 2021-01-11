@@ -3,7 +3,6 @@ package com.arulvakku.lyrics.app.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.arulvakku.lyrics.app.R
@@ -14,6 +13,7 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.ActivityResult
 import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import java.lang.Thread.sleep
 
@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
         val appUpdateInfoTask = appUpdateManager.appUpdateInfo
 
         enableTheme()
-        startMainActivity()
+
 
         // Checks that the platform will allow the specified type of update.
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
@@ -52,6 +52,10 @@ class SplashActivity : AppCompatActivity() {
                     // Include a request code to later monitor this update request.
                     REQUEST_CODE_IMMEDIATE_UPDATE
                 )
+            } else if (appUpdateInfo.installStatus() == InstallStatus.INSTALLED) {
+                startMainActivity()
+            } else {
+                startMainActivity()
             }
         }
     }
