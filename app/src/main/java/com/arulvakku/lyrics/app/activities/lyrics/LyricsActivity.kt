@@ -25,7 +25,9 @@ class LyricsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLyricsBinding
     private lateinit var pagerAdapter: LyricsPagerAdapter
     private lateinit var songs: List<Song>
+    private var songId: Int = 0
     private var position: Int = 0
+    private lateinit var categoryName: String
     private lateinit var currentSong: Song
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +35,11 @@ class LyricsActivity : AppCompatActivity() {
         binding = ActivityLyricsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        position = intent.getIntExtra("position", 0)
+        songId = intent.getIntExtra("position", 0)
+        categoryName = intent.getStringExtra("category_name")
+        getSongList();
 
-        getSongList(intent.getBooleanExtra("isFromAllSong", false));
+        findPosition();
 
         pagerAdapter = LyricsPagerAdapter(supportFragmentManager, songs)
         binding.viewPager.adapter = pagerAdapter
@@ -43,6 +47,7 @@ class LyricsActivity : AppCompatActivity() {
         binding.viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {
+
             }
 
             override fun onPageScrolled(
@@ -50,7 +55,6 @@ class LyricsActivity : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
                 updateToolbarTitle(songs[position].sTitle)
                 currentSong = songs[position] // current song
             }
@@ -64,20 +68,26 @@ class LyricsActivity : AppCompatActivity() {
         binding.viewPager.currentItem = position
     }
 
+
     private fun updateToolbarTitle(songTitle: String) {
         supportActionBar?.title = songTitle
     }
 
-    private fun getSongList(isFromAllSong: Boolean) {
+    private fun getSongList() {
         val jsonFileString = getJsonDataFromAsset(applicationContext, "avksongs.json")
         val gson = Gson()
         val listCategory = object : TypeToken<List<Song>>() {}.type
         var allTitles: List<Song> = gson.fromJson(jsonFileString, listCategory)
-        if (isFromAllSong) {
-            songs = allTitles.sortedBy { it.sTitle.toString() }
-        } else {
-            songs = allTitles.filter { s -> s.sCategory == intent.getStringExtra("category_name") }
-                .sortedBy { it.sTitle.toString() } // filtering songs with category name
+        songs = allTitles.filter { s -> s.sCategory == categoryName }
+            .sortedBy { it.sTitle.toString() } // filtering songs with category name
+    }
+
+    private fun findPosition() {
+        for (item in songs) {
+            if (item.sSongId == songId) {
+                position = songs.indexOf(item)
+                break
+            }
         }
     }
 
@@ -126,10 +136,6 @@ class LyricsActivity : AppCompatActivity() {
         val clipData = ClipData.newPlainText("text", song)
         clipboardManager.setPrimaryClip(clipData)
         Toast.makeText(this, "Text copied to clipboard", Toast.LENGTH_LONG).show()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 
 }

@@ -16,7 +16,7 @@
         android:hint="இயேசுவின் வழியில்"
         android:maxLines="1"
         android:singleLine="true"
-        android:textSize="@dimen/large"
+        android:textSize="@dimen/medium"
         android:textAppearance="?textAppearanceListItem" />
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_marginTop="5dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:background="#EEEEEE"
+        android:background="#1AEEEEEE"
         android:layout_height="0.1dp"/>
 
 </RelativeLayout>

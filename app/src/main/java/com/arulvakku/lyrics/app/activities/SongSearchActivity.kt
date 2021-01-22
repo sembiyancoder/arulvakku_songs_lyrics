@@ -1,4 +1,5 @@
-package com.arulvakku.lyrics.app.activities.category
+package com.arulvakku.lyrics.app.activities
+
 
 import android.app.SearchManager
 import android.content.Context
@@ -14,68 +15,46 @@ import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.home.adapter.TitlesAdapter
 import com.arulvakku.lyrics.app.activities.lyrics.LyricsActivity
 import com.arulvakku.lyrics.app.data.Song
-import com.arulvakku.lyrics.app.databinding.ActivitySongTitelsBinding
-import com.arulvakku.lyrics.app.utilities.getJsonDataFromAsset
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.arulvakku.lyrics.app.databinding.ActivitySongSearchBinding
+import com.arulvakku.lyrics.app.utilities.getSongList
 import com.sembiyan.songs.app.listeners.TitleCellClickListener
 
+class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
 
-class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
-
-    private lateinit var titles: List<Song>
-    private var filterTitles: MutableList<String> = mutableListOf<String>()
     lateinit var mSongTitlesAdapter: TitlesAdapter
-    private lateinit var binding: ActivitySongTitelsBinding
+    private lateinit var titles: List<Song>
+    private lateinit var binding: ActivitySongSearchBinding
     private lateinit var searchView: SearchView
-
-    companion object {
-        var pos: Int = -1
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySongTitelsBinding.inflate(layoutInflater)
+        binding = ActivitySongSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = intent.getStringExtra("category_name")
-        prepareSongTitles()
+        setAdapter()
     }
 
+    private fun setAdapter() {
+        titles = getSongList(this)
 
-    private fun prepareSongTitles() {
-        val jsonFileString = getJsonDataFromAsset(applicationContext, "avksongs.json")
-        val gson = Gson()
-        val listCategory = object : TypeToken<List<Song>>() {}.type
-        var allTitles: List<Song> = gson.fromJson(jsonFileString, listCategory)
-        titles =
-            allTitles.filter { s -> s.sCategory == intent.getStringExtra("category_name") } // filtering songs with category name
-
-        titles.forEach {
-            val firstLetter = it.sTitle.substring(0, 1)
-            filterTitles.add(firstLetter)
-        }
-        setSongTitleAdapter()
-    }
-
-
-    private fun setSongTitleAdapter() {
         mSongTitlesAdapter = TitlesAdapter(
-            this@SongTitlesActivity,
-            titles.sortedBy { it.sTitle.toString() },
-            this@SongTitlesActivity
+            this,
+            titles.sortedBy { it.sSong.toString() }, this
         )
         binding.songTitleRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.songTitleRecyclerView.setHasFixedSize(true)
         binding.songTitleRecyclerView.adapter = mSongTitlesAdapter
+
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
         val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
+
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView = searchItem?.actionView as SearchView
+        searchItem.expandActionView()
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -99,6 +78,7 @@ class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
             }
         }
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.itemId

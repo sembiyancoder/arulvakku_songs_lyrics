@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -13,9 +14,9 @@ android {
 
     defaultConfig {
         applicationId "com.arulvakku.lyrics.app"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
+        versionCode 4
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -34,6 +35,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.1'
 
     def  app_compat = "1.2.0"
     implementation "androidx.appcompat:appcompat:$app_compat"
@@ -54,10 +57,8 @@ dependencies {
     def material = "1.3.0-alpha03"
     implementation "com.google.android.material:material:$material"
 
-
     def  gson = "2.8.5"
     implementation "com.google.code.gson:gson:$gson"
-
 
     def play_core = "1.6.0"
     implementation "com.google.android.play:core:$play_core"

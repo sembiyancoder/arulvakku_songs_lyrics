@@ -35,8 +35,6 @@ class SongListFragment : Fragment(), TitleCellClickListener {
     private var param1: String? = null
     private var param2: String? = null
 
-    private val REQ_CODE_SPEECH_INPUT = 100
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -61,30 +59,6 @@ class SongListFragment : Fragment(), TitleCellClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSongListBinding.bind(view)
         setAdapter();
-
-        binding!!.countrySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    binding!!.imgVoiceSearch.visibility = View.VISIBLE
-                }else{
-                    binding!!.imgVoiceSearch.visibility = View.GONE
-                }
-                mSongTitlesAdapter.filter.filter(newText)
-                return false
-            }
-
-        })
-
-
-        binding!!.imgVoiceSearch.setOnClickListener {
-            startVoidSearch()
-        }
-
-
     }
 
     private fun setAdapter() {
@@ -103,15 +77,6 @@ class SongListFragment : Fragment(), TitleCellClickListener {
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SongListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SongListFragment().apply {
@@ -122,48 +87,14 @@ class SongListFragment : Fragment(), TitleCellClickListener {
             }
     }
 
-    override fun onTitleCellClickListener(
-        position: Int,
-        categoryName: String,
-        title: String,
-        lyrics: String
-    ) {
+
+
+    override fun onTitleCellClickListener(position: Int, song: Song) {
         val intent = Intent(activity, LyricsActivity::class.java)
-        intent.putExtra("position", position)
-        intent.putExtra("category_name", categoryName)
-        intent.putExtra("title", title)
-        intent.putExtra("song", lyrics)
-        intent.putExtra("isFromAllSong", true)
+        intent.putExtra("position", song.sSongId)
+        intent.putExtra("category_name", song.sCategory)
+        intent.putExtra("title", song.sTitle)
+        intent.putExtra("song", song.sSong)
         startActivity(intent)
     }
-
-    private fun startVoidSearch() {
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(
-            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-        )
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ta-IN")
-        try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
-        } catch (a: ActivityNotFoundException) {
-            Toast.makeText(
-                activity,
-                "Oops! Your device doesn't support Speech to Text",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == AppCompatActivity.RESULT_OK && null != data) {
-            val result: ArrayList<String> =
-                data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-            if (result[0].isNotEmpty()) {
-                binding!!.countrySearch.setQuery(result[0], false)
-            }
-        }
-    }
-
 }

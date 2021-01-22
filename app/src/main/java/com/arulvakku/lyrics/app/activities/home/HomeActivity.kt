@@ -3,8 +3,8 @@ package com.arulvakku.lyrics.app.activities.home
 
 import android.content.Intent
 import android.os.Bundle
-import com.arulvakku.lyrics.app.activities.AboutActivity
-import com.arulvakku.lyrics.app.activities.BaseActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.arulvakku.lyrics.app.activities.SongSearchActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.ViewPagerAdapter
 import com.arulvakku.lyrics.app.activities.home.fragment.CategoriesFragment
 import com.arulvakku.lyrics.app.activities.home.fragment.SongListFragment
@@ -14,7 +14,7 @@ import com.arulvakku.lyrics.app.utilities.Prefs
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeBinding
 
@@ -33,11 +33,7 @@ class HomeActivity : BaseActivity() {
         tabs.setupWithViewPager(viewPager)
 
         binding.imgAboutApp.setOnClickListener {
-            startActivity(Intent(applicationContext, AboutActivity::class.java))
+            startActivity(Intent(applicationContext, SongSearchActivity::class.java))
         }
-
-
     }
-
-
 }

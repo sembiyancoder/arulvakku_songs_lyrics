@@ -7,15 +7,33 @@
     android:scrollbars="none"
     tools:context=".activities.lyrics.fragment.LyricsFragment">
 
-    <TextView
-        android:id="@+id/txtLyrics"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lineSpacingExtra="5dp"
-        android:textAlignment="textStart"
-        android:hint="இயேசுவின் அணியாக அணியாக"
-        android:textAppearance="?textAppearanceListItem"
-        android:textColor="@color/textFontColor"
-        android:textSize="@dimen/medium" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtSongCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="#33aaaaaa"
+            android:padding="3dp"
+            android:text="இயேசுவின் அணியாக அணியாக"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txtLyrics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="இயேசுவின் அணியாக அணியாக"
+            android:lineSpacingExtra="5dp"
+            android:textAlignment="textStart"
+            android:textAppearance="?textAppearanceListItem"
+            android:textColor="@color/textFontColor"
+            android:textSize="@dimen/medium" />
+
+    </LinearLayout>
+
 
 </ScrollView>
