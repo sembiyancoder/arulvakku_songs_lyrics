@@ -18,10 +18,10 @@ import com.arulvakku.lyrics.app.databinding.ActivitySongTitelsBinding
 import com.arulvakku.lyrics.app.utilities.getJsonDataFromAsset
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.sembiyan.songs.app.listeners.TitleCellClickListener
+import com.sembiyan.songs.app.listeners.RecyclerOnRowItemClickListener
 
 
-class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
+class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
 
     private lateinit var titles: List<Song>
     private var filterTitles: MutableList<String> = mutableListOf<String>()
@@ -111,7 +111,9 @@ class SongTitlesActivity : AppCompatActivity(), TitleCellClickListener {
         }
     }
 
-    override fun onTitleCellClickListener(position: Int, song: Song) {
+
+
+    override fun onItemRowListener(position: Int, song: Song) {
         val intent = Intent(this, LyricsActivity::class.java)
         intent.putExtra("position", song.sSongId)
         intent.putExtra("category_name", song.sCategory)

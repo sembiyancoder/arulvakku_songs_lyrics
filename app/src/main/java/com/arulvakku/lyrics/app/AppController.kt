@@ -8,11 +8,11 @@ import com.google.firebase.analytics.FirebaseAnalytics
 
 class AppController : Application() {
 
-    private var mFirebaseAnalytics: FirebaseAnalytics? = null
+  //  private var mFirebaseAnalytics: FirebaseAnalytics? = null
     override fun onCreate() {
         super.onCreate()
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+      //  mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         //need to change
         Prefs.Builder()

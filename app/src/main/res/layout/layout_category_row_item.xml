@@ -31,7 +31,7 @@
         android:layout_marginTop="5dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:background="#1AEEEEEE"
+        android:background="#33aaaaaa"
         android:layout_height="0.1dp"/>
 
 </RelativeLayout>

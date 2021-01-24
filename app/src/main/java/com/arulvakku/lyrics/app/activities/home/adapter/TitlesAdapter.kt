@@ -8,14 +8,14 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.LayoutTitlesRowItemBinding
-import com.sembiyan.songs.app.listeners.TitleCellClickListener
+import com.sembiyan.songs.app.listeners.RecyclerOnRowItemClickListener
 import java.util.*
 import kotlin.collections.ArrayList
 
 class TitlesAdapter(
     var context: Context,
     private val items: List<Song>,
-    private val cellClickListener: TitleCellClickListener
+    private val cellClickListener: RecyclerOnRowItemClickListener
 ) :
     RecyclerView.Adapter<TitlesAdapter.ViewHolder>(), Filterable {
 
@@ -36,7 +36,7 @@ class TitlesAdapter(
         val song = titleFilterList[position]
         holder.bind(song.sTitle, position)
         holder.itemView.setOnClickListener {
-            cellClickListener.onTitleCellClickListener(position, titleFilterList[position])
+            cellClickListener.onItemRowListener(position, titleFilterList[position])
         }
     }
 

@@ -5,7 +5,6 @@ import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.data.Category
 import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
 import com.arulvakku.lyrics.app.utilities.Constants
@@ -13,11 +12,11 @@ import com.arulvakku.lyrics.app.utilities.Prefs
 import com.sembiyan.songs.app.listeners.CellClickListener
 
 class CategoryAdapter(
-        var context: Context,
-        private val categoryItems: List<Category>,
-        private val cellClickListener: CellClickListener
+    var context: Context,
+    private val categoryItems: List<Category>,
+    private val cellClickListener: CellClickListener
 ) :
-        RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -34,20 +33,21 @@ class CategoryAdapter(
     }
 
 
-    class ViewHolder private constructor(private val binding: LayoutCategoryRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: LayoutCategoryRowItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(name: String, count: String, colorCode: String) {
             binding.txtCategoryTitle.text = name
-            val font = Prefs.getString(Constants.SP_KEYS.FONT_SIZE,"Medium")
+            val font = Prefs.getString(Constants.SP_KEYS.FONT_SIZE, "Medium")
             when {
                 font.equals("Small") -> {
-                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP,14f)
+                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP, 14f)
                 }
                 font.equals("Large") -> {
-                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP,24f)
+                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP, 24f)
                 }
                 else -> {
-                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP,17f)
+                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP, 17f)
                 }
             }
         }

@@ -17,9 +17,9 @@ import com.arulvakku.lyrics.app.activities.lyrics.LyricsActivity
 import com.arulvakku.lyrics.app.data.Song
 import com.arulvakku.lyrics.app.databinding.ActivitySongSearchBinding
 import com.arulvakku.lyrics.app.utilities.getSongList
-import com.sembiyan.songs.app.listeners.TitleCellClickListener
+import com.sembiyan.songs.app.listeners.RecyclerOnRowItemClickListener
 
-class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
+class SongSearchActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
 
     lateinit var mSongTitlesAdapter: TitlesAdapter
     private lateinit var titles: List<Song>
@@ -91,7 +91,7 @@ class SongSearchActivity : AppCompatActivity(), TitleCellClickListener {
         }
     }
 
-    override fun onTitleCellClickListener(position: Int, song: Song) {
+    override fun onItemRowListener(position: Int, song: Song) {
         val intent = Intent(this, LyricsActivity::class.java)
         intent.putExtra("position", song.sSongId)
         intent.putExtra("category_name", song.sCategory)
