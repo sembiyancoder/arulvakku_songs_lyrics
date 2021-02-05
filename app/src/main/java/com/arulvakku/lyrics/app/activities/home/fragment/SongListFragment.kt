@@ -83,7 +83,6 @@ class SongListFragment : Fragment(), RecyclerOnRowItemClickListener {
     }
 
 
-
     override fun onItemRowListener(position: Int, song: Song) {
         val intent = Intent(activity, LyricsActivity::class.java)
         intent.putExtra("position", song.sSongId)

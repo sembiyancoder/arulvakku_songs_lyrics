@@ -9,7 +9,7 @@
 
     <application
         android:name=".AppController"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:configChanges="fontScale"
         android:forceDarkAllowed="true"
         android:icon="@mipmap/ic_launcher"
