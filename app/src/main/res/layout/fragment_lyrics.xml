@@ -3,37 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     android:scrollbars="none"
     tools:context=".activities.lyrics.fragment.LyricsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtSongCategory"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:background="#33aaaaaa"
-            android:padding="3dp"
-            android:text="இயேசுவின் அணியாக அணியாக"
-            android:textSize="12sp" />
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/txtSongCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="#33aaaaaa"
+                android:text="இயேசுவின் அணியாக அணியாக"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/image_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_un_favorite"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/txtLyrics"
+            style="@style/LyricsItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="இயேசுவின் அணியாக அணியாக"
-            android:lineSpacingExtra="5dp"
-            android:textAlignment="textStart"
-            android:textAppearance="?textAppearanceListItem"
-            android:textColor="@color/textFontColor"
-            android:textSize="@dimen/medium" />
+            android:hint="இயேசுவின் அணியாக அணியாக" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_share_24" />
 
     </LinearLayout>
-
 
 </ScrollView>

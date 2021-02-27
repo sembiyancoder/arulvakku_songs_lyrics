@@ -7,7 +7,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.data.Song
-import com.arulvakku.lyrics.app.databinding.LayoutTitlesRowItemBinding
+import com.arulvakku.lyrics.app.databinding.LayoutLyrcisTitleRowItemBinding
 import com.sembiyan.songs.app.listeners.RecyclerOnRowItemClickListener
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,11 +41,11 @@ class TitlesAdapter(
     }
 
 
-    class ViewHolder private constructor(private val binding: LayoutTitlesRowItemBinding) :
+    class ViewHolder private constructor(private val binding: LayoutLyrcisTitleRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(name: String, count: Int) {
-            binding.txtSongTitle.text = name.trim()
+            binding.txtCategoryTitle.text = name.trim()
             val rowCount = count + 1
             binding.txtCount.text = "$rowCount. "
         }
@@ -53,7 +53,7 @@ class TitlesAdapter(
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = LayoutTitlesRowItemBinding.inflate(layoutInflater, parent, false)
+                val binding = LayoutLyrcisTitleRowItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

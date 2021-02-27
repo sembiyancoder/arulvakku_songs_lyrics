@@ -1,14 +1,11 @@
 package com.arulvakku.lyrics.app.activities.home.adapter
 
 import android.content.Context
-import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.data.Category
-import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
-import com.arulvakku.lyrics.app.utilities.Constants
-import com.arulvakku.lyrics.app.utilities.Prefs
+import com.arulvakku.lyrics.app.databinding.LayoutLyrcisTitleRowItemBinding
 import com.sembiyan.songs.app.listeners.CellClickListener
 
 class CategoryAdapter(
@@ -26,36 +23,26 @@ class CategoryAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = categoryItems[position]
-        holder.bind(category.title, category.count, category.color_code)
+        holder.bind(category.title, category.count, category.color_code, position)
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(categoryItems.get(position).title)
         }
     }
 
 
-    class ViewHolder private constructor(private val binding: LayoutCategoryRowItemBinding) :
+    class ViewHolder private constructor(private val binding: LayoutLyrcisTitleRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(name: String, count: String, colorCode: String) {
+        fun bind(name: String, count: String, colorCode: String, position: Int) {
             binding.txtCategoryTitle.text = name
-            val font = Prefs.getString(Constants.SP_KEYS.FONT_SIZE, "Medium")
-            when {
-                font.equals("Small") -> {
-                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP, 14f)
-                }
-                font.equals("Large") -> {
-                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP, 24f)
-                }
-                else -> {
-                    binding.txtCategoryTitle.setTextSize(COMPLEX_UNIT_SP, 17f)
-                }
-            }
+            val rowCount = position + 1
+            binding.txtCount.text = "$rowCount."
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = LayoutCategoryRowItemBinding.inflate(layoutInflater, parent, false)
+                val binding = LayoutLyrcisTitleRowItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
