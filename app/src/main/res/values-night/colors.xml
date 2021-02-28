@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@android:color/black</color>
-    <color name="colorPrimaryDark">@android:color/black</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#2878EE</color>
     <color name="colorStatusBarColor">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="textFontColor">#FFFFFF</color>
-    <color name="tabIndicatorColor">@android:color/white</color>
-
+    <color name="textFontColor">#000000</color>
+    <color name="tabIndicatorColor">@android:color/black</color>
+    <color name="app_background">@android:color/black</color>
+    <color name="card_background">@android:color/white</color>
+    <color name="list_text_color">@android:color/white</color>
+    <color name="lyrics_background">@android:color/black</color>
 </resources>

@@ -41,10 +41,6 @@ class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
         setContentView(binding.root)
         supportActionBar?.title = intent.getStringExtra("category_name")
 
-        // status bar text black
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        }
 
         prepareSongTitles()
     }

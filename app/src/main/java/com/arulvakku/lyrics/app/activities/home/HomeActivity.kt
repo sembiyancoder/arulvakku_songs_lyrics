@@ -26,12 +26,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // status bar text black
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        }
-
-
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)
 

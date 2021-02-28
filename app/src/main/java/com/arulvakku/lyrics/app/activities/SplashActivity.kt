@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+       // setContentView(R.layout.activity_splash)
 
         // status bar text black
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

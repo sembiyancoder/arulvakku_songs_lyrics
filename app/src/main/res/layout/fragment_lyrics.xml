@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
+    android:background="@color/lyrics_background"
     tools:context=".activities.lyrics.fragment.LyricsFragment">
 
     <LinearLayout
+        android:background="@color/lyrics_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
