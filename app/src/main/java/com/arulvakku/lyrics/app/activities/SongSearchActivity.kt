@@ -4,9 +4,11 @@ package com.arulvakku.lyrics.app.activities
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -29,6 +31,12 @@ class SongSearchActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivitySongSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // status bar text black
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        }
+
         setAdapter()
     }
 

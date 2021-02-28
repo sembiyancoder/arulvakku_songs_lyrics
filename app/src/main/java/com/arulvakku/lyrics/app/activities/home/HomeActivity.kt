@@ -2,7 +2,9 @@ package com.arulvakku.lyrics.app.activities.home
 
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.activities.SongSearchActivity
 import com.arulvakku.lyrics.app.activities.home.adapter.ViewPagerAdapter
@@ -23,6 +25,13 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // status bar text black
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        }
+
+
         //setting false to change splash screen page loding settings
         Prefs.putBoolean(Constants.IS_FIRST_TIME, false)
 

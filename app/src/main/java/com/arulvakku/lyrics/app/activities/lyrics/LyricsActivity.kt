@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,11 @@ class LyricsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLyricsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // status bar text black
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        }
 
         songId = intent.getIntExtra("position", 0)
         categoryName = intent.getStringExtra("category_name")
