@@ -29,14 +29,7 @@ android {
         }
     }
 
-    /*signingConfigs {
-        release {
-            storeFile file("C:\\Users\\bahwan\\Desktop\\JKS\\arulvakku_songs.jks")
-            storePassword "123456"
-            keyAlias "arulvakku_songs"
-            keyPassword "123456"
-        }
-    }*/
+
 }
 
 dependencies {
