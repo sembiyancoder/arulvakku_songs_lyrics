@@ -21,6 +21,7 @@ import com.arulvakku.lyrics.app.utilities.getJsonDataFromAsset
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.sembiyan.songs.app.listeners.RecyclerOnRowItemClickListener
+import kotlinx.android.synthetic.main.activity_song_titels.*
 
 
 class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
@@ -39,9 +40,13 @@ class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivitySongTitelsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = intent.getStringExtra("category_name")
-
-
+        supportActionBar?.hide()
+//        supportActionBar?.title = intent.getStringExtra("category_name")
+        binding.toolbar.title = intent.getStringExtra("category_name")
+        binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
         prepareSongTitles()
     }
 
@@ -66,7 +71,7 @@ class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
         mSongTitlesAdapter = TitlesAdapter(
             this@SongTitlesActivity,
             titles.sortedBy { it.sTitle.toString() },
-            this@SongTitlesActivity,false
+            this@SongTitlesActivity, false
         )
         binding.songTitleRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.songTitleRecyclerView.setHasFixedSize(true)
@@ -114,7 +119,6 @@ class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
 
     override fun onItemRowListener(position: Int, song: Song) {

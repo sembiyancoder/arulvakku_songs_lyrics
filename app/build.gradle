@@ -91,4 +91,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
 
+    //Material design library
+    implementation 'com.google.android.material:material:1.4.0-alpha01'
+
 }
