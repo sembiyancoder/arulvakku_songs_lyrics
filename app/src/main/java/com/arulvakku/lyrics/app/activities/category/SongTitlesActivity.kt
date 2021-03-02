@@ -66,7 +66,7 @@ class SongTitlesActivity : AppCompatActivity(), RecyclerOnRowItemClickListener {
         mSongTitlesAdapter = TitlesAdapter(
             this@SongTitlesActivity,
             titles.sortedBy { it.sTitle.toString() },
-            this@SongTitlesActivity
+            this@SongTitlesActivity,false
         )
         binding.songTitleRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.songTitleRecyclerView.setHasFixedSize(true)

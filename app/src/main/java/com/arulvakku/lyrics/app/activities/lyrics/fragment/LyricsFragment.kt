@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.activities.lyrics.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,10 @@ class LyricsFragment : Fragment() {
 
         binding.txtLyrics.text = paramLyrics
         binding.txtSongCategory.text = paramCategory
+
+        binding.imageShare.setOnClickListener {
+            paramCategory?.let { it1 -> paramLyrics?.let { it2 -> shareSong(it1, it2) } }
+        }
     }
 
     companion object {
@@ -56,5 +61,13 @@ class LyricsFragment : Fragment() {
                     putString(ARG_PARAM2_CATEGORY, song.sCategory.trim())
                 }
             }
+    }
+
+    private fun shareSong(category: String, song: String) {
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, category + "\n\n" + song)
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.send_to)))
     }
 }

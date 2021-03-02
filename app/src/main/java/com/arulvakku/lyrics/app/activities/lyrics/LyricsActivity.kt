@@ -103,7 +103,7 @@ class LyricsActivity : AppCompatActivity() {
         val id: Int = item.itemId
         return when (id) {
             R.id.share -> {
-                shareSong(currentSong.sSong);
+                shareSong(currentSong.sCategory,currentSong.sSong);
                 true
             }
             R.id.copy -> {
@@ -122,11 +122,11 @@ class LyricsActivity : AppCompatActivity() {
         }
     }
 
-    private fun shareSong(song: String) {
+    private fun shareSong(category: String,song: String) {
         val shareIntent = Intent()
         shareIntent.action = Intent.ACTION_SEND
         shareIntent.type = "text/plain"
-        shareIntent.putExtra(Intent.EXTRA_TEXT, song);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, category + "\n\n" + song)
         startActivity(Intent.createChooser(shareIntent, getString(R.string.send_to)))
     }
 

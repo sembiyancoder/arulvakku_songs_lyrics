@@ -63,7 +63,7 @@ class SongListFragment : Fragment(), RecyclerOnRowItemClickListener {
             context!!,
             titles.sortedBy { it.sSong.toString() },
             this@SongListFragment
-        )
+        ,true)
         binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.setHasFixedSize(true)
         binding?.recyclerView?.adapter = mSongTitlesAdapter

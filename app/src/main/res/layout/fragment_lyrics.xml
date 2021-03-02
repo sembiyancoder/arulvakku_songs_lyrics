@@ -3,16 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
     android:background="@color/lyrics_background"
+    android:scrollbars="none"
     tools:context=".activities.lyrics.fragment.LyricsFragment">
 
     <LinearLayout
-        android:background="@color/lyrics_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:background="@color/lyrics_background"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,7 +23,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:background="#33aaaaaa"
+                android:padding="5dp"
                 android:text="இயேசுவின் அணியாக அணியாக"
                 android:textSize="12sp" />
 
@@ -44,9 +46,11 @@
             style="@style/LyricsItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="இயேசுவின் அணியாக அணியாக" />
+            android:hint="இயேசுவின் அணியாக அணியாக"
+            android:padding="16dp" />
 
         <ImageView
+            android:id="@+id/image_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

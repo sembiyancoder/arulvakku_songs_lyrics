@@ -16,7 +16,7 @@ android {
         applicationId "com.arulvakku.lyrics.app"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4
+        versionCode 7
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,6 +28,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    /*signingConfigs {
+        release {
+            storeFile file("C:\\Users\\bahwan\\Desktop\\JKS\\arulvakku_songs.jks")
+            storePassword "123456"
+            keyAlias "arulvakku_songs"
+            keyPassword "123456"
+        }
+    }*/
 }
 
 dependencies {
@@ -35,8 +44,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'com.google.firebase:firebase-messaging:20.1.0'
-    implementation 'com.google.firebase:firebase-analytics:18.0.1'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation 'com.google.firebase:firebase-analytics:18.0.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     def  app_compat = "1.2.0"
@@ -61,7 +70,7 @@ dependencies {
     def  gson = "2.8.5"
     implementation "com.google.code.gson:gson:$gson"
 
-    def play_core = "1.6.0"
+    def play_core = "1.9.1"
     implementation "com.google.android.play:core:$play_core"
 
     def  circular_imageview = "4.2.0"
