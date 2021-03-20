@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.activities.home.HomeActivity
+import com.arulvakku.lyrics.app.activities.share.ShareLyricsActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.tasks.OnCompleteListener
@@ -48,7 +49,7 @@ class SplashActivity : AppCompatActivity() {
 
 
     private fun startMainActivity() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, ShareLyricsActivity::class.java)
         startActivity(intent)
         finish()
     }

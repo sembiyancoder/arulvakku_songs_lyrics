@@ -2,6 +2,7 @@ package com.arulvakku.lyrics.app.activities.lyrics.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,11 @@ class LyricsFragment : Fragment() {
         binding.imageShare.setOnClickListener {
             paramCategory?.let { it1 -> paramLyrics?.let { it2 -> shareSong(it1, it2) } }
         }
+
+        val pattern = """\n+""".toRegex()
+        val words = paramLyrics?.let { pattern.split(it).filter { it.isNotBlank() } }
+        println(words)
+
     }
 
     companion object {
