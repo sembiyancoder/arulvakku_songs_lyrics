@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.share.ShareLyricsActivity"></activity>
-        <activity android:name=".activities.share.adapter.ShareLyricsActivity" />
+
+
         <activity
             android:name=".activities.SongSearchActivity"
             android:launchMode="singleTop"

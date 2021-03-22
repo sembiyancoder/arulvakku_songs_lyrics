@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.activities.home.HomeActivity
 import com.arulvakku.lyrics.app.activities.share.ShareLyricsActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -31,19 +29,25 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.activity_splash)
+        // setContentView(R.layout.activity_splash)
 
         // status bar text black
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
 
-      /*  if (checkGooglePlayServices()) {
-            checkForUpdate();
-            getFCMToken()
-        } else {
-            startMainActivity()
-        }*/
+        /*  if (checkGooglePlayServices()) {
+              checkForUpdate();
+              getFCMToken()
+          } else {
+              startMainActivity()
+          }*/
+
+
+        /*  val db = Room.databaseBuilder(applicationContext, MyDatabase::class.java, "database.db")
+              .createFromAsset("/databases/database.db")
+              .build()*/
+
         startMainActivity()
     }
 
