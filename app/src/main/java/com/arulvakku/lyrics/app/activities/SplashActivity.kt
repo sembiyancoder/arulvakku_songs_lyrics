@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.arulvakku.lyrics.app.activities.home.HomeActivity
 import com.arulvakku.lyrics.app.activities.share.ShareLyricsActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -36,24 +37,24 @@ class SplashActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
 
-        /*  if (checkGooglePlayServices()) {
+          if (checkGooglePlayServices()) {
               checkForUpdate();
               getFCMToken()
           } else {
               startMainActivity()
-          }*/
+          }
 
 
         /*  val db = Room.databaseBuilder(applicationContext, MyDatabase::class.java, "database.db")
               .createFromAsset("/databases/database.db")
               .build()*/
 
-        startMainActivity()
+       // startMainActivity()
     }
 
 
     private fun startMainActivity() {
-        val intent = Intent(this, ShareLyricsActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }
