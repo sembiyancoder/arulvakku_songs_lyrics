@@ -1,11 +1,3 @@
 <resources>
     <string name="app_name">அருள்வாக்கு பாடல்கள்</string>
-    <string name="search">தேடல்</string>
-    <string name="locale">ta-IN</string>
-
-
-    // Needs to be changed
-    <string name="send_to">Send to</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- TODO: Remove or change this placeholder text -->
 </resources>
