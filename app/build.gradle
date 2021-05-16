@@ -1,12 +1,14 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: "kotlin-kapt"
-apply plugin: 'com.google.gms.google-services'
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'dagger.hilt.android.plugin'
+}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "30.0.1"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     buildFeatures {
         viewBinding true
@@ -15,7 +17,7 @@ android {
     defaultConfig {
         applicationId "com.arulvakku.lyrics.app"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 7
         versionName "1.0"
 
@@ -28,7 +30,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 
 }
 
@@ -37,8 +46,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'com.google.firebase:firebase-messaging:21.0.1'
-    implementation 'com.google.firebase:firebase-analytics:18.0.2'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-analytics:19.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     def  app_compat = "1.2.0"
@@ -47,7 +56,7 @@ dependencies {
     def legacy_support = "1.0.0"
     implementation "androidx.legacy:legacy-support-v4:$legacy_support"
 
-    def junit = "4.13"
+    def junit = "4.13.2"
     testImplementation "junit:junit:$junit"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 
@@ -60,48 +69,75 @@ dependencies {
     def material = "1.3.0-alpha03"
     implementation "com.google.android.material:material:$material"
 
-    def  gson = "2.8.5"
-    implementation "com.google.code.gson:gson:$gson"
 
-    def play_core = "1.9.1"
+    def play_core = "1.10.0"
     implementation "com.google.android.play:core:$play_core"
 
-    def  circular_imageview = "4.2.0"
-    implementation "com.mikhaellopez:circularimageview:$circular_imageview"
 
-    def moshiVersion="1.8.0"
-    def retrofit2_version = "2.5.0"
-    def okhttp3_version = "3.12.0"
-    def kotlinCoroutineVersion = "1.0.1"
 
-    //Moshi
-    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+    // Retrofit
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
-    //Retrofit2
-    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
-    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
-
-    //Okhttp3
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    // Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //Kotlin Coroutines
+    def kotlinCoroutineVersion = "1.4.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
 
     //Material design library
-    implementation 'com.google.android.material:material:1.4.0-alpha01'
+    implementation 'com.google.android.material:material:1.4.0-beta01'
 
     //recyclerview-selection
     def recyclerviewSelection = "28.0.0"
     implementation "com.android.support:recyclerview-selection:$recyclerviewSelection"
 
-    //room
-    def roomVersion = "1.1.1"
-    implementation "android.arch.persistence.room:runtime:$roomVersion"
-    def roomCompiler = "1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:$roomCompiler"
+    // DI(dependency injection) hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    androidTestImplementation 'androidx.test:rules:1.4.0-alpha06'
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    //Lifecycle
+    def lifecycle_version = "2.3.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // Kotlin-view_model-activity
+    implementation "androidx.activity:activity-ktx:1.2.3"
+
+    // Kotlin-view_model_fragment
+    implementation "androidx.fragment:fragment-ktx:1.3.3"
+    // Testing Fragments in Isolation
+    debugImplementation "androidx.fragment:fragment-testing:1.3.3"
+
+
+    // Room
+    def room = "2.3.0"
+    implementation "androidx.room:room-runtime:$room"
+    implementation "androidx.room:room-ktx:$room"
+    kapt "androidx.room:room-compiler:$room"
+
+    /*
+        Tests
+     */
+    // Hilt
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    def fragment_version = "1.3.0-alpha06"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    def test_version = "1.3.0"
+    androidTestImplementation "androidx.test:core-ktx:$test_version"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
 }
