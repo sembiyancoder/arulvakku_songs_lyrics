@@ -1,6 +1,5 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.activities.home
 
-import com.arulvakku.lyrics.app.data.retrofit.SongNetworkEntity
 import com.arulvakku.lyrics.app.data.retrofit.SongNetworkMapper
 import com.arulvakku.lyrics.app.data.retrofit.SongService
 import com.arulvakku.lyrics.app.data.room.dao.SongDao

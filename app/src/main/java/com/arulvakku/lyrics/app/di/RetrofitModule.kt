@@ -1,6 +1,7 @@
 package com.arulvakku.lyrics.app.di
 
 import com.arulvakku.lyrics.app.data.retrofit.SongService
+import com.arulvakku.lyrics.app.utilities.BASE_URL
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -31,7 +32,7 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl("http://arulvakku.binaryexpertsystems.com/Arulvakku/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
     @Singleton

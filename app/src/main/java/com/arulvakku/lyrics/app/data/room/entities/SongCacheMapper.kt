@@ -1,7 +1,6 @@
 package com.arulvakku.lyrics.app.data.room.entities
 
-import com.arulvakku.lyrics.app.activities.Song
-import com.arulvakku.lyrics.app.data.retrofit.SongNetworkEntity
+import com.arulvakku.lyrics.app.activities.home.Song
 import com.arulvakku.lyrics.app.utilities.EntityMapper
 import javax.inject.Inject
 

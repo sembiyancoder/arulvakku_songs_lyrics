@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.activities.home
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,6 +1,6 @@
 package com.arulvakku.lyrics.app.data.retrofit
 
-import com.arulvakku.lyrics.app.activities.Song
+import com.arulvakku.lyrics.app.activities.home.Song
 import com.arulvakku.lyrics.app.utilities.EntityMapper
 import javax.inject.Inject
 

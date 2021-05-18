@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.activities.home
 
 import androidx.lifecycle.*
 import com.arulvakku.lyrics.app.utilities.Resource
