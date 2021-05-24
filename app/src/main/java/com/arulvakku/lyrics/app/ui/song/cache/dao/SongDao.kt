@@ -1,13 +1,9 @@
-package com.arulvakku.lyrics.app.data.room.dao
+package com.arulvakku.lyrics.app.ui.song.cache.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.arulvakku.lyrics.app.data.room.entities.SongCacheEntity
+import com.arulvakku.lyrics.app.ui.song.cache.entities.SongCacheEntity
 
 
-/**
- * @author bsoft-61 on 13/3/21.
- * */
 @Dao
 interface SongDao {
 
@@ -20,12 +16,12 @@ interface SongDao {
     @Delete
     suspend fun delete(data: SongCacheEntity)
 
-    @Query("SELECT * FROM SongCacheEntity")
+    @Query("SELECT * FROM tbl_song")
     suspend fun getAllSongs(): List<SongCacheEntity>
 
-    @Query("SELECT COUNT(songId) FROM SongCacheEntity")
+    @Query("SELECT COUNT(song_id) FROM tbl_song")
     suspend fun getRowCount(): Int
 
-    @Query("DELETE FROM SongCacheEntity")
+    @Query("DELETE FROM tbl_song")
     suspend fun deleteAll()
 }

@@ -1,11 +1,9 @@
-package com.arulvakku.lyrics.app.data.room.entities
+package com.arulvakku.lyrics.app.ui.song.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class SongCacheEntity(
-    @PrimaryKey
+data class Song(
     val songId: Long,
     val title: String,
     val category: String,

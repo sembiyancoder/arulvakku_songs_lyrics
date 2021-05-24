@@ -1,6 +1,6 @@
 package com.arulvakku.lyrics.app.di
 
-import com.arulvakku.lyrics.app.data.retrofit.SongService
+import com.arulvakku.lyrics.app.ui.song.service.SongService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -13,12 +13,15 @@ import javax.inject.Singleton
 
 
 /**
- * @author bsoft-61 on 15/2/21.
- * */
+ * Create Network related utilities
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
+    /**
+     * Create reference for the [Gson]
+     */
     @Singleton
     @Provides
     fun provideGsonBuilder(): Gson {
@@ -27,6 +30,9 @@ object RetrofitModule {
             .create()
     }
 
+    /**
+     * Construct your base URL
+     */
     @Singleton
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit.Builder {
@@ -34,6 +40,10 @@ object RetrofitModule {
             .baseUrl("http://arulvakku.binaryexpertsystems.com/Arulvakku/")
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
+
+    /**
+     * Create reference for [SongService]
+     */
     @Singleton
     @Provides
     fun provideSongsService(retrofit: Retrofit.Builder): SongService {

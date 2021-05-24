@@ -1,15 +1,13 @@
-package com.arulvakku.lyrics.app.data.retrofit
+package com.arulvakku.lyrics.app.ui.song.service
 
-import retrofit2.Call
-import retrofit2.Response
+import com.arulvakku.lyrics.app.ui.song.service.networkentity.SongResponseNetworkEntity
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
 
-/**
- * @author bsoft-61 on 15/2/21.
- * */
+
 interface SongService {
+    // Service to get all songs
     @Headers("Content-Type: application/json")
     @GET("GetSongsList")
     suspend fun getSongs(): SongResponseNetworkEntity

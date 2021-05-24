@@ -1,9 +1,13 @@
-package com.arulvakku.lyrics.app.data.retrofit
+package com.arulvakku.lyrics.app.ui.song.service.networkmapper
 
-import com.arulvakku.lyrics.app.activities.Song
+import com.arulvakku.lyrics.app.ui.song.model.Song
+import com.arulvakku.lyrics.app.ui.song.service.networkentity.SongNetworkEntity
 import com.arulvakku.lyrics.app.utilities.EntityMapper
 import javax.inject.Inject
 
+/**
+ *This [SongNetworkMapper]  will convert from [SongNetworkEntity] to [Song]
+ */
 class SongNetworkMapper
 @Inject
 constructor() :

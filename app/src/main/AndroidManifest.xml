@@ -17,11 +17,11 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".ui.song.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>

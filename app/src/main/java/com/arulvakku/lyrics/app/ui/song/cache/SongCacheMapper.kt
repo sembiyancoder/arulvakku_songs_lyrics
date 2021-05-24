@@ -1,10 +1,13 @@
-package com.arulvakku.lyrics.app.data.room.entities
+package com.arulvakku.lyrics.app.ui.song.cache
 
-import com.arulvakku.lyrics.app.activities.Song
-import com.arulvakku.lyrics.app.data.retrofit.SongNetworkEntity
+import com.arulvakku.lyrics.app.ui.song.model.Song
+import com.arulvakku.lyrics.app.ui.song.cache.entities.SongCacheEntity
 import com.arulvakku.lyrics.app.utilities.EntityMapper
 import javax.inject.Inject
 
+/**
+ *This [SongCacheMapper]  will convert from [SongCacheEntity] to [Song]
+ */
 class SongCacheMapper
 @Inject
 constructor() :

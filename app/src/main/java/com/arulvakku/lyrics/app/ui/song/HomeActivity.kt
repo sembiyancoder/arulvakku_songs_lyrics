@@ -1,15 +1,10 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.ui.song
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
-import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.ActivityHomeBinding
 import com.arulvakku.lyrics.app.utilities.Resource
-import com.bosco.mrroom.utils.MainStateEvent
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -32,7 +27,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
+
     private fun subscribeObservers() {
+        // Subscribe to listen songs response
         viewModel.dataStateSongs.observe(this, {
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -49,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setState() {
-        viewModel.setStateSongs(MainStateEvent.GetBlogsEvent)
+        // Get songs from the webservice
+        viewModel.setStateSongs()
     }
 }

@@ -2,8 +2,8 @@ package com.arulvakku.lyrics.app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.arulvakku.lyrics.app.data.room.AppDatabase
-import com.arulvakku.lyrics.app.data.room.dao.SongDao
+import com.arulvakku.lyrics.app.database.AppDatabase
+import com.arulvakku.lyrics.app.ui.song.cache.dao.SongDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,11 +13,15 @@ import javax.inject.Singleton
 
 
 /**
- * @author bsoft-61 on 15/2/21.
- * */
+ * Create reference for database and it's dao
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 object RoomModule {
+
+    /**
+     * Create database [AppDatabase]
+     */
     @Singleton
     @Provides
     fun provideBlogDb(@ApplicationContext context: Context): AppDatabase {
@@ -30,6 +34,9 @@ object RoomModule {
             .build()
     }
 
+    /**
+     * Create reference for [SongDao]
+     */
     @Singleton
     @Provides
     fun provideSongDAO(database: AppDatabase): SongDao {

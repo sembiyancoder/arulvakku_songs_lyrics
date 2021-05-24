@@ -1,8 +1,9 @@
-package com.arulvakku.lyrics.app.activities
+package com.arulvakku.lyrics.app.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.arulvakku.lyrics.app.ui.song.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
