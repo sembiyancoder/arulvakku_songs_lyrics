@@ -1,8 +1,3 @@
 <resources>
     <string name="app_name">அருள்வாக்கு பாடல்கள்</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_search">Search</string>
-    <string name="title_favourite">Favourite</string>
-    <string name="title_settings">Settings</string>
 </resources>
