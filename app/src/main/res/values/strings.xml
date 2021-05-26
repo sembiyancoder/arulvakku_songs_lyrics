@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">அருள்வாக்கு பாடல்கள்</string>
+    <string name="downloading_offline">Please wait!. Downloading songs offline</string>
 </resources>

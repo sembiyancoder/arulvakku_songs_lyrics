@@ -17,7 +17,11 @@
         android:usesCleartextTraffic="true">
 
         <activity android:name=".ui.main.view.MainActivity" />
-        <activity android:name=".ui.main.view.CacheActivity" />
+
+        <activity
+            android:name=".ui.main.view.CacheActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CachingTheme" />
 
         <activity
             android:name=".ui.main.view.SplashActivity"
@@ -25,7 +29,6 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

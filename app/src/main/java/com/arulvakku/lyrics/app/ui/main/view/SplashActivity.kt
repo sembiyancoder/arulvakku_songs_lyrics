@@ -12,14 +12,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-
-
-
         startCacheActivity();
     }
 
     private fun startCacheActivity() {
         val intent = Intent(this, CacheActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }
