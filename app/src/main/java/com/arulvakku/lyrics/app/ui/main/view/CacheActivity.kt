@@ -97,6 +97,7 @@ class CacheActivity : AppCompatActivity() {
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun hideProgressBar() {
