@@ -9,7 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.arulvakku.lyrics.app.ui.view.fragments.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+
+        <action
+            android:id="@+id/action_category_to_song_list"
+            app:destination="@id/navigation_songs_list"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_search"
@@ -28,5 +38,11 @@
         android:name="com.arulvakku.lyrics.app.ui.view.fragments.SettingFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/setting_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_songs_list"
+        android:name="com.arulvakku.lyrics.app.ui.view.fragments.SongListFragment"
+        android:label="Song List"
+        tools:layout="@layout/song_list_fragment" />
 
 </navigation>

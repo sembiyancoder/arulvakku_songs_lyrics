@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.data.model.CategoriesResult
 import com.arulvakku.lyrics.app.data.model.SongResult
 import com.arulvakku.lyrics.app.databinding.CategoriesFragmentBinding
@@ -52,7 +54,13 @@ class CategoriesFragment : Fragment(), CellClickListener {
 
 
     override fun onCellClickListener(item: CategoriesResult) {
-
+        val bundle = Bundle().apply {
+            putSerializable("article", item.sCategoryId)
+        }
+        findNavController().navigate(
+            R.id.action_category_to_song_list,
+            bundle
+        )
     }
 
     override fun onSongCellClickListener(item: SongResult) {
