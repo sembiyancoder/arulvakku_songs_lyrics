@@ -16,15 +16,15 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ui.main.view.MainActivity" />
+        <activity android:name=".ui.view.MainActivity" />
 
         <activity
-            android:name=".ui.main.view.CacheActivity"
+            android:name=".ui.view.CacheActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CachingTheme" />
 
         <activity
-            android:name=".ui.main.view.SplashActivity"
+            android:name=".ui.view.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>

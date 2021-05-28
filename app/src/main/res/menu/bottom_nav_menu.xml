@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_home"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="@string/home" />
     <item
-        android:id="@+id/menu_search"
+        android:id="@+id/navigation_search"
         android:icon="@drawable/ic_search"
-        android:title="Search" />
+        android:title="@string/search" />
     <item
-        android:id="@+id/menu_library"
+        android:id="@+id/navigation_library"
         android:icon="@drawable/ic_library_music"
-        android:title="Library" />
+        android:title="@string/library" />
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="@string/settings" />
 </menu>
