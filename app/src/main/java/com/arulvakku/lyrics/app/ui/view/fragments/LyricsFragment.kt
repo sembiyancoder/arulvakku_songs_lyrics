@@ -6,31 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
-import com.arulvakku.lyrics.app.R
+import com.arulvakku.lyrics.app.databinding.LyricsFragmentBinding
+import com.arulvakku.lyrics.app.ui.viewmodels.LyricsViewModel
 
-class SongListFragment : Fragment() {
+class LyricsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SongListFragment()
+        fun newInstance() = LyricsFragment()
     }
 
-    private lateinit var viewModel: SongListViewModel
-
-    val args: SongListFragmentArgs by navArgs()
-
+    private lateinit var viewModel: LyricsViewModel
+    private lateinit var binding: LyricsFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.song_list_fragment, container, false)
+        binding = LyricsFragmentBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SongListViewModel::class.java)
-        val result = args.categoriesresult
+        viewModel = ViewModelProvider(this).get(LyricsViewModel::class.java)
     }
 
 }
