@@ -9,10 +9,12 @@ import com.arulvakku.lyrics.app.data.model.SongCategory
 import com.arulvakku.lyrics.app.data.repository.MainRepository
 import com.arulvakku.lyrics.app.utilities.NetworkHelper
 import com.arulvakku.lyrics.app.utilities.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class CacheViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CacheViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {

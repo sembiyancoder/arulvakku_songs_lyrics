@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startCacheActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, CacheActivity::class.java)
         startActivity(intent)
         finish()
     }
