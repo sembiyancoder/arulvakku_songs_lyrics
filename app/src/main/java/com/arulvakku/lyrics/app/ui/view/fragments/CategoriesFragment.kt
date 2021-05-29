@@ -55,7 +55,7 @@ class CategoriesFragment : Fragment(), CellClickListener {
 
     override fun onCellClickListener(item: CategoriesResult) {
         val bundle = Bundle().apply {
-            putSerializable("article", item.sCategoryId)
+            putSerializable("categoriesresult", item)
         }
         findNavController().navigate(
             R.id.action_category_to_song_list,
