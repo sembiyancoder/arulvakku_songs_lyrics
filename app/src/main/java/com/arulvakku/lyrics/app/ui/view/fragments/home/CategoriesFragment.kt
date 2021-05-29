@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.ui.view.fragments
+package com.arulvakku.lyrics.app.ui.view.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

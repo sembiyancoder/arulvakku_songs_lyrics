@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/navigation_songs_list"
-        android:name="com.arulvakku.lyrics.app.ui.view.fragments.SongListFragment"
+        android:name="com.arulvakku.lyrics.app.ui.view.fragments.home.SongListFragment"
         android:label="SongList"
         tools:layout="@layout/song_list_fragment" >
         <argument

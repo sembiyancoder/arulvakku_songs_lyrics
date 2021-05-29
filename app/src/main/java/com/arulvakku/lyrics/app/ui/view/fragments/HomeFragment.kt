@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.arulvakku.lyrics.app.databinding.HomeFragmentBinding
 import com.arulvakku.lyrics.app.ui.adapters.ViewPagerAdapter
+import com.arulvakku.lyrics.app.ui.view.fragments.home.CategoriesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

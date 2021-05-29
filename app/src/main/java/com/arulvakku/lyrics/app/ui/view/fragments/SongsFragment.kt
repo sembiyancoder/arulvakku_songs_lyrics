@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import com.arulvakku.lyrics.app.data.model.SongResult
 import com.arulvakku.lyrics.app.databinding.SongsFragmentBinding
 import com.arulvakku.lyrics.app.ui.adapters.CellClickListener
 import com.arulvakku.lyrics.app.ui.adapters.SongsAdapter
+import com.arulvakku.lyrics.app.ui.view.MainActivity
+import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
 import com.arulvakku.lyrics.app.ui.viewmodels.SongsViewModel
 
 class SongsFragment : Fragment(), CellClickListener {
@@ -55,9 +58,9 @@ class SongsFragment : Fragment(), CellClickListener {
 
     }
 
-
     override fun onSongCellClickListener(item: SongResult) {
-
+        val intent = Intent(context, SongDetailsActivity::class.java)
+        startActivity(intent)
     }
 
 }
