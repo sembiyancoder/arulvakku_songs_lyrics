@@ -11,6 +11,8 @@ import com.arulvakku.lyrics.app.data.model.Song
 import com.arulvakku.lyrics.app.data.model.SongCategory
 import com.arulvakku.lyrics.app.databinding.ActivityLoadingBinding
 import com.arulvakku.lyrics.app.ui.main.viewmodels.CacheViewModel
+import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryNetworkEntity
+import com.arulvakku.lyrics.app.ui.songList.SongNetworkEntity
 import com.arulvakku.lyrics.app.utilities.PreferenceStorage
 import com.arulvakku.lyrics.app.utilities.Status
 import com.google.gson.Gson
@@ -73,7 +75,7 @@ class CacheActivity : AppCompatActivity() {
         })
     }
 
-    private fun renderSongCategories(categoryResult: SongCategory) {
+    private fun renderSongCategories(categoryResult: SongCategoryNetworkEntity) {
         lifecycleScope.launch {
             val gson = Gson()
             val json: String = gson.toJson(categoryResult)
@@ -81,7 +83,7 @@ class CacheActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderSongs(songResult: Song) {
+    private fun renderSongs(songResult: SongNetworkEntity) {
 
         lifecycleScope.launch {
             val gson = Gson()

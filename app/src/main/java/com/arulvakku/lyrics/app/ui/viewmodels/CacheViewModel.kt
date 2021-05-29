@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.arulvakku.lyrics.app.data.model.Song
 import com.arulvakku.lyrics.app.data.model.SongCategory
 import com.arulvakku.lyrics.app.data.repository.MainRepository
+import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryNetworkEntity
+import com.arulvakku.lyrics.app.ui.songList.SongNetworkEntity
 import com.arulvakku.lyrics.app.utilities.NetworkHelper
 import com.arulvakku.lyrics.app.utilities.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,8 +21,8 @@ class CacheViewModel @Inject constructor(
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
-    val songCategoriesResult: MutableLiveData<Resource<SongCategory>> = MutableLiveData()
-    val songsResult: MutableLiveData<Resource<Song>> = MutableLiveData()
+    val songCategoriesResult: MutableLiveData<Resource<SongCategoryNetworkEntity>> = MutableLiveData()
+    val songsResult: MutableLiveData<Resource<SongNetworkEntity>> = MutableLiveData()
 
     init {
         getSongCategories()

@@ -1,10 +1,23 @@
 package com.arulvakku.lyrics.app.data.model
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class CategoriesResult(
-    val sCategory: String,
-    val sCategoryId: Int,
-    val sColorCode: String,
-    val sCount: Int
-) : Serializable
+    @SerializedName("sCategory")
+    @Expose
+    var sCategory: String?,
+
+    @SerializedName("sCategoryId")
+    @Expose
+    var sCategoryId: Int,
+
+    @SerializedName("sColorCode")
+    @Expose
+    var sColorCode: String?,
+
+    @SerializedName("sCount")
+    @Expose
+    var sCount: Int?,
+): Serializable
