@@ -2,10 +2,10 @@ package com.arulvakku.lyrics.app.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryCacheEntity
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryDao
-import com.arulvakku.lyrics.app.ui.songList.SongCacheEntity
-import com.arulvakku.lyrics.app.ui.songList.SongDao
+import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheEntity
+import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
 
 @Database(
     entities = arrayOf(

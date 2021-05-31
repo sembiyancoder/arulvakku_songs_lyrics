@@ -3,8 +3,8 @@ package com.arulvakku.lyrics.app.di
 import android.content.Context
 import androidx.room.Room
 import com.arulvakku.lyrics.app.data.database.ArulvakkuDatabase
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryDao
-import com.arulvakku.lyrics.app.ui.songList.SongDao
+import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -4,12 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
-import com.arulvakku.lyrics.app.R
-import com.arulvakku.lyrics.app.data.model.Song
 import com.arulvakku.lyrics.app.databinding.ActivitySongDetailsBinding
 import com.arulvakku.lyrics.app.ui.adapters.LyricsPagerAdapter
-import com.arulvakku.lyrics.app.ui.viewmodels.LyricsViewModel
-import com.arulvakku.lyrics.app.ui.viewmodels.SongsViewModel
+import com.arulvakku.lyrics.app.ui.view.lyrics.LyricsViewModel
 
 class SongDetailsActivity : AppCompatActivity() {
 

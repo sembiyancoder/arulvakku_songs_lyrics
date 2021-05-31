@@ -1,14 +1,16 @@
 package com.arulvakku.lyrics.app.data.repository
 
 import com.arulvakku.lyrics.app.data.api.ApiHelper
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryCacheMapper
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryDao
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryNetworkEntity
-import com.arulvakku.lyrics.app.ui.songCategory.SongCategoryNetworkMapper
-import com.arulvakku.lyrics.app.ui.songList.SongCacheMapper
-import com.arulvakku.lyrics.app.ui.songList.SongDao
-import com.arulvakku.lyrics.app.ui.songList.SongNetworkEntity
-import com.arulvakku.lyrics.app.ui.songList.SongNetworkMapper
+import com.arulvakku.lyrics.app.data.model.CategoriesResult
+import com.arulvakku.lyrics.app.data.model.SongResult
+import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheMapper
+import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
+import com.arulvakku.lyrics.app.ui.view.home.category.network.SongCategoryNetworkEntity
+import com.arulvakku.lyrics.app.ui.view.home.category.network.SongCategoryNetworkMapper
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
+import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkEntity
+import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkMapper
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -24,15 +26,32 @@ class MainRepository @Inject constructor(
 
     suspend fun getSongCategories(): Response<SongCategoryNetworkEntity> {
         val response = apiHelper.getSongCategories()
-        val songCategory = songCategoryNetworkMapper.mapFromEntityList(response.body()!!.Result)
-        songCategoryDao.insertSongCategoryList(songCategoryCacheMapper.mapToEntityList(songCategory))
+        // if(response.body()!=null) response.body().IsTransactionDone else false
+        val isSuccess: Boolean = response.body()?.IsTransactionDone ?: false
+        if (isSuccess) { // Insert into database if the response is true
+            val list: List<CategoriesResult> = response.body()?.Result ?: emptyList()
+            val songCategory = songCategoryNetworkMapper.mapFromEntityList(list)
+            songCategoryDao.insertSongCategoryList(
+                songCategoryCacheMapper.mapToEntityList(
+                    songCategory
+                )
+            )
+        }
+
         return response
     }
 
     suspend fun getSongs(): Response<SongNetworkEntity> {
         val response = apiHelper.getSongs()
-        val songs = songNetworkMapper.mapFromEntityList(response.body()!!.Result)
-        songDao.insertSongList(songCacheMapper.mapToEntityList(songs))
+
+        // if(response.body()!=null) response.body().IsTransactionDone else false
+        val isSuccess: Boolean = response.body()?.IsTransactionDone ?: false
+        if (isSuccess) { // Insert into database if the response is true
+            val list: List<SongResult> = response.body()?.Result ?: emptyList()
+            val songs = songNetworkMapper.mapFromEntityList(list)
+            songDao.insertSongList(songCacheMapper.mapToEntityList(songs))
+        }
+
         return response
     }
 

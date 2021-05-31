@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.arulvakku.lyrics.app.data.model.SongResult
-import com.arulvakku.lyrics.app.ui.view.fragments.LyricsFragment
+import com.arulvakku.lyrics.app.ui.view.lyrics.LyricsFragment
 
 class LyricsPagerAdapter(fragmentManager: FragmentManager, private val songs: List<SongResult>) :
 

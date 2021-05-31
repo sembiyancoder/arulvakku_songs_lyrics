@@ -25,11 +25,11 @@
         </activity>
         <activity android:name=".ui.view.MainActivity" />
         <activity
-            android:name=".ui.view.CacheActivity"
+            android:name=".ui.view.download.CacheActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CachingTheme" />
         <activity
-            android:name=".ui.view.SplashActivity"
+            android:name=".ui.view.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
