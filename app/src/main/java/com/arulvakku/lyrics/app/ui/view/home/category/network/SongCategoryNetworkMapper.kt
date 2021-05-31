@@ -1,6 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.home.category.network
 
-import com.arulvakku.lyrics.app.data.model.CategoriesResult
+import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.CategoriesResult
 import com.arulvakku.lyrics.app.utilities.ArulvakkuMapper
 import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
 import javax.inject.Inject

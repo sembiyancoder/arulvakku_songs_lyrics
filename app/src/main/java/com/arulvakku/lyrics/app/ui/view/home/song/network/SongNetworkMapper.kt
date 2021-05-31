@@ -1,6 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.home.song.network
 
-import com.arulvakku.lyrics.app.data.model.SongResult
+import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongResult
 import com.arulvakku.lyrics.app.utilities.ArulvakkuMapper
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import javax.inject.Inject

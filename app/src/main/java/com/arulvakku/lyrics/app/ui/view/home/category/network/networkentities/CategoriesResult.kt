@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.data.model
+package com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

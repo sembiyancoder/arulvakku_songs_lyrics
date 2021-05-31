@@ -1,6 +1,5 @@
-package com.arulvakku.lyrics.app.ui.view.home.song.network
+package com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities
 
-import com.arulvakku.lyrics.app.data.model.SongResult
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arulvakku.lyrics.app.data.repository.MainRepository
-import com.arulvakku.lyrics.app.ui.view.home.category.network.SongCategoryNetworkEntity
-import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkEntity
+import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.SongCategoryNetworkEntity
+import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
 import com.arulvakku.lyrics.app.utilities.NetworkHelper
 import com.arulvakku.lyrics.app.utilities.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

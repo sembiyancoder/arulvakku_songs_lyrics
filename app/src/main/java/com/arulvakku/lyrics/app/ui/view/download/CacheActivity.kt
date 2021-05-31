@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.arulvakku.lyrics.app.databinding.ActivityLoadingBinding
 import com.arulvakku.lyrics.app.ui.view.MainActivity
-import com.arulvakku.lyrics.app.ui.view.home.category.network.SongCategoryNetworkEntity
-import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkEntity
+import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.SongCategoryNetworkEntity
+import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
 import com.arulvakku.lyrics.app.utilities.PreferenceStorage
 import com.arulvakku.lyrics.app.utilities.Status
 import com.google.gson.Gson
