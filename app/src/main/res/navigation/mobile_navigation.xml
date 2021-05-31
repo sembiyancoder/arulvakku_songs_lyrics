@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.arulvakku.lyrics.app.ui.view.home.HomeFragment"
-        android:label="HomeFragment"
+        android:label="அருள்வாக்கு பாடல்கள்"
         tools:layout="@layout/home_fragment">
 
         <action
@@ -46,7 +46,7 @@
         tools:layout="@layout/song_list_fragment" >
         <argument
             android:name="categoriesresult"
-            app:argType="com.arulvakku.lyrics.app.data.model.CategoriesResult" />
+            app:argType="com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel" />
     </fragment>
 
 </navigation>

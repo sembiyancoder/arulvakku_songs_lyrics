@@ -1,18 +1,38 @@
 package com.arulvakku.lyrics.app.ui.view.lyrics
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.arulvakku.lyrics.app.data.model.Song
-import com.arulvakku.lyrics.app.utilities.getSongs
+import androidx.lifecycle.viewModelScope
+import com.arulvakku.lyrics.app.data.repository.DatabaseRepository
+import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
+import com.arulvakku.lyrics.app.utilities.Count
+import com.arulvakku.lyrics.app.utilities.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LyricsViewModel : ViewModel() {
 
-    lateinit var songsResult: Song
+@HiltViewModel
+class LyricsViewModel @Inject
+constructor(private val repository: DatabaseRepository) : ViewModel() {
 
-    init {
-        getSongCategories()
+    val countResult: MutableLiveData<Resource<Count>> = MutableLiveData()
+    val songsResult: MutableLiveData<Resource<List<SongModel>>> = MutableLiveData()
+
+    fun getSongsListByCategory(categoryId: Int) {
+        viewModelScope.launch {
+            songsResult.postValue(Resource.loading(null))
+            val data = repository.getSongsByCategory(categoryId)
+            try {
+                songsResult.postValue(
+                    Resource.success(
+                        data
+                    )
+                )
+            } catch (e: Exception) {
+                countResult.postValue(Resource.error("Something went wrong", null))
+            }
+        }
     }
 
-    private fun getSongCategories() {
-        songsResult = getSongs();
-    }
 }

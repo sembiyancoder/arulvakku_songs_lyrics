@@ -81,11 +81,15 @@ class SongsFragment : Fragment(), CellClickListener {
 
     }
 
-    override fun onCellClickListener(item: SongCategoryModel) {
+    override fun onCategoryItemClickListener(item: SongCategoryModel) {
     }
 
     override fun onSongCellClickListener(item: SongModel) {
         val intent = Intent(context, SongDetailsActivity::class.java)
+        val bundle = Bundle().apply {
+            putSerializable("song", item)
+        }
+        intent.putExtras(bundle)
         startActivity(intent)
     }
 

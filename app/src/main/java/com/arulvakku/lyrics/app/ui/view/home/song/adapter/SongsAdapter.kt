@@ -2,6 +2,7 @@ package com.arulvakku.lyrics.app.ui.view.home.song.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
@@ -38,6 +39,8 @@ class SongsAdapter(
             binding.txtCategoryTitle.text = songResult.sTitle
             val rowCount = position + 1
             binding.txtCount.text = "$rowCount."
+            binding.textCategoryName.text  = songResult.sCategory
+            binding.textCategoryName.visibility = View.VISIBLE
         }
 
         companion object {

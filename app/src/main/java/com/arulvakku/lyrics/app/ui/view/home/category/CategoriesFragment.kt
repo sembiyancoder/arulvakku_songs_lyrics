@@ -25,7 +25,6 @@ class CategoriesFragment : Fragment(), CellClickListener {
         fun newInstance() = CategoriesFragment()
     }
 
-    private val viewModel: CategoriesViewModel by viewModels()
 
     private val databaseViewModel: DatabaseViewModel by viewModels()
 
@@ -41,8 +40,6 @@ class CategoriesFragment : Fragment(), CellClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(CategoriesViewModel::class.java)
-
         subscribe()
     }
 
@@ -55,7 +52,6 @@ class CategoriesFragment : Fragment(), CellClickListener {
                 }
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
-
                     setAdapter(it.data ?: emptyList())
                 }
                 Status.ERROR -> {
@@ -63,8 +59,6 @@ class CategoriesFragment : Fragment(), CellClickListener {
                 }
             }
         }
-
-
     }
 
     private fun setAdapter(list: List<SongCategoryModel>) {
@@ -81,7 +75,7 @@ class CategoriesFragment : Fragment(), CellClickListener {
     }
 
 
-    override fun onCellClickListener(item: SongCategoryModel) {
+    override fun onCategoryItemClickListener(item: SongCategoryModel) {
         val bundle = Bundle().apply {
             putSerializable("categoriesresult", item)
         }

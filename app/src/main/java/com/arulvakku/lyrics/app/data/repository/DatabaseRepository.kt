@@ -1,11 +1,11 @@
 package com.arulvakku.lyrics.app.data.repository
 
+import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
-import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import javax.inject.Inject
 
 class DatabaseRepository
@@ -28,6 +28,11 @@ constructor(
 
     suspend fun getSongs(): List<SongModel> {
         val data = songDao.getSongList()
+        return songCacheMapper.mapFromEntityList(data)
+    }
+
+    suspend fun getSongsByCategory(categoryId: Int): List<SongModel> {
+        val data = songDao.getSongListByCategory(categoryId)
         return songCacheMapper.mapFromEntityList(data)
     }
 }
