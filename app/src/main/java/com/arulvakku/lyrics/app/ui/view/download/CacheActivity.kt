@@ -11,7 +11,7 @@ import com.arulvakku.lyrics.app.databinding.ActivityLoadingBinding
 import com.arulvakku.lyrics.app.ui.view.MainActivity
 import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.SongCategoryNetworkEntity
 import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
-import com.arulvakku.lyrics.app.utilities.PreferenceStorage
+
 import com.arulvakku.lyrics.app.utilities.Status
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +27,7 @@ class CacheActivity : AppCompatActivity() {
     private val loginViewModel: CacheViewModel by viewModels()
     private lateinit var binding: ActivityLoadingBinding
 
-    @Inject
-    lateinit var prefStorage: PreferenceStorage
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +76,7 @@ class CacheActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val gson = Gson()
             val json: String = gson.toJson(categoryResult)
-            prefStorage.setSongCategory(json)
+
         }
     }
 
@@ -86,7 +85,6 @@ class CacheActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val gson = Gson()
             val json: String = gson.toJson(songResult)
-            prefStorage.setSong(json)
         }
 
 

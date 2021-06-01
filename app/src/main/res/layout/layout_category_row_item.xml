@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="2000"
+        android:fontFamily="@font/montserrat"
         android:textAppearance="?textAppearanceListItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/txtCategoryTitle"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:fontFamily="@font/montserrat"
         android:id="@+id/txtCategoryTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

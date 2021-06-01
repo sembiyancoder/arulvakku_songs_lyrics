@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         app:tabGravity="fill"
         app:tabIndicatorHeight="2.5dp"
+        app:tabIndicatorColor="@color/note_text_color"
+        app:tabSelectedTextColor="@color/note_text_color"
         app:tabMode="fixed" />
 
     <androidx.viewpager.widget.ViewPager

@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.view.lyrics.LyricsFragment">
 
-    <TextView
-        android:id="@+id/textLyrics"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:lineSpacingExtra="8dp"
-        android:gravity="start"
-        android:textAppearance="?textAppearanceListItem"
-        android:text="" />
+        android:padding="16dp"
+        tools:context=".ui.view.lyrics.LyricsFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textLyrics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:lineSpacingExtra="8dp"
+            android:text=""
+            android:textAppearance="?textAppearanceListItem" />
+
+    </FrameLayout>
+
+</androidx.core.widget.NestedScrollView>
+

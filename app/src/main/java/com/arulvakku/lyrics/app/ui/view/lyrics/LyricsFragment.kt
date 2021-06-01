@@ -13,9 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LyricsFragment : Fragment() {
 
-    /*companion object {
-        fun newInstance(songModel: SongModel) = LyricsFragment()
-    }*/
 
     companion object {
         fun newInstance(songModel: SongModel): Fragment {
