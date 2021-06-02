@@ -19,6 +19,10 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/action_notesFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+
     </fragment>
 
     <fragment
@@ -43,10 +47,17 @@
         android:id="@+id/navigation_songs_list"
         android:name="com.arulvakku.lyrics.app.ui.view.songlist.SongListFragment"
         android:label="SongList"
-        tools:layout="@layout/song_list_fragment" >
+        tools:layout="@layout/song_list_fragment">
         <argument
             android:name="categoriesresult"
             app:argType="com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.arulvakku.lyrics.app.ui.view.about.AboutFragment"
+        android:label=""
+        tools:layout="@layout/fragment_about" />
+
 
 </navigation>

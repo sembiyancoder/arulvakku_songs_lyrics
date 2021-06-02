@@ -24,10 +24,15 @@ class SongDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySongDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
         viewModel = ViewModelProvider(this).get(LyricsViewModel::class.java)
         songModel = intent.getSerializableExtra("song") as SongModel?
-        supportActionBar!!.title = songModel?.sTitle
-        supportActionBar!!.subtitle = songModel?.sCategory
+
+
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     override fun onStart() {

@@ -18,6 +18,7 @@
         <activity
             android:name=".ui.view.SongDetailsActivity"
             android:parentActivityName=".ui.view.MainActivity"
+            android:label=""
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -26,7 +27,7 @@
         <activity
             android:name=".ui.view.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CachingTheme" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.view.download.CacheActivity"
             android:label="அருள்வாக்கு பாடல்கள்"

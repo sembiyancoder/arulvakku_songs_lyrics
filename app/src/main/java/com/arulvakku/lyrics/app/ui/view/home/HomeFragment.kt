@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
             }
 
             R.id.action_about -> {
-
+                findNavController().navigate(R.id.action_notesFragment_to_aboutFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

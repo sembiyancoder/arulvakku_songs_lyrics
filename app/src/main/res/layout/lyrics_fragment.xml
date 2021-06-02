@@ -7,9 +7,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:context=".ui.view.lyrics.LyricsFragment">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textLyrics"
@@ -18,6 +16,7 @@
             android:fontFamily="@font/montserrat"
             android:gravity="start"
             android:lineSpacingExtra="8dp"
+            android:padding="16dp"
             android:text=""
             android:textAppearance="?textAppearanceListItem" />
 
