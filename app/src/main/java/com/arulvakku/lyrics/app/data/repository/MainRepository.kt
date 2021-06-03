@@ -1,16 +1,16 @@
 package com.arulvakku.lyrics.app.data.repository
 
 import com.arulvakku.lyrics.app.data.api.ApiHelper
-import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.CategoriesResult
-import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongResult
-import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheMapper
-import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
-import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.SongCategoryNetworkEntity
-import com.arulvakku.lyrics.app.ui.view.home.category.network.SongCategoryNetworkMapper
-import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
-import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
-import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
-import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkMapper
+import com.arulvakku.lyrics.app.ui.home.category.network.networkentities.CategoriesResult
+import com.arulvakku.lyrics.app.ui.home.song.network.networkentities.SongResult
+import com.arulvakku.lyrics.app.ui.home.category.cache.SongCategoryCacheMapper
+import com.arulvakku.lyrics.app.ui.home.category.cache.SongCategoryDao
+import com.arulvakku.lyrics.app.ui.home.category.network.networkentities.SongCategoryNetworkEntity
+import com.arulvakku.lyrics.app.ui.home.category.network.SongCategoryNetworkMapper
+import com.arulvakku.lyrics.app.ui.home.song.cache.SongCacheMapper
+import com.arulvakku.lyrics.app.ui.home.song.cache.SongDao
+import com.arulvakku.lyrics.app.ui.home.song.network.networkentities.SongNetworkEntity
+import com.arulvakku.lyrics.app.ui.home.song.network.SongNetworkMapper
 import retrofit2.Response
 import javax.inject.Inject
 

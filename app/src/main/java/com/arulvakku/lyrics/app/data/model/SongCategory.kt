@@ -1,6 +1,6 @@
 package com.arulvakku.lyrics.app.data.model
 
-import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.CategoriesResult
+import com.arulvakku.lyrics.app.ui.home.category.network.networkentities.CategoriesResult
 
 data class SongCategory(
     val IsTransactionDone: Boolean,
