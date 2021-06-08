@@ -9,6 +9,8 @@
     <string name="temp_title">அணி அணியாய் வாருங்கள் அன்பு மாந்தரே ஆண்டவர் இயேசுவின் சாட்சி நீங்களே</string>
 
     <!-- Details menu -->
+    <string name="text_share">Share</string>
+    <string name="text_delete">Delete</string>
     <string name="menu_about">About</string>
     <string name="text_ui_mode">UI mode</string>
 
