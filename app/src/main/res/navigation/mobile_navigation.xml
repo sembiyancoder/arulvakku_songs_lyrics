@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.arulvakku.lyrics.app.ui.view.home.HomeFragment"
+        android:name="com.arulvakku.lyrics.app.ui.home.HomeFragment"
         android:label="அருள்வாக்கு பாடல்கள்"
         tools:layout="@layout/home_fragment">
 
@@ -27,35 +27,35 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.arulvakku.lyrics.app.ui.view.search.SearchFragment"
-        android:label="SearchFragment"
+        android:name="com.arulvakku.lyrics.app.ui.search.SearchFragment"
+        android:label="தேடல்"
         tools:layout="@layout/search_fragment" />
 
     <fragment
         android:id="@+id/navigation_library"
-        android:name="com.arulvakku.lyrics.app.ui.view.library.LibraryFragment"
-        android:label="Favourite Songs"
+        android:name="com.arulvakku.lyrics.app.ui.library.LibraryFragment"
+        android:label="LibraryFragment"
         tools:layout="@layout/library_fragment" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.arulvakku.lyrics.app.ui.view.settings.SettingFragment"
+        android:name="com.arulvakku.lyrics.app.ui.settings.SettingFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/setting_fragment" />
 
     <fragment
         android:id="@+id/navigation_songs_list"
-        android:name="com.arulvakku.lyrics.app.ui.view.songlist.SongListFragment"
+        android:name="com.arulvakku.lyrics.app.ui.songlist.SongListFragment"
         android:label="SongList"
         tools:layout="@layout/song_list_fragment">
         <argument
             android:name="categoriesresult"
-            app:argType="com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel" />
+            app:argType="com.arulvakku.lyrics.app.ui.home.category.SongCategoryModel" />
     </fragment>
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.arulvakku.lyrics.app.ui.view.about.AboutFragment"
+        android:name="com.arulvakku.lyrics.app.ui.about.AboutFragment"
         android:label=""
         tools:layout="@layout/fragment_about" />
 

@@ -1,15 +1,11 @@
 package com.arulvakku.lyrics.app.data.repository
 
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
-import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheMapper
-import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
-import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
-import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
-import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
-import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
-import com.example.many_to_many.data.room.entities.PlaylistWithSongs
-import com.example.many_to_many.data.room.entities.SongWithPlaylists
-import timber.log.Timber
+import com.arulvakku.lyrics.app.ui.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.home.category.cache.SongCategoryCacheMapper
+import com.arulvakku.lyrics.app.ui.home.category.cache.SongCategoryDao
+import com.arulvakku.lyrics.app.ui.home.song.SongModel
+import com.arulvakku.lyrics.app.ui.home.song.cache.SongCacheMapper
+import com.arulvakku.lyrics.app.ui.home.song.cache.SongDao
 import javax.inject.Inject
 
 class DatabaseRepository
@@ -23,7 +19,6 @@ constructor(
 
     suspend fun getSongCount(): Long = songDao.getSongCount()
 
-
     suspend fun getCategoryCount(): Long = categoryDao.getCategoryCount()
 
     suspend fun getCategories(): List<SongCategoryModel> {
@@ -36,20 +31,8 @@ constructor(
         return songCacheMapper.mapFromEntityList(data)
     }
 
-    suspend fun getFavouriteSongs(): PlaylistWithSongs {
-        return songDao.getFavouriteSongs()
-    }
-    suspend fun setFavouriteSongs(songId: Long):Long {
-        return songDao.insertRelation(PlaylistSongCrossRef(sSongId = songId,playlistId = 1))
-    }
-
     suspend fun getSongsByCategory(categoryId: Int): List<SongModel> {
         val data = songDao.getSongListByCategory(categoryId)
-        return songCacheMapper.mapFromEntityList(data)
-    }
-
-    suspend fun getSongsWithPlaylists(): List<SongModel> {
-        val data = songDao.getSongList()
         return songCacheMapper.mapFromEntityList(data)
     }
 }

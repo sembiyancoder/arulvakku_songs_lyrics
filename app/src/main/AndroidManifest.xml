@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MyApp"
+        android:name=".di.MyApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,25 +16,25 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.view.SongDetailsActivity"
-            android:parentActivityName=".ui.view.MainActivity"
+            android:name=".ui.SongDetailsActivity"
+            android:parentActivityName=".ui.MainActivity"
             android:label=""
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.view.MainActivity" />
+                android:value=".ui.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.view.MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.view.download.CacheActivity"
+            android:name=".ui.download.CacheActivity"
             android:label="அருள்வாக்கு பாடல்கள்"
             android:screenOrientation="portrait"
             android:theme="@style/CachingTheme" />
         <activity
-            android:name=".ui.view.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
