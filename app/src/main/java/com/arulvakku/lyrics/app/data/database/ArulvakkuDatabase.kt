@@ -6,11 +6,15 @@ import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheEnt
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
+import com.example.many_to_many.data.room.entities.Playlist
+import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
 
 @Database(
     entities = arrayOf(
         SongCategoryCacheEntity::class,
-        SongCacheEntity::class
+        SongCacheEntity::class,
+        PlaylistSongCrossRef::class,
+        Playlist::class
     ), version = 1, exportSchema = false
 )
 abstract class ArulvakkuDatabase : RoomDatabase() {

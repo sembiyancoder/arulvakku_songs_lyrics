@@ -86,7 +86,11 @@ class CategoriesFragment : Fragment(), CellClickListener {
     }
 
 
+    override fun onResume() {
+        super.onResume()
 
+        Timber.d("CategoriesFragment")
+    }
     override fun onSongCellClickListener(item: SongModel) {
         TODO("Not yet implemented")
     }

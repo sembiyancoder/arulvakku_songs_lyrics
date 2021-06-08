@@ -8,6 +8,7 @@ import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.utilities.Count
 import com.arulvakku.lyrics.app.utilities.Resource
+import com.example.many_to_many.data.room.entities.PlaylistWithSongs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,6 +20,10 @@ constructor(private val repository: DatabaseRepository) : ViewModel() {
 
     val countResult: MutableLiveData<Resource<Count>> = MutableLiveData()
     val songsResult: MutableLiveData<Resource<List<SongModel>>> = MutableLiveData()
+
+    val getFavouriteSongsResult: MutableLiveData<Resource<PlaylistWithSongs>> = MutableLiveData()
+    val setFavouriteSongsResult: MutableLiveData<Resource<Long>> = MutableLiveData()
+
     val categoriesResult: MutableLiveData<Resource<List<SongCategoryModel>>> = MutableLiveData()
 
 
@@ -73,5 +78,38 @@ constructor(private val repository: DatabaseRepository) : ViewModel() {
             }
         }
     }
+
+    fun getFavouriteSongs(){
+        viewModelScope.launch {
+            getFavouriteSongsResult.postValue(Resource.loading(null))
+            val data = repository.getFavouriteSongs()
+            try {
+                getFavouriteSongsResult.postValue(
+                    Resource.success(
+                        data
+                    )
+                )
+            } catch (e: Exception) {
+                countResult.postValue(Resource.error("Something went wrong", null))
+            }
+        }
+    }
+
+    fun setFavouriteSongs(songId: Long){
+        viewModelScope.launch {
+            setFavouriteSongsResult.postValue(Resource.loading(null))
+            val data = repository.setFavouriteSongs(songId)
+            try {
+                setFavouriteSongsResult.postValue(
+                    Resource.success(
+                        data
+                    )
+                )
+            } catch (e: Exception) {
+                countResult.postValue(Resource.error("Something went wrong", null))
+            }
+        }
+    }
+
 
 }

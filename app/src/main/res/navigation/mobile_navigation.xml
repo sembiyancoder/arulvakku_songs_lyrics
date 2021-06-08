@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/navigation_library"
         android:name="com.arulvakku.lyrics.app.ui.view.library.LibraryFragment"
-        android:label="LibraryFragment"
+        android:label="Favourite Songs"
         tools:layout="@layout/library_fragment" />
 
     <fragment

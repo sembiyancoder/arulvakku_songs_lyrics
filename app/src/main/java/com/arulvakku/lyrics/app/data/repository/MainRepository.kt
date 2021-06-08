@@ -11,6 +11,8 @@ import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
 import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
 import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkMapper
+import com.example.many_to_many.data.room.entities.Playlist
+import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -50,6 +52,11 @@ class MainRepository @Inject constructor(
             val list: List<SongResult> = response.body()?.Result ?: emptyList()
             val songs = songNetworkMapper.mapFromEntityList(list)
             songDao.insertSongList(songCacheMapper.mapToEntityList(songs))
+            songDao.insertPlaylist(Playlist(playlistId = 1, playlistName = "Favourite"))
+            /* songDao.insertPlaylist(Playlist(playlistName = "favourite two"))
+             songDao.insertRelation(PlaylistSongCrossRef(1,1))
+             songDao.insertRelation(PlaylistSongCrossRef(1,2))
+             songDao.insertRelation(PlaylistSongCrossRef(2,1))*/
         }
 
         return response

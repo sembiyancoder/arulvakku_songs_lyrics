@@ -78,9 +78,12 @@ class SongsFragment : Fragment(), CellClickListener {
             }
         }
 
-
     }
 
+    override fun onResume() {
+        super.onResume()
+        Timber.d("SongsFragment")
+    }
     override fun onCategoryItemClickListener(item: SongCategoryModel) {
     }
 
