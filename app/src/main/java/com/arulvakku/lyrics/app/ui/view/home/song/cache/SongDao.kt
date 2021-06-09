@@ -1,11 +1,10 @@
 package com.arulvakku.lyrics.app.ui.view.home.song.cache
 
 import androidx.room.*
-import com.example.many_to_many.data.room.entities.Playlist
+import com.arulvakku.lyrics.app.ui.view.library.cache.Playlist
 import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
 import com.example.many_to_many.data.room.entities.PlaylistWithSongs
 import com.example.many_to_many.data.room.entities.SongWithPlaylists
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SongDao {
