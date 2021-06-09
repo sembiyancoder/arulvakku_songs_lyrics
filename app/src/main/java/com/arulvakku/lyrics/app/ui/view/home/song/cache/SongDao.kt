@@ -2,9 +2,10 @@ package com.arulvakku.lyrics.app.ui.view.home.song.cache
 
 import androidx.room.*
 import com.arulvakku.lyrics.app.ui.view.library.cache.Playlist
-import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
-import com.example.many_to_many.data.room.entities.PlaylistWithSongs
-import com.example.many_to_many.data.room.entities.SongWithPlaylists
+import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistSongCrossRef
+import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistWithSongs
+import com.arulvakku.lyrics.app.ui.view.library.cache.SongWithPlaylists
+
 
 @Dao
 interface SongDao {
@@ -15,7 +16,7 @@ interface SongDao {
     suspend fun insertPlaylist(data: Playlist)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRelation(playlistSongCrossRef: PlaylistSongCrossRef):Long
+    suspend fun insertRelation(playlistSongCrossRef: PlaylistSongCrossRef): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSongSingleItem(entity: SongCacheEntity)

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
-import com.arulvakku.lyrics.app.ui.adapters.CellClickListener
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 
 

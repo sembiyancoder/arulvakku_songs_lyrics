@@ -3,21 +3,17 @@ package com.arulvakku.lyrics.app.ui.view.home
 
 import android.os.Bundle
 import android.view.*
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.HomeFragmentBinding
 import com.arulvakku.lyrics.app.ui.adapters.ViewPagerAdapter
-import com.arulvakku.lyrics.app.ui.view.MainViewModel
 import com.arulvakku.lyrics.app.ui.view.home.category.CategoriesFragment
 import com.arulvakku.lyrics.app.ui.view.home.song.SongsFragment
+import com.arulvakku.lyrics.app.ui.viewmodels.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -25,7 +21,7 @@ class HomeFragment : Fragment() {
 
 
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by viewModels()
+    private val dataStoreViewModel: DataStoreViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,11 +46,12 @@ class HomeFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.ui_menu, menu)
         // Set the item state
-        lifecycleScope.launch {
-            val isChecked = viewModel.getUIMode.first()
-            val item = menu.findItem(R.id.action_night_mode)
-            item.isChecked = isChecked
-            setUIMode(item, isChecked)
+        dataStoreViewModel.savedKey.observe(this) {
+            if (it == true) {
+                val item = menu.findItem(R.id.action_night_mode)
+                item.isChecked = it
+                setUIMode(item, it)
+            }
         }
     }
 
@@ -78,11 +75,11 @@ class HomeFragment : Fragment() {
     private fun setUIMode(item: MenuItem, isChecked: Boolean) {
         if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            viewModel.saveToDataStore(true)
+            dataStoreViewModel.setSavedKey(true)
             item.setIcon(R.drawable.ic_night)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            viewModel.saveToDataStore(false)
+            dataStoreViewModel.setSavedKey(false)
             item.setIcon(R.drawable.ic_day)
         }
     }

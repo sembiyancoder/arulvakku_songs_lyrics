@@ -6,9 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.arulvakku.lyrics.app.data.repository.DatabaseRepository
 import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
+import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistWithSongs
 import com.arulvakku.lyrics.app.utilities.Count
 import com.arulvakku.lyrics.app.utilities.Resource
-import com.example.many_to_many.data.room.entities.PlaylistWithSongs
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

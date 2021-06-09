@@ -6,9 +6,8 @@ import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
-import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
-import com.example.many_to_many.data.room.entities.PlaylistWithSongs
-import com.example.many_to_many.data.room.entities.SongWithPlaylists
+import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistSongCrossRef
+import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistWithSongs
 import timber.log.Timber
 import javax.inject.Inject
 

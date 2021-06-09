@@ -7,7 +7,8 @@ import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
 import com.arulvakku.lyrics.app.ui.view.library.cache.Playlist
-import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
+import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistSongCrossRef
+
 
 @Database(
     entities = arrayOf(

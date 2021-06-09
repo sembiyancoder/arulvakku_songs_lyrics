@@ -12,7 +12,6 @@ import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
 import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
 import com.arulvakku.lyrics.app.ui.view.home.song.network.SongNetworkMapper
 import com.arulvakku.lyrics.app.ui.view.library.cache.Playlist
-import com.example.many_to_many.data.room.entities.PlaylistSongCrossRef
 import retrofit2.Response
 import javax.inject.Inject
 
