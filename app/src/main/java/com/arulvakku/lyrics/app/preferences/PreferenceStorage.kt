@@ -9,5 +9,4 @@ interface PreferenceStorage {
     //set allSongs sort order
     fun savedKey(): Flow<Boolean>
     suspend fun setSavedKey(order: Boolean)
-
 }
