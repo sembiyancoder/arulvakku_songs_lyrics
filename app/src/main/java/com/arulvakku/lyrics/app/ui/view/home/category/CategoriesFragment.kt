@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.CategoriesFragmentBinding
 import com.arulvakku.lyrics.app.ui.view.home.category.adapter.CategoryAdapter
-import com.arulvakku.lyrics.app.ui.adapters.CellClickListener
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
 import com.arulvakku.lyrics.app.utilities.Status

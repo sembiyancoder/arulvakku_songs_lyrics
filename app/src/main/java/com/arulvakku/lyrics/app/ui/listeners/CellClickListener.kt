@@ -1,4 +1,5 @@
-package com.arulvakku.lyrics.app.ui.adapters
+package com.arulvakku.lyrics.app.ui.listeners
+
 
 import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
