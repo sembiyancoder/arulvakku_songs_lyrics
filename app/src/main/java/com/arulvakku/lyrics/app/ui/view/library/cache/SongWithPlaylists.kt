@@ -1,4 +1,4 @@
-package com.example.many_to_many.data.room.entities
+package com.arulvakku.lyrics.app.ui.view.library.cache
 
 import androidx.room.Embedded
 import androidx.room.Junction
@@ -12,5 +12,5 @@ data class SongWithPlaylists(
         entityColumn = "playlistId",
         associateBy = Junction(PlaylistSongCrossRef::class)
     )
-    val playlists: List<Playlist>?=null
+    val playlists: List<Playlist>? = null
 )
