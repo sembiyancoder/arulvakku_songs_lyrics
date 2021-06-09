@@ -1,32 +1,98 @@
 package com.arulvakku.lyrics.app.ui.view.search
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arulvakku.lyrics.app.R
+import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.arulvakku.lyrics.app.databinding.SearchFragmentBinding
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
+import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
+import com.arulvakku.lyrics.app.ui.view.search.adapter.SearchSongsAdapter
+import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
+import com.arulvakku.lyrics.app.utilities.Status
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
-class SearchFragment : Fragment() {
+@AndroidEntryPoint
+class SearchFragment : Fragment(), CellClickListener {
 
     companion object {
         fun newInstance() = SearchFragment()
     }
 
     private lateinit var viewModel: SearchViewModel
-
+    private lateinit var binding: SearchFragmentBinding
+    private val databaseViewModel: DatabaseViewModel by viewModels()
+    lateinit var songSearchAdapter: SearchSongsAdapter
+    lateinit var songsList: List<SongModel>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+        binding = SearchFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        // TODO: Use the ViewModel
+        subscribe()
+
+        binding.editSearchText.addTextChangedListener(afterTextChanged = {
+
+            if (it.toString().length > 2) {
+                songSearchAdapter.filter.filter(it.toString().trim())
+            } else {
+                setAdapter()
+            }
+        })
     }
+
+    private fun subscribe() {
+        databaseViewModel.getSongs()
+        databaseViewModel.songsResult.observe(viewLifecycleOwner) { it ->
+            when (it.status) {
+                Status.LOADING -> {
+                    Timber.d("loading...")
+                }
+                Status.SUCCESS -> {
+                    Timber.d("success: ${it.data}")
+                    songsList = it.data ?: emptyList()
+                    setAdapter()
+                }
+                Status.ERROR -> {
+                    Timber.d("error: ${it.message}")
+                }
+            }
+        }
+    }
+
+    private fun setAdapter() {
+        songSearchAdapter = SearchSongsAdapter(
+            activity!!,
+            songsList,
+            this@SearchFragment
+        )
+
+        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
+        binding?.recyclerView?.setHasFixedSize(true)
+        binding?.recyclerView?.adapter = songSearchAdapter
+        songSearchAdapter.notifyDataSetChanged()
+    }
+
+    override fun onCategoryItemClickListener(item: SongCategoryModel) {
+
+    }
+
+    override fun onSongCellClickListener(item: SongModel) {
+
+    }
+
 
 }
