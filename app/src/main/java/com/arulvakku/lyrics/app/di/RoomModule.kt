@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.arulvakku.lyrics.app.data.database.ArulvakkuDatabase
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
+import com.arulvakku.lyrics.app.utilities.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ object RoomModule {
         return Room.databaseBuilder(
             context,
             ArulvakkuDatabase::class.java,
-            ArulvakkuDatabase.DATABASE_NAME
+            DATABASE_NAME
         ).fallbackToDestructiveMigration().build()
     }
 

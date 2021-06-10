@@ -6,6 +6,7 @@
         android:checkable="true"
         android:icon="@drawable/ic_day"
         android:title="@string/text_ui_mode"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
     <item

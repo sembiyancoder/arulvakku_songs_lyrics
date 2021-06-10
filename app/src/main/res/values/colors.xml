@@ -11,4 +11,5 @@
     <color name="white">#ffffff</color>
     <color name="blue">#2F80ED</color>
     <color name="app_background_white">#deffffff</color>
+    <color name="splash_background">@color/colorPrimary</color>
 </resources>

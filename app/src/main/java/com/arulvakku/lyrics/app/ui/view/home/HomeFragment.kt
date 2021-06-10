@@ -19,9 +19,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: HomeFragmentBinding? = null
 
-
     private val binding get() = _binding!!
-    private val dataStoreViewModel: DataStoreViewModel by viewModels()
+   // private val dataStoreViewModel: DataStoreViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,13 +49,13 @@ class HomeFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.ui_menu, menu)
         // Set the item state
-        dataStoreViewModel.savedKey.observe(this) {
+        /*dataStoreViewModel.savedKey.observe(this) {
             if (it == true) {
-                val item = menu.findItem(R.id.action_night_mode)
+                *//*val item = menu.findItem(R.id.action_night_mode)
                 item.isChecked = it
-                setUIMode(item, it)
+                setUIMode(item, it)*//*
             }
-        }
+        }*/
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -75,11 +78,11 @@ class HomeFragment : Fragment() {
     private fun setUIMode(item: MenuItem, isChecked: Boolean) {
         if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            dataStoreViewModel.setSavedKey(true)
+           // dataStoreViewModel.setSavedKey(true)
             item.setIcon(R.drawable.ic_night)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            dataStoreViewModel.setSavedKey(false)
+           // dataStoreViewModel.setSavedKey(false)
             item.setIcon(R.drawable.ic_day)
         }
     }
