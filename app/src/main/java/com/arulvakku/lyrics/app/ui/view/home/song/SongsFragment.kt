@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class SongsFragment : Fragment(), CellClickListener {
+ class SongsFragment : Fragment(), CellClickListener {
 
     companion object {
         fun newInstance() = SongsFragment()
@@ -84,14 +84,20 @@ class SongsFragment : Fragment(), CellClickListener {
         super.onResume()
         Timber.d("SongsFragment")
     }
+
     override fun onCategoryItemClickListener(item: SongCategoryModel) {
     }
 
     override fun onSongCellClickListener(item: SongModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
         val intent = Intent(context, SongDetailsActivity::class.java)
         val bundle = Bundle().apply {
             putSerializable("song", item)
         }
+        bundle.putInt("pos", position)
         intent.putExtras(bundle)
         startActivity(intent)
     }

@@ -44,6 +44,8 @@ class HomeFragment : Fragment() {
         binding.viewPager.adapter = adapter
         binding.tabs.setupWithViewPager(binding.viewPager)
 
+        findNavController().navigate(R.id.navigation_category)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
