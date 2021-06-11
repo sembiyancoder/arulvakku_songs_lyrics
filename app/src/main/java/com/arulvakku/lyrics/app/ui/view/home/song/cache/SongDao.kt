@@ -33,13 +33,13 @@ interface SongDao {
     @Query("SELECT COUNT(*) from songs")
     suspend fun getSongCount(): Long
 
-    @Transaction
+  /*  @Transaction
     @Query("SELECT * FROM songs")
     suspend fun getSongsWithPlaylists(): List<SongWithPlaylists>
 
     @Transaction
     @Query("SELECT * FROM Playlist")
-    suspend fun getPlaylistsWithSongs(): List<PlaylistWithSongs>
+    suspend fun getPlaylistsWithSongs(): List<PlaylistWithSongs>*/
 
     @Transaction
     @Query("SELECT * FROM Playlist WHERE playlist_id = 1")

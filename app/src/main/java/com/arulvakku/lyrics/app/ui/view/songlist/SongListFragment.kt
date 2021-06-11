@@ -11,18 +11,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.databinding.SongListFragmentBinding
-import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
 import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
-import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.songlist.adapter.SongsAdapter
+import com.arulvakku.lyrics.app.utilities.SongsSingleton
 import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 
 @AndroidEntryPoint
-class SongListFragment : Fragment(), CellClickListener {
+class SongListFragment : Fragment(), CellClickListenerSongs {
 
     companion object {
         fun newInstance() = SongListFragment()
@@ -36,10 +36,11 @@ class SongListFragment : Fragment(), CellClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = SongListFragmentBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -49,10 +50,9 @@ class SongListFragment : Fragment(), CellClickListener {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = result.sCategory
         Timber.d("success: ${result}")
     }
-
     private fun subscribe(categoryId: Int) {
-        viewModel.getSongsListByCategory(categoryId);
-        viewModel.songsResult.observe(viewLifecycleOwner) { it ->
+        viewModel.getSongsListByCategory(categoryId)
+        viewModel.songsResult.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.LOADING -> {
                     Timber.d("loading...")
@@ -70,7 +70,8 @@ class SongListFragment : Fragment(), CellClickListener {
 
 
     private fun setAdapter(list: List<SongModel>) {
-        binding?.recyclerView?.apply {
+        SongsSingleton.setSongs(list as ArrayList<SongModel>)
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = activity?.let {
                 SongsAdapter(
@@ -82,28 +83,15 @@ class SongListFragment : Fragment(), CellClickListener {
         }
     }
 
-    override fun onCategoryItemClickListener(item: SongCategoryModel) {
-
-    }
-
-
-    override fun onSongCellClickListener(item: SongModel) {
+    override fun onSongCellClickListener(item: SongModel, position: Int) {
         val intent = Intent(context, SongDetailsActivity::class.java)
         val bundle = Bundle().apply {
             putSerializable("song", item)
         }
+        bundle.putInt("pos", position)
         intent.putExtras(bundle)
         startActivity(intent)
     }
 
-    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
-        val intent = Intent(context, SongDetailsActivity::class.java)
-        val bundle = Bundle().apply {
-            putSerializable("song", item)
-        }
-        bundle.putInt("pos",position)
-        intent.putExtras(bundle)
-        startActivity(intent)
-    }
 
 }

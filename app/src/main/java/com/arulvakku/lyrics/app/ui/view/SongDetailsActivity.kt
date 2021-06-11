@@ -8,9 +8,8 @@ import com.arulvakku.lyrics.app.databinding.ActivitySongDetailsBinding
 import com.arulvakku.lyrics.app.ui.adapters.LyricsPagerAdapter
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.lyrics.LyricsViewModel
-import com.arulvakku.lyrics.app.utilities.Status
+import com.arulvakku.lyrics.app.utilities.SongsSingleton
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class SongDetailsActivity : AppCompatActivity() {
@@ -29,7 +28,7 @@ class SongDetailsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(LyricsViewModel::class.java)
         songModel = intent.getSerializableExtra("song") as SongModel?
-        position = intent.getIntExtra("pos",0)
+        position = intent.getIntExtra("pos", 0)
 
 
         binding.toolbar.setNavigationOnClickListener {
@@ -39,32 +38,15 @@ class SongDetailsActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        songModel?.sCategoryId?.let { subscribe(it) }
+        setAdapter()
     }
 
-    private fun subscribe(categoryId: Int) {
-        viewModel.getSongsListByCategory(categoryId);
-        viewModel.songsResult.observe(this) { it ->
-            when (it.status) {
-                Status.LOADING -> {
-                    Timber.d("loading...")
-                }
-                Status.SUCCESS -> {
-                    Timber.d("success: ${it.data}")
-                    setAdapter(it.data ?: emptyList())
-                }
-                Status.ERROR -> {
-                    Timber.d("error: ${it.message}")
-                }
-            }
-        }
-    }
 
-    private fun setAdapter(list: List<SongModel>) {
-        pagerAdapter = LyricsPagerAdapter(supportFragmentManager, list)
+    private fun setAdapter() {
+        pagerAdapter = LyricsPagerAdapter(supportFragmentManager, SongsSingleton.getSongs())
         binding.viewPager.adapter = pagerAdapter
         binding.viewPager.currentItem = position
-        binding.viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 

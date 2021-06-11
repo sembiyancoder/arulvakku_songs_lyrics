@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.favourite
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,7 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
     override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-    ): FavouriteSongsAdapter.MyViewHolder {
+    ): MyViewHolder {
         val view =
                 LayoutFavouriteSongItemBinding.inflate(
                         LayoutInflater.from(parent.context),
@@ -30,7 +31,7 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FavouriteSongsAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         holder.bind(list[position], position, onClick)
     }
@@ -40,6 +41,7 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
 
 
         val view = binding
+        @SuppressLint("SetTextI18n")
         fun bind(data: SongCacheEntity, position: Int, onClick: OnClick) {
             view.textViewNumber.text = "${(position + 1)}. "
             view.textViewSongTitle.text = data.sTitle

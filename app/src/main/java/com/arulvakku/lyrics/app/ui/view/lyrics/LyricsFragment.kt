@@ -1,5 +1,7 @@
 package com.arulvakku.lyrics.app.ui.view.lyrics
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.core.app.ShareCompat
@@ -38,9 +40,9 @@ class LyricsFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = LyricsFragmentBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,8 +50,8 @@ class LyricsFragment : Fragment() {
         setHasOptionsMenu(true)
         viewModel = ViewModelProvider(this).get(LyricsViewModel::class.java)
         binding.textLyrics.text = requireArguments().getString("lyrics")
+        binding.txtTitle.text = requireArguments().getString("title")
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -70,6 +72,7 @@ class LyricsFragment : Fragment() {
         databaseViewModel.isFavouriteSongs(id)
 
     }
+    @SuppressLint("QueryPermissionsNeeded")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_make_favorite -> {
