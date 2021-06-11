@@ -96,4 +96,14 @@ class SongListFragment : Fragment(), CellClickListener {
         startActivity(intent)
     }
 
+    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
+        val intent = Intent(context, SongDetailsActivity::class.java)
+        val bundle = Bundle().apply {
+            putSerializable("song", item)
+        }
+        bundle.putInt("pos",position)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
 }

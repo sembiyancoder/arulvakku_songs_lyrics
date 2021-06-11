@@ -37,7 +37,9 @@ class SearchSongsAdapter(
         val category = titleFilterList[position]
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
-            cellClickListener.onSongCellClickListener(titleFilterList.get(position))
+            cellClickListener.onSongCellClickListenerWithPosition(
+                titleFilterList.get(position),position
+            )
         }
     }
 
