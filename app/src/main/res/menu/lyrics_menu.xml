@@ -4,8 +4,8 @@
     <item
         android:id="@+id/action_make_favorite"
         android:checkable="true"
-        android:icon="@drawable/ic_day_not_favorite_border"
-        android:title="@string/text_ui_mode"
+        android:title="Favorite"
+        app:actionLayout="@layout/layout_lotti_heart_pop"
         app:showAsAction="always" />
 
     <item

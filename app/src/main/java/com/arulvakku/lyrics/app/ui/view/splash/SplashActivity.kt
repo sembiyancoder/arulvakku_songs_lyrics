@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.ui.view.MainActivity
 import com.arulvakku.lyrics.app.ui.view.download.CacheActivity
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
+import com.arulvakku.lyrics.app.utilities.NetworkHelper
 import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -20,7 +21,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_splash)
         subscribe()
-
     }
 
 
