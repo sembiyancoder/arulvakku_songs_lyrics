@@ -6,8 +6,8 @@ import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheEnt
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
-import com.arulvakku.lyrics.app.ui.view.library.cache.Playlist
-import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistSongCrossRef
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.Playlist
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.PlaylistSongCrossRef
 
 
 @Database(

@@ -1,10 +1,10 @@
 package com.arulvakku.lyrics.app.ui.view.home.song.cache
 
 import androidx.room.*
-import com.arulvakku.lyrics.app.ui.view.library.cache.Playlist
-import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistSongCrossRef
-import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistWithSongs
-import com.arulvakku.lyrics.app.ui.view.library.cache.SongWithPlaylists
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.Playlist
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.PlaylistSongCrossRef
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.PlaylistWithSongs
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.SongWithPlaylists
 
 
 @Dao
@@ -16,7 +16,13 @@ interface SongDao {
     suspend fun insertPlaylist(data: Playlist)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRelation(playlistSongCrossRef: PlaylistSongCrossRef): Long
+    suspend fun setFavouriteSong(playlistSongCrossRef: PlaylistSongCrossRef): Long
+
+    @Delete
+    suspend fun removeFavouriteSong(playlistSongCrossRef: PlaylistSongCrossRef): Int
+
+    @Query("SELECT EXISTS (SELECT * FROM PlaylistSongCrossRef WHERE playlist_id=1 AND sSongId =:songId)")
+    suspend fun isFavouriteSong(songId: Int):Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSongSingleItem(entity: SongCacheEntity)
@@ -36,7 +42,7 @@ interface SongDao {
     suspend fun getPlaylistsWithSongs(): List<PlaylistWithSongs>
 
     @Transaction
-    @Query("SELECT * FROM Playlist WHERE playlistId = 1")
+    @Query("SELECT * FROM Playlist WHERE playlist_id = 1")
     suspend fun getFavouriteSongs(): PlaylistWithSongs
 
     @Transaction

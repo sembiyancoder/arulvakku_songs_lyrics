@@ -52,6 +52,7 @@
 
             </LinearLayout>
             <ImageView
+                android:id="@+id/imageViewFavourite"
                 android:layout_width="wrap_content"
                 android:src="@drawable/ic_favorite"
                 android:layout_gravity="center"

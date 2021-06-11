@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.arulvakku.lyrics.app.data.repository.DatabaseRepository
 import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
-import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistWithSongs
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.PlaylistWithSongs
 import com.arulvakku.lyrics.app.utilities.Count
 import com.arulvakku.lyrics.app.utilities.Resource
 
@@ -23,7 +23,9 @@ constructor(private val repository: DatabaseRepository) : ViewModel() {
     val songsResult: MutableLiveData<Resource<List<SongModel>>> = MutableLiveData()
 
     val getFavouriteSongsResult: MutableLiveData<Resource<PlaylistWithSongs>> = MutableLiveData()
-    val setFavouriteSongsResult: MutableLiveData<Resource<Long>> = MutableLiveData()
+    val setFavouriteSongResult: MutableLiveData<Resource<Long>> = MutableLiveData()
+    val removeFavouriteSongResult: MutableLiveData<Resource<Long>> = MutableLiveData()
+    val isFavouriteSongResult: MutableLiveData<Resource<Boolean>> = MutableLiveData()
 
     val categoriesResult: MutableLiveData<Resource<List<SongCategoryModel>>> = MutableLiveData()
 
@@ -96,12 +98,28 @@ constructor(private val repository: DatabaseRepository) : ViewModel() {
         }
     }
 
-    fun setFavouriteSongs(songId: Long){
+
+    fun setFavouriteSong(songId: Int){
         viewModelScope.launch {
-            setFavouriteSongsResult.postValue(Resource.loading(null))
-            val data = repository.setFavouriteSongs(songId)
+            setFavouriteSongResult.postValue(Resource.loading(null))
+            val data = repository.setFavouriteSong(songId)
             try {
-                setFavouriteSongsResult.postValue(
+                setFavouriteSongResult.postValue(
+                        Resource.success(
+                                data
+                        )
+                )
+            } catch (e: Exception) {
+                countResult.postValue(Resource.error("Something went wrong", null))
+            }
+        }
+    }
+    fun isFavouriteSongs(songId: Int){
+        viewModelScope.launch {
+            isFavouriteSongResult.postValue(Resource.loading(null))
+            val data = repository.isFavouriteSong(songId)
+            try {
+                isFavouriteSongResult.postValue(
                     Resource.success(
                         data
                     )
@@ -111,6 +129,23 @@ constructor(private val repository: DatabaseRepository) : ViewModel() {
             }
         }
     }
+
+    fun removeFavouriteSong(songId: Int){
+        viewModelScope.launch {
+            removeFavouriteSongResult.postValue(Resource.loading(null))
+            val data = repository.removeFavouriteSong(songId)
+            try {
+                removeFavouriteSongResult.postValue(
+                        Resource.success(
+                                data
+                        )
+                )
+            } catch (e: Exception) {
+                countResult.postValue(Resource.error("Something went wrong", null))
+            }
+        }
+    }
+
 
 
 }
