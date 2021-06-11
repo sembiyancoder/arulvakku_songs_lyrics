@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.ui.view.home.category.adapter
+package com.arulvakku.lyrics.app.ui.view.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 
 
 class CategoryAdapter(

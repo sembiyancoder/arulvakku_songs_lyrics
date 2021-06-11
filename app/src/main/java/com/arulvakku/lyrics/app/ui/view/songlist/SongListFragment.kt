@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.databinding.SongListFragmentBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
 import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.songlist.adapter.SongsAdapter
 import com.arulvakku.lyrics.app.utilities.Status
@@ -92,6 +92,16 @@ class SongListFragment : Fragment(), CellClickListener {
         val bundle = Bundle().apply {
             putSerializable("song", item)
         }
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
+    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
+        val intent = Intent(context, SongDetailsActivity::class.java)
+        val bundle = Bundle().apply {
+            putSerializable("song", item)
+        }
+        bundle.putInt("pos",position)
         intent.putExtras(bundle)
         startActivity(intent)
     }

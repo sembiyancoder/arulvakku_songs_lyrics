@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arulvakku.lyrics.app.data.repository.DatabaseRepository
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.favourite.cache.PlaylistWithSongs
 import com.arulvakku.lyrics.app.utilities.Count

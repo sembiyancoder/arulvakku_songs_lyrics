@@ -27,7 +27,7 @@ class SongsAdapter(
         val category = categoryItems[position]
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
-            cellClickListener.onSongCellClickListener(categoryItems.get(position))
+            cellClickListener.onSongCellClickListenerWithPosition(categoryItems.get(position),position)
         }
     }
 

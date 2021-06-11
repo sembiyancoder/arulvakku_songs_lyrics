@@ -20,6 +20,7 @@ class SongDetailsActivity : AppCompatActivity() {
     private lateinit var viewModel: LyricsViewModel
     private var songModel: SongModel? = null
 
+    var position: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySongDetailsBinding.inflate(layoutInflater)
@@ -28,6 +29,7 @@ class SongDetailsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(LyricsViewModel::class.java)
         songModel = intent.getSerializableExtra("song") as SongModel?
+        position = intent.getIntExtra("pos",0)
 
 
         binding.toolbar.setNavigationOnClickListener {
@@ -61,7 +63,7 @@ class SongDetailsActivity : AppCompatActivity() {
     private fun setAdapter(list: List<SongModel>) {
         pagerAdapter = LyricsPagerAdapter(supportFragmentManager, list)
         binding.viewPager.adapter = pagerAdapter
-
+        binding.viewPager.currentItem = position
         binding.viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

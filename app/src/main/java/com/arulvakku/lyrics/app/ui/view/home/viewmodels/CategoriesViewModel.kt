@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.ui.view.home.category
+package com.arulvakku.lyrics.app.ui.view.home.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.arulvakku.lyrics.app.data.model.SongCategory

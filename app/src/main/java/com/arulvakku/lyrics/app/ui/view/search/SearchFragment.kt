@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.databinding.SearchFragmentBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.view.search.adapter.SearchSongsAdapter
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
@@ -75,7 +77,7 @@ class SearchFragment : Fragment(), CellClickListener {
 
     private fun setAdapter() {
         songSearchAdapter = SearchSongsAdapter(
-            activity!!,
+            requireActivity(),
             songsList,
             this@SearchFragment
         )
@@ -92,6 +94,16 @@ class SearchFragment : Fragment(), CellClickListener {
 
     override fun onSongCellClickListener(item: SongModel) {
 
+    }
+
+    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
+        val intent = Intent(context, SongDetailsActivity::class.java)
+        val bundle = Bundle().apply {
+            putSerializable("song", item)
+        }
+        bundle.putInt("pos",position)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
 

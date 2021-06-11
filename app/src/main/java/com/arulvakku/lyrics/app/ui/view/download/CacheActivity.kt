@@ -5,29 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.arulvakku.lyrics.app.databinding.ActivityLoadingBinding
 import com.arulvakku.lyrics.app.ui.view.MainActivity
-import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.SongCategoryNetworkEntity
-import com.arulvakku.lyrics.app.ui.view.home.song.network.networkentities.SongNetworkEntity
-
 import com.arulvakku.lyrics.app.utilities.Status
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class CacheActivity : AppCompatActivity() {
 
-    val TAG = "CacheActivity"
-
     private val loginViewModel: CacheViewModel by viewModels()
     private lateinit var binding: ActivityLoadingBinding
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +28,11 @@ class CacheActivity : AppCompatActivity() {
     }
 
     private fun setupSongCategoriesObserver() {
-        loginViewModel.songCategoriesResult.observe(this, Observer {
+        loginViewModel.songCategoriesResult.observe(this, {
             when (it.status) {
                 Status.SUCCESS -> {
-                    it.data?.let { categoryResult -> renderSongCategories(categoryResult) }
+                    it.data?.let {
+                    }
                 }
                 Status.LOADING -> {
 
@@ -56,11 +45,11 @@ class CacheActivity : AppCompatActivity() {
     }
 
     private fun setupSongObserver() {
-        loginViewModel.songsResult.observe(this, Observer {
+        loginViewModel.songsResult.observe(this, {
             when (it.status) {
                 Status.SUCCESS -> {
                     hideProgressBar()
-                    it.data?.let { songResult -> renderSongs(songResult) }
+                    startMainActivity()
                 }
                 Status.LOADING -> {
                     showProgressBar()
@@ -72,22 +61,8 @@ class CacheActivity : AppCompatActivity() {
         })
     }
 
-    private fun renderSongCategories(categoryResult: SongCategoryNetworkEntity) {
-        lifecycleScope.launch {
-            val gson = Gson()
-            val json: String = gson.toJson(categoryResult)
 
-        }
-    }
-
-    private fun renderSongs(songResult: SongNetworkEntity) {
-
-        lifecycleScope.launch {
-            val gson = Gson()
-            val json: String = gson.toJson(songResult)
-        }
-
-
+    private fun startMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
@@ -100,6 +75,4 @@ class CacheActivity : AppCompatActivity() {
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
     }
-
-
 }

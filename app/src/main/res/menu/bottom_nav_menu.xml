@@ -8,11 +8,11 @@
     <item
         android:id="@+id/navigation_search"
         android:icon="@drawable/ic_search"
-        android:title="@string/search" />
+        android:title="@string/song" />
     <item
         android:id="@+id/navigation_library"
         android:icon="@drawable/ic_favorite"
-        android:title="Favourite" />
+        android:title="@string/favourite" />
     <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings"
