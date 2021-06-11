@@ -7,4 +7,5 @@
     <color name="title_text_color">#333333</color>
     <color name="blue">#2F80ED</color>
     <color name="splash_background">@color/colorPrimary</color>
+    <color name="white">#fff</color>
 </resources>
