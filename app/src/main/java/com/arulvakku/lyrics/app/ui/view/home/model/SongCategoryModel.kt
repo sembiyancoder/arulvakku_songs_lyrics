@@ -1,4 +1,4 @@
-package com.arulvakku.lyrics.app.ui.view.home.category
+package com.arulvakku.lyrics.app.ui.view.home.model
 
 import java.io.Serializable
 

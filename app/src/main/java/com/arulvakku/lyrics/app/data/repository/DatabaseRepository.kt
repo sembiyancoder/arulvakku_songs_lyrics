@@ -1,6 +1,6 @@
 package com.arulvakku.lyrics.app.data.repository
 
-import com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryCacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.category.cache.SongCategoryDao
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
@@ -8,7 +8,6 @@ import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongDao
 import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistSongCrossRef
 import com.arulvakku.lyrics.app.ui.view.library.cache.PlaylistWithSongs
-import timber.log.Timber
 import javax.inject.Inject
 
 class DatabaseRepository

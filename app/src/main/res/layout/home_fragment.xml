@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".ui.view.home.category.CategoriesFragment">
 
-    <com.google.android.material.tabs.TabLayout
-        android:visibility="gone"
-        android:id="@+id/tabs"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabIndicatorHeight="2.5dp"
-        app:tabIndicatorColor="@color/note_text_color"
-        app:tabSelectedTextColor="@color/note_text_color"
-        app:tabMode="fixed" />
+        android:layout_height="match_parent" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:visibility="gone"
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</FrameLayout>

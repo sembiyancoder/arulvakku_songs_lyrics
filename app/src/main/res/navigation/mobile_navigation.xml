@@ -58,7 +58,7 @@
         tools:layout="@layout/song_list_fragment">
         <argument
             android:name="categoriesresult"
-            app:argType="com.arulvakku.lyrics.app.ui.view.home.category.SongCategoryModel" />
+            app:argType="com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel" />
     </fragment>
 
     <fragment

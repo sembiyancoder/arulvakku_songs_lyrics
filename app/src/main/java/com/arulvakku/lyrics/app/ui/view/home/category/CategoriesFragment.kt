@@ -2,7 +2,6 @@ package com.arulvakku.lyrics.app.ui.view.home.category
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.CategoriesFragmentBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
-import com.arulvakku.lyrics.app.ui.view.home.category.adapter.CategoryAdapter
+import com.arulvakku.lyrics.app.ui.view.home.adapter.CategoryAdapter
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DataStoreViewModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
