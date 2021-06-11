@@ -19,10 +19,6 @@ import com.arulvakku.lyrics.app.ui.view.favourite.cache.PlaylistSongCrossRef
     ), version = 1, exportSchema = false
 )
 abstract class ArulvakkuDatabase : RoomDatabase() {
-    companion object {
-        val DATABASE_NAME: String = "arulvakku.db"
-    }
-
     abstract fun songCategoryDao(): SongCategoryDao
     abstract fun songDao(): SongDao
 }

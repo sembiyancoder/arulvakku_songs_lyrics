@@ -13,7 +13,7 @@ class SongsViewModel : ViewModel() {
     }
 
     private fun getSongCategories() {
-        songsResult = getSongs();
+        songsResult = getSongs()
     }
 
 }

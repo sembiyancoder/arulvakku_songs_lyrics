@@ -8,7 +8,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutSongRowItemBinding
-import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -17,7 +17,7 @@ import kotlin.collections.ArrayList
 class SearchSongsAdapter(
     var context: Context,
     private val categoryItems: List<SongModel>,
-    private val cellClickListener: CellClickListener
+    private val cellClickListenerSongs: CellClickListenerSongs
 ) :
     RecyclerView.Adapter<SearchSongsAdapter.ViewHolder>(), Filterable {
 
@@ -37,7 +37,7 @@ class SearchSongsAdapter(
         val category = titleFilterList[position]
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
-            cellClickListener.onSongCellClickListenerWithPosition(
+            cellClickListenerSongs.onSongCellClickListener(
                 titleFilterList.get(position),position
             )
         }

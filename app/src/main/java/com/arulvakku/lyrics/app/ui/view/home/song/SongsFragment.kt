@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.home.song
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.databinding.SongsFragmentBinding
-import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
 import com.arulvakku.lyrics.app.ui.view.home.song.adapter.SongsAdapter
 import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
- class SongsFragment : Fragment(), CellClickListener {
+class SongsFragment : Fragment(), CellClickListenerSongs {
 
     companion object {
         fun newInstance() = SongsFragment()
@@ -39,16 +40,17 @@ import timber.log.Timber
         return binding.root
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SongsViewModel::class.java)
-
         subscribe()
     }
 
 
     private fun setAdapter(list: List<SongModel>) {
-        binding?.recyclerView?.apply {
+//        SongsSingleton.setSongs(list as ArrayList<SongModel>)
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = activity?.let {
                 SongsAdapter(
@@ -85,14 +87,7 @@ import timber.log.Timber
         Timber.d("SongsFragment")
     }
 
-    override fun onCategoryItemClickListener(item: SongCategoryModel) {
-    }
-
-    override fun onSongCellClickListener(item: SongModel) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
+    override fun onSongCellClickListener(item: SongModel, position: Int) {
         val intent = Intent(context, SongDetailsActivity::class.java)
         val bundle = Bundle().apply {
             putSerializable("song", item)

@@ -3,23 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
     tools:context=".ui.view.lyrics.LyricsFragment">
 
     <FrameLayout
+        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textLyrics"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/montserrat"
-            android:gravity="start"
-            android:lineSpacingExtra="8dp"
-            android:padding="16dp"
-            android:text=""
-            android:textAppearance="?textAppearanceListItem" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:lineSpacingExtra="8dp"
+                android:padding="16dp"
+                android:textAppearance="?textAppearanceListItem"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textLyrics"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:lineSpacingExtra="8dp"
+                android:padding="16dp"
+                android:textAppearance="?textAppearanceListItem" />
+        </LinearLayout>
     </FrameLayout>
 
 </androidx.core.widget.NestedScrollView>

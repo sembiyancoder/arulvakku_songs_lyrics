@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.settings
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,7 +27,6 @@ class SettingFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SettingViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

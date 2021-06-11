@@ -1,19 +1,20 @@
 package com.arulvakku.lyrics.app.ui.view.home.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
-import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerCategory
 import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 
 
 class CategoryAdapter(
     var context: Context,
     private val categoryItems: List<SongCategoryModel>,
-    private val cellClickListener: CellClickListener
+    private val cellClickListenerSongs: CellClickListenerCategory
 ) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
@@ -27,7 +28,10 @@ class CategoryAdapter(
         val category = categoryItems[position]
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
-            cellClickListener.onCategoryItemClickListener(categoryItems.get(position))
+            cellClickListenerSongs.onCategoryItemClickListener(
+                categoryItems.get(position),
+                position
+            )
         }
     }
 
@@ -35,6 +39,7 @@ class CategoryAdapter(
     class ViewHolder private constructor(private val binding: LayoutCategoryRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(categoriesResult: SongCategoryModel, position: Int) {
             binding.txtCategoryTitle.text = categoriesResult.sCategory
             val rowCount = position + 1

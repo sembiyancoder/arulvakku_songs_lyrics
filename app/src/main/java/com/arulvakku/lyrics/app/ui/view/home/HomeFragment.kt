@@ -7,27 +7,23 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.HomeFragmentBinding
-import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerCategory
 import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.view.home.adapter.CategoryAdapter
-import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
-import com.arulvakku.lyrics.app.ui.viewmodels.DataStoreViewModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
 import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), CellClickListener {
+class HomeFragment : Fragment(), CellClickListenerCategory {
     private var _binding: HomeFragmentBinding? = null
 
     private val binding get() = _binding!!
 
-    private val dataStoreViewModel: DataStoreViewModel by viewModels()
     private val databaseViewModel: DatabaseViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,7 +111,7 @@ class HomeFragment : Fragment(), CellClickListener {
     }
 
     private fun setAdapter(list: List<SongCategoryModel>) {
-        binding?.recyclerView?.apply {
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = activity?.let {
                 CategoryAdapter(
@@ -128,7 +124,7 @@ class HomeFragment : Fragment(), CellClickListener {
     }
 
 
-    override fun onCategoryItemClickListener(item: SongCategoryModel) {
+    override fun onCategoryItemClickListener(item: SongCategoryModel, position:Int) {
         val bundle = Bundle().apply {
             putSerializable("categoriesresult", item)
         }
@@ -142,12 +138,5 @@ class HomeFragment : Fragment(), CellClickListener {
     override fun onResume() {
         super.onResume()
         Timber.d("CategoriesFragment")
-    }
-    override fun onSongCellClickListener(item: SongModel) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
-        TODO("Not yet implemented")
     }
 }
