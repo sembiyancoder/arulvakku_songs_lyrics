@@ -1,7 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.lyrics
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.core.app.ShareCompat
@@ -39,8 +38,8 @@ class LyricsFragment : Fragment() {
     private val databaseViewModel: DatabaseViewModel by viewModels()
     lateinit var favoriteView: LottieAnimationView
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         binding = LyricsFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -64,19 +63,16 @@ class LyricsFragment : Fragment() {
 
         val favoriteItem = menu.findItem(R.id.action_make_favorite)
         favoriteView = favoriteItem.actionView as LottieAnimationView
+        favoriteView.setAnimation(R.raw.heartpop)
 
         favoriteView.setOnClickListener {
             val id = requireArguments().getInt("id")
             if (favoriteView.isActivated) {
                 databaseViewModel.removeFavouriteSong(id)
-                favoriteView.isActivated = false
             } else {
                 databaseViewModel.setFavouriteSong(id)
-                favoriteView.isActivated = true
-                favoriteView.playAnimation()
             }
         }
-
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -86,6 +82,7 @@ class LyricsFragment : Fragment() {
         val id = requireArguments().getInt("id")
         databaseViewModel.isFavouriteSongs(id)
     }
+
     @SuppressLint("QueryPermissionsNeeded")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -94,7 +91,6 @@ class LyricsFragment : Fragment() {
                  databaseViewModel.setFavouriteSong(id)
                  true
              }*/
-
             R.id.action_make_share -> {
                 val shareMsg = getString(
                     R.string.share_message,
@@ -119,7 +115,6 @@ class LyricsFragment : Fragment() {
 
 
     private fun subscribe() {
-
         databaseViewModel.setFavouriteSongResult.observe(viewLifecycleOwner) { it ->
             when (it.status) {
                 Status.LOADING -> {
@@ -129,7 +124,7 @@ class LyricsFragment : Fragment() {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
                         if (it > 0) {
-
+                            setFavouriteAnimation()
                         }
                     }
                 }
@@ -149,9 +144,9 @@ class LyricsFragment : Fragment() {
 
                     it.data?.let {
                         if (it) {
-
+                            setFavouriteAnimation()
                         } else {
-
+                            unFavouriteAnimation()
                         }
                     }
 
@@ -171,7 +166,7 @@ class LyricsFragment : Fragment() {
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
-                        favoriteView.cancelAnimation()
+                        unFavouriteAnimation()
                     }
                 }
                 Status.ERROR -> {
@@ -179,7 +174,16 @@ class LyricsFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun unFavouriteAnimation() {
+        favoriteView.isActivated = false
+        favoriteView.playAnimation();
+        favoriteView.cancelAnimation();
+    }
 
+    private fun setFavouriteAnimation() {
+        favoriteView.isActivated = true
+        favoriteView.playAnimation()
     }
 }
