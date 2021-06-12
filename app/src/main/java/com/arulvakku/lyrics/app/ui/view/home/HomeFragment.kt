@@ -21,8 +21,8 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), CellClickListenerCategory {
-    private var _binding: HomeFragmentBinding? = null
 
+    private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
     private val databaseViewModel: DatabaseViewModel by viewModels()
