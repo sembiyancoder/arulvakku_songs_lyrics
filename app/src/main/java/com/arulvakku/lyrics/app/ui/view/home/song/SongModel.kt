@@ -8,5 +8,12 @@ data class SongModel(
     var sCategoryId: Int?,
     var sSong: String?,
     var sTitle: String?,
-    var isFavorite: Boolean = false
-): Serializable
+): Serializable{
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+}

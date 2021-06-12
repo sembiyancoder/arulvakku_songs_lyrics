@@ -15,12 +15,13 @@ import kotlin.collections.ArrayList
 
 
 class SearchSongsAdapter(
-        var context: Context,
-        private val categoryItems: List<SongModel>,
-        private val cellClickListenerSongs: CellClickListenerSongs
+    var context: Context,
+    private val categoryItems: List<SongModel>,
+    private val cellClickListenerSongs: CellClickListenerSongs
 ) :
-        RecyclerView.Adapter<SearchSongsAdapter.ViewHolder>(), Filterable {
+    RecyclerView.Adapter<SearchSongsAdapter.ViewHolder>(), Filterable {
 
+    private val songList: List<SongModel> = categoryItems
     private var titleFilterList: List<SongModel>
 
     init {
@@ -37,15 +38,16 @@ class SearchSongsAdapter(
         val category = titleFilterList[position]
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
+            val index = songList.indexOf(category)
             cellClickListenerSongs.onSongCellClickListener(
-                    titleFilterList.get(position), position
+                songList.get(position), index
             )
         }
     }
 
 
     class ViewHolder private constructor(private val binding: LayoutSongRowItemBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(songResult: SongModel, position: Int) {
             binding.txtCategoryTitle.text = songResult.sTitle
@@ -76,7 +78,7 @@ class SearchSongsAdapter(
                     val resultList = ArrayList<SongModel>()
                     for (row in categoryItems) {
                         if (row.sTitle!!.toLowerCase(Locale.ROOT)
-                                        .contains(charSearch.toLowerCase(Locale.ROOT))
+                                .contains(charSearch.toLowerCase(Locale.ROOT))
                         ) {
                             resultList.add(row)
                         }
