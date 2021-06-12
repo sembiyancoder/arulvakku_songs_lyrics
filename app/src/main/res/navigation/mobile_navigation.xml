@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.arulvakku.lyrics.app.ui.view.home.HomeFragment"
+        android:label="அருள்வாக்கு பாடல்கள்"
+        tools:layout="@layout/home_fragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.arulvakku.lyrics.app.ui.view.search.SearchFragment"
+        android:label="பாடல்கள்"
+        tools:layout="@layout/search_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_favourite"
+        android:name="com.arulvakku.lyrics.app.ui.view.favourite.FavouriteFragment"
+        android:label="பிடித்த பாடல்கள்"
+        tools:layout="@layout/library_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.arulvakku.lyrics.app.ui.view.settings.SettingFragment"
+        android:label="மேலும்"
+        tools:layout="@layout/setting_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_songs_list"
+        android:name="com.arulvakku.lyrics.app.ui.view.songlist.SongListFragment"
+        android:label="SongList"
+        tools:layout="@layout/song_list_fragment">
+        <argument
+            android:name="categoriesresult"
+            app:argType="com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel" />
+    </fragment>
+
+
+
+</navigation>

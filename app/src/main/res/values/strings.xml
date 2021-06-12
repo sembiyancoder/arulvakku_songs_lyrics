@@ -1,23 +1,20 @@
 <resources>
-    <string name="app_name">அருள்வாக்கு பாடல்கள்</string>
-    <string name="about_1">Arulvakku is the first in the internet media that serves the Tamil speaking Christian community across the world, by giving Holy Bible online, Online Radio and Online Bible Study. Easy Bible reading and searching, receiving daily emails with daily liturgical readings and reflections both in English and Tamil, Rosaries and prayers, videos and hymns are some of the resources available online at arulvakku.com for Tamil Christians.</string>
-    <string name="about_4">To know more,</string>
-    <string name="About">About</string>
-    <string name="have_question">Write to us.</string>
-    <string name="feedback">Feedback</string>
-    <string name="settings">Settings</string>
-    <string name="request_songs">Request Songs</string>
+    <!--   <string name="app_name">அருள்வாக்கு பாடல்கள்</string>-->
+    <string name="app_name">Arulvakku Songs</string>
+    <string name="downloading_offline">தயவுசெய்து காத்திருங்கள்</string>
+    <string name="home">பிரிவுகள்</string>
+    <string name="song">பாடல்கள்</string>
+    <string name="settings">மேலும்</string>
+    <string name="temp_title">அணி அணியாய் வாருங்கள் அன்பு மாந்தரே ஆண்டவர் இயேசுவின் சாட்சி நீங்களே</string>
 
+    <!-- Details menu -->
+    <string name="menu_about">About</string>
+    <string name="stringName1"><![CDATA[<html>bla</html>]]></string>
+    <!--share-->
+    <string name="share_message">\"%s\"\n\n Lyrics: %s. \n\nApp Link: https://play.google.com/store/apps/details?id=com.arulvakku.lyrics.app</string>
+    <string name="share_app">\"%s\"\n\n %s. \n\nApp Link: https://play.google.com/store/apps/details?id=com.arulvakku.lyrics.app</string>
 
-    <string name="url">https://www.arulvakku.com/</string>
+    <!-- About us -->
+    <string name="favourite">பிடித்தது</string>
 
-    // Needs to be changed
-    <string name="email">arulvakkudevteam@gmail.com</string>
-    <string name="base_url">https://www.arulvakku.com/</string>
-    <string name="send_to">Send to</string>
-    <string name="display_settings">Display Settings</string>
-    <string name="arulvaaku_paadal">அருள்வாக்கு பாடல்கள்</string>
-    <string name="www_arulvakku_com">www.arulvakku.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- TODO: Remove or change this placeholder text -->
 </resources>

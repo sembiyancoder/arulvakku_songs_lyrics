@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/share"
-        android:icon="@drawable/ic_baseline_share_24"
-        android:orderInCategory="100"
-        android:title="Share"
+        android:id="@+id/action_make_favorite"
+        android:checkable="true"
+        android:title="Favorite"
+        app:actionLayout="@layout/layout_lotti_heart_pop"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/copy"
-        android:icon="@drawable/ic_baseline_file_copy_24"
-        android:orderInCategory="100"
-        android:title="Copy"
+        android:id="@+id/action_make_share"
+        android:enabled="true"
+        android:icon="@drawable/ic_share"
+        android:title="@string/menu_about"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:orderInCategory="100"
-        android:title="Copy"
-        android:visible="false"
-        app:showAsAction="always" />
-
 
 </menu>
