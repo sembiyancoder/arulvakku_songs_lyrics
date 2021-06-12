@@ -59,7 +59,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FavouriteSongsAdapter(this)
+        adapter = FavouriteSongsAdapter(this,cacheMapper)
         binding.recyclerView.adapter = adapter
         subscribe()
 

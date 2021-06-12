@@ -23,7 +23,7 @@ class FavouriteSongsAdapter (fragment: FavouriteFragment, val cacheMapper: Cache
 
     private val clickListener: CellClickListenerSongs = fragment
 
-    fun update(list: List<SongCacheEntity>) {
+    fun update(list: List<SongCacheEntity>) {}
     fun update(list: List<SongCacheEntity>,textView: TextView) {
         this.list.clear()
         this.list.addAll(list)
