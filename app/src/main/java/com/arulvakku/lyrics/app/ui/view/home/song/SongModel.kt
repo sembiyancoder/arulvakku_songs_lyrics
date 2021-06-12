@@ -8,4 +8,5 @@ data class SongModel(
     var sCategoryId: Int?,
     var sSong: String?,
     var sTitle: String?,
+    var isFavorite: Boolean = false
 ): Serializable

@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.arulvakku.lyrics.app.databinding.LayoutCategoryRowItemBinding
 import com.arulvakku.lyrics.app.databinding.LayoutFavouriteSongItemBinding
+import com.arulvakku.lyrics.app.databinding.LayoutSongRowItemBinding
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 
 class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<FavouriteSongsAdapter.MyViewHolder>() {
@@ -27,7 +29,7 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
             viewType: Int
     ): MyViewHolder {
         val view =
-                LayoutFavouriteSongItemBinding.inflate(
+                LayoutSongRowItemBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -40,20 +42,19 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
         holder.bind(list[position], position, onClick)
     }
 
-    class MyViewHolder(binding: LayoutFavouriteSongItemBinding) :
+    class MyViewHolder(binding: LayoutSongRowItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
 
         val view = binding
         @SuppressLint("SetTextI18n")
         fun bind(data: SongCacheEntity, position: Int, onClick: OnClick) {
-            view.textViewNumber.text = "${(position + 1)}. "
-            view.textViewSongTitle.text = data.sTitle
-            view.textViewSongDesc.text = data.sSong
+            view.txtCount.text = "${(position + 1)}. "
+            view.txtCategoryTitle.text = data.sTitle
+            view.textCategoryName.text = data.sCategory
 
-            view.imageViewFavourite.setOnClickListener {
-                val id: Int = data.sSongId ?: 0
-                onClick.onClick(id, position)
+            view.imageArrow.setOnClickListener {
+                onClick.onClick(data, position)
             }
 
         }
@@ -72,6 +73,6 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
     }
 
     interface OnClick {
-        fun onClick(id: Int, position: Int)
+        fun onClick(data: SongCacheEntity, position: Int)
     }
 }

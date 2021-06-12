@@ -10,7 +10,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recyclerView"
-        tools:listitem="@layout/layout_favourite_song_item"
+        tools:listitem="@layout/layout_song_row_item"
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="match_parent" />

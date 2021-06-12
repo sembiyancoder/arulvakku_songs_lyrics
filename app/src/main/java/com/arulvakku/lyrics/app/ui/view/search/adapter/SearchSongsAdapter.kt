@@ -15,11 +15,11 @@ import kotlin.collections.ArrayList
 
 
 class SearchSongsAdapter(
-    var context: Context,
-    private val categoryItems: List<SongModel>,
-    private val cellClickListenerSongs: CellClickListenerSongs
+        var context: Context,
+        private val categoryItems: List<SongModel>,
+        private val cellClickListenerSongs: CellClickListenerSongs
 ) :
-    RecyclerView.Adapter<SearchSongsAdapter.ViewHolder>(), Filterable {
+        RecyclerView.Adapter<SearchSongsAdapter.ViewHolder>(), Filterable {
 
     private var titleFilterList: List<SongModel>
 
@@ -38,14 +38,14 @@ class SearchSongsAdapter(
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
             cellClickListenerSongs.onSongCellClickListener(
-                titleFilterList.get(position),position
+                    titleFilterList.get(position), position
             )
         }
     }
 
 
     class ViewHolder private constructor(private val binding: LayoutSongRowItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(songResult: SongModel, position: Int) {
             binding.txtCategoryTitle.text = songResult.sTitle
@@ -53,6 +53,8 @@ class SearchSongsAdapter(
             binding.txtCount.text = "$rowCount."
             binding.textCategoryName.text = songResult.sCategory
             binding.textCategoryName.visibility = View.VISIBLE
+
+            binding.imageArrow.visibility = View.GONE
         }
 
         companion object {
@@ -74,7 +76,7 @@ class SearchSongsAdapter(
                     val resultList = ArrayList<SongModel>()
                     for (row in categoryItems) {
                         if (row.sTitle!!.toLowerCase(Locale.ROOT)
-                                .contains(charSearch.toLowerCase(Locale.ROOT))
+                                        .contains(charSearch.toLowerCase(Locale.ROOT))
                         ) {
                             resultList.add(row)
                         }

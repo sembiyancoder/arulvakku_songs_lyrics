@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/navigation_favourite"
         android:name="com.arulvakku.lyrics.app.ui.view.favourite.FavouriteFragment"
-        android:label="Favourite Songs"
+        android:label="பிடித்த பாடல்கள்"
         tools:layout="@layout/library_fragment" />
 
     <fragment

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.LibraryFragmentBinding
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
 import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,9 +38,9 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
     private lateinit var adapter: FavouriteSongsAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = LibraryFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -83,7 +84,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
-                        if (it > 0) adapter.remove(position,binding.textViewNoDataFound)
+                        if (it > 0) adapter.remove(position, binding.textViewNoDataFound)
                     }
                 }
                 Status.ERROR -> {
@@ -98,16 +99,16 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
         _binding = null
     }
 
-    override fun onClick(id: Int, position: Int) {
+    override fun onClick(data: SongCacheEntity, position: Int) {
 //        databaseViewModel.removeFavouriteSong(id)
         this.position = position
-        showNotification(id)
+        showNotification(data.sSongId ?: 0, data.sTitle ?: "---")
     }
 
-    private fun showNotification(songId: Int) {
+    private fun showNotification(songId: Int, title: String) {
         val builder1: AlertDialog.Builder = AlertDialog.Builder(requireContext(), R.style.MyDialog)
-        builder1.setTitle(R.string.app_name)
-        builder1.setMessage("உங்களுக்கு பிடித்த பட்டியலிலிருந்து இந்த பாடலை நீக்க விரும்புகிறீர்களா?")
+        builder1.setTitle("இந்த பாடலை நீக்க விரும்புகிறீர்களா?")
+        builder1.setMessage(title)
         builder1.setCancelable(true)
 
         builder1.setPositiveButton(
