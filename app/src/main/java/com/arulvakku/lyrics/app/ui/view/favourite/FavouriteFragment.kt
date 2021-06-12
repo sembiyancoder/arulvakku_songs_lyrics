@@ -110,7 +110,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
         _binding = null
     }
 
-    override fun onClick(id: Int, position: Int) {
+    fun onClick(id: Int, position: Int) {
 //        databaseViewModel.removeFavouriteSong(id)
         this.position = position
         showNotification(id)
