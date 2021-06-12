@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_search,
-                R.id.navigation_library,
+                R.id.navigation_favourite,
                 R.id.navigation_settings
             )
         )

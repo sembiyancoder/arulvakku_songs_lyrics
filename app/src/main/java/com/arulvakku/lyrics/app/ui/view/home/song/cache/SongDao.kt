@@ -21,13 +21,13 @@ interface SongDao {
     @Delete
     suspend fun removeFavouriteSong(playlistSongCrossRef: PlaylistSongCrossRef): Int
 
-    @Query("SELECT EXISTS (SELECT * FROM PlaylistSongCrossRef WHERE playlist_id=1 AND sSongId =:songId)")
+    @Query("SELECT EXISTS (SELECT * FROM playlist_song_cross_ref WHERE playlist_id=1 AND song_id =:songId)")
     suspend fun isFavouriteSong(songId: Int):Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSongSingleItem(entity: SongCacheEntity)
 
-    @Query("SELECT * FROM songs ORDER BY LOWER(sTitle) ASC")
+    @Query("SELECT * FROM songs ORDER BY LOWER(title) ASC")
     suspend fun getSongList(): List<SongCacheEntity>
 
     @Query("SELECT COUNT(*) from songs")
@@ -46,10 +46,10 @@ interface SongDao {
     suspend fun getFavouriteSongs(): PlaylistWithSongs
 
     @Transaction
-    @Query("SELECT * FROM songs WHERE sCategoryId = :id ORDER BY LOWER(sTitle) ASC")
+    @Query("SELECT * FROM songs WHERE category_id = :id ORDER BY LOWER(title) ASC")
     suspend fun getSongsWithPlaylistId(id: Int): List<SongWithPlaylists>
 
-    @Query("SELECT * FROM songs WHERE sCategoryId = :id ORDER BY LOWER(sTitle) ASC")
+    @Query("SELECT * FROM songs WHERE category_id = :id ORDER BY LOWER(title) ASC")
     suspend fun getSongListByCategory(id: Int): List<SongCacheEntity>
 
 }

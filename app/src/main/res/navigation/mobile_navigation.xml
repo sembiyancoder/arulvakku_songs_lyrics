@@ -40,7 +40,7 @@
         tools:layout="@layout/categories_fragment" />
 
     <fragment
-        android:id="@+id/navigation_library"
+        android:id="@+id/navigation_favourite"
         android:name="com.arulvakku.lyrics.app.ui.view.favourite.FavouriteFragment"
         android:label="Favourite Songs"
         tools:layout="@layout/library_fragment" />

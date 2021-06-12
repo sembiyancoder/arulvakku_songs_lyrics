@@ -1,7 +1,9 @@
 package com.arulvakku.lyrics.app.ui.view.favourite
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutFavouriteSongItemBinding
 import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
@@ -11,10 +13,12 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
     val onClick: OnClick = fragment
     val list = mutableListOf<SongCacheEntity>()
 
-    fun update(list: List<SongCacheEntity>) {
+    fun update(list: List<SongCacheEntity>,textView: TextView) {
         this.list.clear()
         this.list.addAll(list)
         notifyDataSetChanged()
+
+        textView.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun onCreateViewHolder(
@@ -58,9 +62,11 @@ class FavouriteSongsAdapter(fragment: FavouriteFragment) : RecyclerView.Adapter<
         return list.size
     }
 
-    fun remove(position: Int) {
+    fun remove(position: Int,textView: TextView) {
         list.removeAt(position)
         notifyDataSetChanged()
+
+        textView.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }
 
     interface OnClick {

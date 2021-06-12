@@ -14,4 +14,16 @@
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textViewNoDataFound"
+        android:textAppearance="?textAppearanceListItem"
+        android:ellipsize="end"
+        android:layout_gravity="center"
+        android:fontFamily="@font/montserrat"
+        android:layout_width="wrap_content"
+        android:textSize="14dp"
+        android:layout_height="wrap_content"
+        android:text="உங்களுக்கு பிடித்த பாடல்கள் இங்கே தோன்றும்" />
+
 </FrameLayout>

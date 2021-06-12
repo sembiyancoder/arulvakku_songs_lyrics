@@ -7,18 +7,18 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "songs")
 class SongCacheEntity (
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name="sSongId")
+    @ColumnInfo(name="song_id")
     var sSongId: Int?,
 
-    @ColumnInfo(name = "sCategory")
+    @ColumnInfo(name = "category")
     var sCategory: String?,
 
-    @ColumnInfo(name = "sCategoryId")
+    @ColumnInfo(name = "category_id")
     var sCategoryId: Int?,
 
-    @ColumnInfo(name = "sSong")
+    @ColumnInfo(name = "song")
     var sSong: String?,
 
-    @ColumnInfo(name = "sTitle")
+    @ColumnInfo(name = "title")
     var sTitle: String?,
 )
