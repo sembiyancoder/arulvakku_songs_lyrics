@@ -1,10 +1,10 @@
 <resources>
     <!--   <string name="app_name">அருள்வாக்கு பாடல்கள்</string>-->
     <string name="app_name">Arulvakku Songs</string>
-    <string name="downloading_offline">Please wait</string>
-    <string name="home">Home</string>
-    <string name="song">Songs</string>
-    <string name="settings">Settings</string>
+    <string name="downloading_offline">தயவுசெய்து காத்திருங்கள்</string>
+    <string name="home">பிரிவுகள்</string>
+    <string name="song">பாடல்கள்</string>
+    <string name="settings">மேலும்</string>
     <string name="temp_title">அணி அணியாய் வாருங்கள் அன்பு மாந்தரே ஆண்டவர் இயேசுவின் சாட்சி நீங்களே</string>
 
     <!-- Details menu -->
@@ -15,6 +15,6 @@
     <string name="share_app">\"%s\"\n\n %s. \n\nApp Link: https://play.google.com/store/apps/details?id=com.arulvakku.lyrics.app</string>
 
     <!-- About us -->
-    <string name="favourite">Favourite</string>
+    <string name="favourite">பிடித்தது</string>
 
 </resources>

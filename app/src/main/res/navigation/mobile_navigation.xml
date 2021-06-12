@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.arulvakku.lyrics.app.ui.view.settings.SettingFragment"
-        android:label="SettingsFragment"
+        android:label="மேலும்"
         tools:layout="@layout/setting_fragment" />
 
     <fragment
