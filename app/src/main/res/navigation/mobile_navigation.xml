@@ -11,33 +11,13 @@
         android:label="அருள்வாக்கு பாடல்கள்"
         tools:layout="@layout/home_fragment">
 
-        <action
-            android:id="@+id/action_category_to_song_list"
-            app:destination="@id/navigation_category"
-            app:enterAnim="@anim/slide_in_right"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-
-        <action
-            android:id="@+id/action_notesFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
-
     </fragment>
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.arulvakku.lyrics.app.ui.view.search.SearchFragment"
-        android:label="SearchFragment"
+        android:label="பாடல்கள்"
         tools:layout="@layout/search_fragment" />
-
-    <fragment
-        android:id="@+id/navigation_category"
-        android:name="com.arulvakku.lyrics.app.ui.view.home.category.CategoriesFragment"
-        android:label="அருள்வாக்கு பாடல்கள்"
-        tools:layout="@layout/categories_fragment" />
 
     <fragment
         android:id="@+id/navigation_favourite"
@@ -61,11 +41,6 @@
             app:argType="com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel" />
     </fragment>
 
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.arulvakku.lyrics.app.ui.view.about.AboutFragment"
-        android:label=""
-        tools:layout="@layout/fragment_about" />
 
 
 </navigation>

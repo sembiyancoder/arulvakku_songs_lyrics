@@ -103,4 +103,7 @@ dependencies {
 
     //Timber -> for log
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //lottie
+    implementation "com.airbnb.android:lottie:3.7.0"
 }

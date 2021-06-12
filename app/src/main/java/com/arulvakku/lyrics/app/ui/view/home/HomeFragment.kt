@@ -4,30 +4,27 @@ package com.arulvakku.lyrics.app.ui.view.home
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.HomeFragmentBinding
-import com.arulvakku.lyrics.app.ui.listeners.CellClickListener
-import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerCategory
 import com.arulvakku.lyrics.app.ui.view.home.adapter.CategoryAdapter
-import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
-import com.arulvakku.lyrics.app.ui.viewmodels.DataStoreViewModel
+import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
 import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), CellClickListener {
+class HomeFragment : Fragment(), CellClickListenerCategory {
     private var _binding: HomeFragmentBinding? = null
 
     private val binding get() = _binding!!
 
-    private val dataStoreViewModel: DataStoreViewModel by viewModels()
     private val databaseViewModel: DatabaseViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,16 +61,27 @@ class HomeFragment : Fragment(), CellClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         return when (item.itemId) {
-            R.id.action_night_mode -> {
-                item.isChecked = !item.isChecked
-                setUIMode(item, item.isChecked)
+            R.id.action_share -> {
+                val shareMsg = getString(
+                    R.string.share_app,
+                    "Download Android App",
+                    "Arulvakku is the first in the internet media that serves the Tamil speaking Christian community across the world, by giving Holy Bible online, Online Radio and Online Bible Study. Easy Bible reading and searching, receiving daily emails with daily liturgical readings and reflections both in English and Tamil, Rosaries and prayers, videos and hymns are some of the resources available online at arulvakku.com for Tamil Christians."
+                )
+
+                val intent = ShareCompat.IntentBuilder.from(requireActivity())
+                    .setType("text/plain")
+                    .setText(shareMsg)
+                    .intent
+
+                if (intent.resolveActivity(requireActivity().packageManager) != null) {
+                    startActivity(intent)
+                }
                 true
             }
-
-            R.id.action_about -> {
+            /*R.id.action_about -> {
                 findNavController().navigate(R.id.action_notesFragment_to_aboutFragment)
                 true
-            }
+            }*/
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -81,11 +89,11 @@ class HomeFragment : Fragment(), CellClickListener {
     private fun setUIMode(item: MenuItem, isChecked: Boolean) {
         if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-           // dataStoreViewModel.setSavedKey(true)
+            // dataStoreViewModel.setSavedKey(true)
             item.setIcon(R.drawable.ic_night)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-           // dataStoreViewModel.setSavedKey(false)
+            // dataStoreViewModel.setSavedKey(false)
             item.setIcon(R.drawable.ic_day)
         }
     }
@@ -115,7 +123,7 @@ class HomeFragment : Fragment(), CellClickListener {
     }
 
     private fun setAdapter(list: List<SongCategoryModel>) {
-        binding?.recyclerView?.apply {
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = activity?.let {
                 CategoryAdapter(
@@ -128,7 +136,7 @@ class HomeFragment : Fragment(), CellClickListener {
     }
 
 
-    override fun onCategoryItemClickListener(item: SongCategoryModel) {
+    override fun onCategoryItemClickListener(item: SongCategoryModel, position: Int) {
         val bundle = Bundle().apply {
             putSerializable("categoriesresult", item)
         }
@@ -142,12 +150,5 @@ class HomeFragment : Fragment(), CellClickListener {
     override fun onResume() {
         super.onResume()
         Timber.d("CategoriesFragment")
-    }
-    override fun onSongCellClickListener(item: SongModel) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSongCellClickListenerWithPosition(item: SongModel, position: Int) {
-        TODO("Not yet implemented")
     }
 }

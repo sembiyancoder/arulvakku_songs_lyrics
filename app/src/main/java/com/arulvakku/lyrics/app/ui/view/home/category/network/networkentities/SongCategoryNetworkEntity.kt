@@ -1,6 +1,5 @@
 package com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities
 
-import com.arulvakku.lyrics.app.ui.view.home.category.network.networkentities.CategoriesResult
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
