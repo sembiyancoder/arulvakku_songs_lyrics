@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.favourite
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,14 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.arulvakku.lyrics.app.databinding.LibraryFragmentBinding
+import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
+import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
+import com.arulvakku.lyrics.app.ui.view.favourite.cache.CacheMapper
+import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
+import com.arulvakku.lyrics.app.utilities.SongsSingleton
 import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
+class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickListenerSongs {
 
+    @Inject
+    lateinit var cacheMapper: CacheMapper
     private var _binding: LibraryFragmentBinding? = null
 
     // This property is only valid between onCreateView and
@@ -23,6 +32,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
 
 
     private var position = 0
+
     companion object {
         fun newInstance() = FavouriteFragment()
     }
@@ -44,7 +54,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FavouriteSongsAdapter(this)
+        adapter = FavouriteSongsAdapter(this, cacheMapper)
         binding.recyclerView.adapter = adapter
         subscribe()
 
@@ -62,6 +72,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
                     it.data?.let {
                         adapter.update(it.songs ?: emptyList())
                     }
+                    SongsSingleton.setSongs(cacheMapper.mapToEntityList(it.data?.songs!!) as ArrayList<SongModel>)
 
                 }
                 Status.ERROR -> {
@@ -78,7 +89,8 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
-                        if (it>0) adapter.remove(position)
+                        if (it > 0) adapter.remove(position)
+
                     }
                 }
                 Status.ERROR -> {
@@ -96,5 +108,15 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick {
     override fun onClick(id: Int, position: Int) {
         databaseViewModel.removeFavouriteSong(id)
         this.position = position
+    }
+
+    override fun onSongCellClickListener(item: SongModel, position: Int) {
+        val intent = Intent(context, SongDetailsActivity::class.java)
+        val bundle = Bundle().apply {
+            putSerializable("song", item)
+        }
+        bundle.putInt("pos", position)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

@@ -1,15 +1,20 @@
 package com.arulvakku.lyrics.app.ui.view.lyrics
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.Layout
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.*
 import android.view.*
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ShareCompat
-import androidx.core.text.toSpannable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -53,6 +58,7 @@ class LyricsFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
@@ -64,9 +70,10 @@ class LyricsFragment : Fragment() {
         )
 
 
+
         val count = requireArguments().getString("category")!!.length
         //set the back ground color
-        val backgroundSpan = BackgroundColorSpan(Color.GRAY)
+        val backgroundSpan = BackgroundColorSpan(Color.WHITE)
         spannableString.setSpan(
             backgroundSpan,
             spannableString.length - count,
@@ -75,7 +82,7 @@ class LyricsFragment : Fragment() {
         )
         //Set the text color to white
         spannableString.setSpan(
-            ForegroundColorSpan(Color.WHITE), spannableString.length - count,
+            ForegroundColorSpan(requireActivity().getColor(R.color.blue)), spannableString.length - count,
             spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         //Align the text to center
@@ -90,12 +97,31 @@ class LyricsFragment : Fragment() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
-       /* //Set padding
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = false
+            }
+
+            override fun onClick(widget: View) {
+                Toast.makeText(context,"Clicked",Toast.LENGTH_LONG).show()
+            }
+        }
         spannableString.setSpan(
-            RoundedBackgroundSpan(), spannableString.length - count,
+            clickableSpan,
+            spannableString.length - count,
+            spannableString.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+       /* //Set padding
+        val bgColor = Color.parseColor("#000000")
+        val textColor = Color.parseColor("#ffffff")
+        spannableString.setSpan(
+            RoundedBackgroundSpan(bgColor,textColor,10), spannableString.length - count,
             spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )*/
         binding.txtTitle.text = spannableString
+        binding.txtTitle.movementMethod = LinkMovementMethod.getInstance()
 //        binding.txtCategory.text = requireArguments().getString("category")
     }
 

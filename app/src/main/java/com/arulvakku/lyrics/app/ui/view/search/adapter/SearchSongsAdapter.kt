@@ -21,6 +21,7 @@ class SearchSongsAdapter(
 ) :
     RecyclerView.Adapter<SearchSongsAdapter.ViewHolder>(), Filterable {
 
+    private val songList: List<SongModel> = categoryItems
     private var titleFilterList: List<SongModel>
 
     init {
@@ -37,8 +38,9 @@ class SearchSongsAdapter(
         val category = titleFilterList[position]
         holder.bind(category, position)
         holder.itemView.setOnClickListener {
+            val index = songList.indexOf(category)
             cellClickListenerSongs.onSongCellClickListener(
-                titleFilterList.get(position),position
+                songList.get(position), index
             )
         }
     }
