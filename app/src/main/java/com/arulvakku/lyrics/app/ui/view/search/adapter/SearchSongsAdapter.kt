@@ -55,6 +55,8 @@ class SearchSongsAdapter(
             binding.txtCount.text = "$rowCount."
             binding.textCategoryName.text = songResult.sCategory
             binding.textCategoryName.visibility = View.VISIBLE
+
+            binding.imageArrow.visibility = View.GONE
         }
 
         companion object {
