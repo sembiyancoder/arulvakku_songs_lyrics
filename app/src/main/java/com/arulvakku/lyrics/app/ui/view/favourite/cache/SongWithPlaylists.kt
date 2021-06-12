@@ -8,7 +8,7 @@ import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 data class SongWithPlaylists(
     @Embedded val song: SongCacheEntity,
     @Relation(
-        parentColumn = "sSongId",
+        parentColumn = "song_id",
         entityColumn = "playlist_id",
         associateBy = Junction(PlaylistSongCrossRef::class)
     )

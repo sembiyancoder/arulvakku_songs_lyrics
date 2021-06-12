@@ -2,7 +2,9 @@ package com.arulvakku.lyrics.app.ui.view.favourite
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arulvakku.lyrics.app.databinding.LayoutFavouriteSongItemBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
@@ -20,9 +22,12 @@ class FavouriteSongsAdapter (fragment: FavouriteFragment, val cacheMapper: Cache
     private val clickListener: CellClickListenerSongs = fragment
 
     fun update(list: List<SongCacheEntity>) {
+    fun update(list: List<SongCacheEntity>,textView: TextView) {
         this.list.clear()
         this.list.addAll(list)
         notifyDataSetChanged()
+
+        textView.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun onCreateViewHolder(
@@ -72,9 +77,11 @@ class FavouriteSongsAdapter (fragment: FavouriteFragment, val cacheMapper: Cache
         return list.size
     }
 
-    fun remove(position: Int) {
+    fun remove(position: Int,textView: TextView) {
         list.removeAt(position)
         notifyDataSetChanged()
+
+        textView.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }
 
     interface OnClick {

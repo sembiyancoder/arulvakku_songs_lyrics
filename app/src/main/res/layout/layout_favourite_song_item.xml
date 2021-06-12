@@ -14,10 +14,9 @@
 
             <TextView
                 android:id="@+id/textViewNumber"
-                android:textSize="14dp"
                 android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textColor="#737373"
+                android:textAppearance="?textAppearanceListItem"
+                android:fontFamily="@font/montserrat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1. " />
@@ -29,11 +28,10 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/textViewSongTitle"
-                    android:textStyle="bold"
-                    android:textColor="#737373"
-                    android:textSize="14dp"
+                    android:textAppearance="?textAppearanceListItem"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
                     android:paddingStart="@dimen/dimen_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,8 +45,7 @@
                     android:maxLines="1"
                     android:paddingStart="@dimen/dimen_8"
                     android:text="ஆன்ம உணவாக நீயே"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12dp" />
+                    />
 
             </LinearLayout>
             <ImageView

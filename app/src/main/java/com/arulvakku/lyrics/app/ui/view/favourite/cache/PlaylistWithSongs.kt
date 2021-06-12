@@ -9,7 +9,7 @@ data class PlaylistWithSongs(
     @Embedded val playlist: Playlist,
     @Relation(
         parentColumn = "playlist_id",
-        entityColumn = "sSongId",
+        entityColumn = "song_id",
         associateBy = Junction(PlaylistSongCrossRef::class)
     )
     val songs: List<SongCacheEntity>?=null

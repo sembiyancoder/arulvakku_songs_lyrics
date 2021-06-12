@@ -1,12 +1,15 @@
 package com.arulvakku.lyrics.app.ui.view.favourite
 
 import android.content.Intent
+import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.LibraryFragmentBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
 import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
@@ -18,6 +21,7 @@ import com.arulvakku.lyrics.app.utilities.Status
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickListenerSongs {
@@ -54,7 +58,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FavouriteSongsAdapter(this, cacheMapper)
+        adapter = FavouriteSongsAdapter(this)
         binding.recyclerView.adapter = adapter
         subscribe()
 
@@ -70,7 +74,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
-                        adapter.update(it.songs ?: emptyList())
+                        adapter.update(it.songs ?: emptyList(), binding.textViewNoDataFound)
                     }
                     SongsSingleton.setSongs(cacheMapper.mapToEntityList(it.data?.songs!!) as ArrayList<SongModel>)
 
@@ -89,6 +93,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
+                        if (it > 0) adapter.remove(position,binding.textViewNoDataFound)
                         if (it > 0) adapter.remove(position)
 
                     }
@@ -106,8 +111,30 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
     }
 
     override fun onClick(id: Int, position: Int) {
-        databaseViewModel.removeFavouriteSong(id)
+//        databaseViewModel.removeFavouriteSong(id)
         this.position = position
+        showNotification(id)
+    }
+
+    private fun showNotification(songId: Int) {
+        val builder1: AlertDialog.Builder = AlertDialog.Builder(requireContext(), R.style.MyDialog)
+        builder1.setTitle(R.string.app_name)
+        builder1.setMessage("உங்களுக்கு பிடித்த பட்டியலிலிருந்து இந்த பாடலை நீக்க விரும்புகிறீர்களா?")
+        builder1.setCancelable(true)
+
+        builder1.setPositiveButton(
+                "ஆம்",
+                DialogInterface.OnClickListener { dialog, id ->
+                    databaseViewModel.removeFavouriteSong(songId)
+                    dialog.cancel()
+                })
+
+        builder1.setNegativeButton(
+                "இல்லை",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+
+        val alert11: AlertDialog = builder1.create()
+        alert11.show()
     }
 
     override fun onSongCellClickListener(item: SongModel, position: Int) {
