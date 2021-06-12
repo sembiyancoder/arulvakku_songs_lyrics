@@ -87,7 +87,7 @@ class HomeFragment : Fragment(), CellClickListenerCategory {
     }
 
     private fun setUIMode(item: MenuItem, isChecked: Boolean) {
-        if (isChecked) {
+        /*if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             // dataStoreViewModel.setSavedKey(true)
             item.setIcon(R.drawable.ic_night)
@@ -95,7 +95,7 @@ class HomeFragment : Fragment(), CellClickListenerCategory {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             // dataStoreViewModel.setSavedKey(false)
             item.setIcon(R.drawable.ic_day)
-        }
+        }*/
     }
 
     override fun onDestroyView() {

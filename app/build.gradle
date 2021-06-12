@@ -16,11 +16,11 @@ android {
 
     defaultConfig {
         applicationId "com.arulvakku.lyrics.app"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 7
         versionName "1.0"
-
+        multiDexEnabled true
         buildConfigField 'String', 'BASE_URL', "\"http://arulvakku.binaryexpertsystems.com/Arulvakku/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -106,4 +106,7 @@ dependencies {
 
     //lottie
     implementation "com.airbnb.android:lottie:3.7.0"
+
+    //to support android x lower version
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
