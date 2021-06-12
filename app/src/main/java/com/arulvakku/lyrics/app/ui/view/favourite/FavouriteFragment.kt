@@ -1,7 +1,7 @@
 package com.arulvakku.lyrics.app.ui.view.favourite
 
-import android.content.Intent
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +15,7 @@ import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerSongs
 import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
 import com.arulvakku.lyrics.app.ui.view.favourite.cache.CacheMapper
 import com.arulvakku.lyrics.app.ui.view.home.song.SongModel
+import com.arulvakku.lyrics.app.ui.view.home.song.cache.SongCacheEntity
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
 import com.arulvakku.lyrics.app.utilities.SongsSingleton
 import com.arulvakku.lyrics.app.utilities.Status
@@ -58,7 +59,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FavouriteSongsAdapter(this)
+        adapter = FavouriteSongsAdapter(this, cacheMapper)
         binding.recyclerView.adapter = adapter
         subscribe()
 
@@ -93,9 +94,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
-                        if (it > 0) adapter.remove(position,binding.textViewNoDataFound)
-                        if (it > 0) adapter.remove(position)
-
+                        if (it > 0) adapter.remove(position, binding.textViewNoDataFound)
                     }
                 }
                 Status.ERROR -> {
@@ -123,15 +122,15 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
         builder1.setCancelable(true)
 
         builder1.setPositiveButton(
-                "ஆம்",
-                DialogInterface.OnClickListener { dialog, id ->
-                    databaseViewModel.removeFavouriteSong(songId)
-                    dialog.cancel()
-                })
+            "ஆம்",
+            DialogInterface.OnClickListener { dialog, id ->
+                databaseViewModel.removeFavouriteSong(songId)
+                dialog.cancel()
+            })
 
         builder1.setNegativeButton(
-                "இல்லை",
-                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+            "இல்லை",
+            DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
 
         val alert11: AlertDialog = builder1.create()
         alert11.show()
@@ -145,5 +144,9 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
         bundle.putInt("pos", position)
         intent.putExtras(bundle)
         startActivity(intent)
+    }
+
+    override fun onClick(data: SongCacheEntity, position: Int) {
+
     }
 }
