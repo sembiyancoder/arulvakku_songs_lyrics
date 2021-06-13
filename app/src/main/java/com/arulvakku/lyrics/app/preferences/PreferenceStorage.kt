@@ -9,4 +9,12 @@ interface PreferenceStorage {
     //set allSongs sort order
     fun savedKey(): Flow<Boolean>
     suspend fun setSavedKey(order: Boolean)
+
+    //to show the info
+    fun isUserClosedGlobalInfoKey(): Flow<Boolean>
+    suspend fun setUserClosedGlobalInfoKey(order: Boolean)
+
+    // saving global message
+    fun getGlobalMessage(): Flow<String>
+    suspend fun setGlobalMessage(message: String)
 }

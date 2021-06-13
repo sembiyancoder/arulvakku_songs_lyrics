@@ -4,7 +4,12 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
+
+
 
 android {
     compileSdkVersion 30
@@ -109,4 +114,22 @@ dependencies {
 
     //to support android x lower version
     implementation 'androidx.multidex:multidex:2.0.1'
+
+
+    // Import the BoM for the Firebase platform
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
+
+    //Crashlytics and Analytics
+
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Declare the dependency for the Performance Monitoring library
+    implementation 'com.google.firebase:firebase-perf-ktx'
+
+    // Realtime Database library
+    implementation 'com.google.firebase:firebase-database-ktx'
+
 }
+

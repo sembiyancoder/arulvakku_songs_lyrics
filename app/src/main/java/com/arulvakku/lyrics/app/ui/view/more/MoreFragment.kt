@@ -1,5 +1,6 @@
 package com.arulvakku.lyrics.app.ui.view.more
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.BuildConfig
 import com.arulvakku.lyrics.app.databinding.SettingFragmentBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerMore
+import com.arulvakku.lyrics.app.ui.view.SongDetailsActivity
 import com.arulvakku.lyrics.app.ui.view.more.adapter.MoreListItemAdapter
+import com.arulvakku.lyrics.app.ui.view.more.details.DetailsActivity
 import com.arulvakku.lyrics.app.ui.view.more.model.MoreData
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,7 +69,13 @@ class MoreFragment : Fragment(), CellClickListenerMore {
     }
 
     override fun onMoreItemClickListener(item: MoreData, position: Int) {
-
+        val intent = Intent(context, DetailsActivity::class.java)
+        val bundle = Bundle().apply {
+            putSerializable("url", item.label)
+            putSerializable("toolbar", item.title)
+        }
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
 }

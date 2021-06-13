@@ -1,32 +1,47 @@
 package com.arulvakku.lyrics.app.ui.view.home
 
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arulvakku.lyrics.app.R
+import com.arulvakku.lyrics.app.data.model.GlobalInfo
 import com.arulvakku.lyrics.app.databinding.HomeFragmentBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerCategory
 import com.arulvakku.lyrics.app.ui.view.home.adapter.CategoryAdapter
 import com.arulvakku.lyrics.app.ui.view.home.model.SongCategoryModel
+import com.arulvakku.lyrics.app.ui.viewmodels.DataStoreViewModel
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
+import com.arulvakku.lyrics.app.utilities.NetworkHelper
 import com.arulvakku.lyrics.app.utilities.Status
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+
 @AndroidEntryPoint
 class HomeFragment : Fragment(), CellClickListenerCategory {
+
+    companion object {
+        private const val TAG = "HomeFragment"
+    }
 
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
     private val databaseViewModel: DatabaseViewModel by viewModels()
-
+    private val dataStoreViewModel: DataStoreViewModel by viewModels()
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -44,18 +59,77 @@ class HomeFragment : Fragment(), CellClickListenerCategory {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         subscribe()
+
+        if (NetworkHelper(requireContext()).isNetworkConnected()) {
+            checkForUserInfo();
+        } else {
+            binding.layoutInfo.visibility = View.GONE
+        }
+
+        binding.imgClose.setOnClickListener {
+            binding.layoutInfo.visibility = View.GONE
+            dataStoreViewModel.setUserClosedGlobalInfoKey(true)
+        }
     }
+
+    private fun checkForUserInfo() {
+        val database = Firebase.database
+        val myRef = database.getReference("globalinfo")
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val globalInfo = dataSnapshot.getValue(GlobalInfo::class.java)
+                if (globalInfo != null) {
+                    isClosed(globalInfo)
+                    checkForChange(globalInfo)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
+        })
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.ui_menu, menu)
-        // Set the item state
-        /*dataStoreViewModel.savedKey.observe(this) {
-            if (it == true) {
-                *//*val item = menu.findItem(R.id.action_night_mode)
-                item.isChecked = it
-                setUIMode(item, it)*//*
+    }
+
+    private fun checkForChange(globalInfo: GlobalInfo) {
+        dataStoreViewModel.userMessage.observe(this) {
+            if (it == globalInfo.message) {
+                binding.layoutInfo.visibility = View.GONE
+            } else {
+                binding.layoutInfo.visibility = View.VISIBLE
+                binding.txtInfo.text = globalInfo.message
+                binding.txtInfo.setTextColor(Color.parseColor(globalInfo.textColor))
+                binding.layoutInfo.setBackgroundColor(Color.parseColor(globalInfo.bgColor))
+
+                //dataStoreViewModel.setUserClosedGlobalInfoKey(false)
             }
-        }*/
+        }
+
+        //dataStoreViewModel.setUserGlobalMessage(globalInfo.message)
+    }
+
+    private fun isClosed(globalInfo: GlobalInfo) {
+        dataStoreViewModel.userClosedGlobalInfoKey.observe(this) {
+            if (it == true) {
+                binding.layoutInfo.visibility = View.GONE
+            } else {
+                if (globalInfo != null) {
+                    if (globalInfo.isShow) {
+                        binding.txtInfo.text = globalInfo.message
+                        binding.txtInfo.setTextColor(Color.parseColor(globalInfo.textColor))
+                        binding.layoutInfo.setBackgroundColor(Color.parseColor(globalInfo.bgColor))
+                        binding.layoutInfo.visibility = View.VISIBLE
+                        dataStoreViewModel.setUserGlobalMessage(globalInfo.message)
+                    } else {
+                        binding.layoutInfo.visibility = View.GONE
+                    }
+                }
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

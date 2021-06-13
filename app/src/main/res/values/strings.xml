@@ -1,7 +1,7 @@
 <resources>
     <!--   <string name="app_name">அருள்வாக்கு பாடல்கள்</string>-->
     <string name="app_name">Arulvakku Songs</string>
-    <string name="downloading_offline">தயவுசெய்து காத்திருங்கள்</string>
+    <string name="downloading_offline">தயவுசெய்து காத்திருங்கள். உங்களுக்காக பாடல்களைப் பதிவிறக்குகிறது</string>
     <string name="home">பிரிவுகள்</string>
     <string name="song">பாடல்கள்</string>
     <string name="settings">மேலும்</string>

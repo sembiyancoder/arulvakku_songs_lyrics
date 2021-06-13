@@ -16,6 +16,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.view.more.details.DetailsActivity"
+            android:label="" />
+        <activity
             android:name=".ui.view.SongDetailsActivity"
             android:label=""
             android:parentActivityName=".ui.view.MainActivity"
@@ -26,7 +29,6 @@
                 android:value=".ui.view.MainActivity" />
         </activity>
         <activity
-
             android:name=".ui.view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -41,6 +43,7 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -48,7 +51,12 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="false" />
     </application>
 
 </manifest>

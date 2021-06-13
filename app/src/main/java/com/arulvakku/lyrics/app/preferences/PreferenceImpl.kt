@@ -2,10 +2,7 @@ package com.arulvakku.lyrics.app.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.catch
@@ -24,6 +21,8 @@ class PreferenceImpl @Inject constructor(@ApplicationContext context: Context) :
     //preference keys
     private object PreferencesKeys {
         val UI_MODE_KEY = booleanPreferencesKey("ui_mode")
+        val GLOBAL_USER_INFO = booleanPreferencesKey("user_global_info")
+        val GLOBAL_USER_MESSAGE = stringPreferencesKey("user_global_message")
     }
 
     //get saved key
@@ -44,4 +43,36 @@ class PreferenceImpl @Inject constructor(@ApplicationContext context: Context) :
         }
     }
 
+    override fun isUserClosedGlobalInfoKey() = dataStore.data.catch { it ->
+        if (it is IOException) {
+            emit(emptyPreferences())
+        } else {
+            throw it
+        }
+    }.map {
+        it[PreferencesKeys.GLOBAL_USER_INFO] ?: false
+    }
+
+
+    override suspend fun setUserClosedGlobalInfoKey(order: Boolean) {
+        dataStore.edit {
+            it[PreferencesKeys.GLOBAL_USER_INFO] = order
+        }
+    }
+
+    override fun getGlobalMessage() = dataStore.data.catch { it ->
+        if (it is IOException) {
+            emit(emptyPreferences())
+        } else {
+            throw it
+        }
+    }.map {
+        it[PreferencesKeys.GLOBAL_USER_MESSAGE] ?: "user_global_message"
+    }
+
+    override suspend fun setGlobalMessage(message: String) {
+        dataStore.edit {
+            it[PreferencesKeys.GLOBAL_USER_MESSAGE] = message
+        }
+    }
 }

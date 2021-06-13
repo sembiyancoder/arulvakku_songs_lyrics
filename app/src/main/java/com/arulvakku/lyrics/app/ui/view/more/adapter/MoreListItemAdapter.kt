@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.arulvakku.lyrics.app.R
 import com.arulvakku.lyrics.app.databinding.LayoutMoreRowItemBinding
 import com.arulvakku.lyrics.app.ui.listeners.CellClickListenerMore
 import com.arulvakku.lyrics.app.ui.view.more.model.MoreData
@@ -40,6 +41,13 @@ class MoreListItemAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(moreData: MoreData, position: Int) {
             binding.txtLabel.text = moreData.title
+            if (position == 0) {
+                binding.imgLabelIcon.setImageResource(R.drawable.ic_donate)
+            } else if (position == 1) {
+                binding.imgLabelIcon.setImageResource(R.drawable.ic_contact_us)
+            } else {
+                binding.imgLabelIcon.setImageResource(R.drawable.ic_email)
+            }
         }
 
         companion object {

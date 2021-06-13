@@ -38,7 +38,7 @@
         android:gravity="center"
         android:text="@string/downloading_offline"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />

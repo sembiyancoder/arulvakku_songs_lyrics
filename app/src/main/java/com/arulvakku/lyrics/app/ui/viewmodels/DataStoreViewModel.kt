@@ -15,10 +15,19 @@ constructor(private val preferenceStorage: PreferenceStorage) :
     ViewModel() {
 
     //saved key as liveData
-    val savedKey = preferenceStorage.savedKey().asLiveData()
-    fun setSavedKey(key: Boolean) {
+
+    val userClosedGlobalInfoKey = preferenceStorage.isUserClosedGlobalInfoKey().asLiveData()
+    val userMessage = preferenceStorage.getGlobalMessage().asLiveData()
+
+    fun setUserClosedGlobalInfoKey(key: Boolean) {
         viewModelScope.launch {
-            preferenceStorage.setSavedKey(key)
+            preferenceStorage.setUserClosedGlobalInfoKey(key)
+        }
+    }
+
+    fun setUserGlobalMessage(key: String) {
+        viewModelScope.launch {
+            preferenceStorage.setGlobalMessage(key)
         }
     }
 
