@@ -31,10 +31,8 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
     lateinit var cacheMapper: CacheMapper
     private var _binding: LibraryFragmentBinding? = null
 
-    // This property is only valid between onCreateView and
-// onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
-
 
     private var position = 0
 
@@ -75,7 +73,7 @@ class FavouriteFragment : Fragment(), FavouriteSongsAdapter.OnClick, CellClickLi
                 Status.SUCCESS -> {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
-                        adapter.update(it.songs ?: emptyList(), binding.textViewNoDataFound)
+                        adapter.update(it.songs?.sortedBy { it.sTitle } ?: emptyList(), binding.textViewNoDataFound)
                     }
                     SongsSingleton.setSongs(cacheMapper.mapToEntityList(it.data?.songs!!) as ArrayList<SongModel>)
 
