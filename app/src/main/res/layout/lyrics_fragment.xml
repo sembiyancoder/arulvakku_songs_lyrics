@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="20dp"
     tools:context=".ui.view.lyrics.LyricsFragment">
 
@@ -17,21 +17,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
-                <TextView
-                    android:id="@+id/txtTitle"
-                    android:layout_width="match_parent"
-                    android:ellipsize="none"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:lineSpacingExtra="8dp"
-                    android:padding="16dp"
-                    android:textSize="14sp"
-                    android:textAppearance="?textAppearanceListItem"
-                    android:textStyle="bold" />
-
-
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="none"
+                android:fontFamily="@font/montserrat"
+                android:lineSpacingExtra="8dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:textAppearance="?textAppearanceListItem"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="none"
+                android:fontFamily="@font/montserrat"
+                android:lineSpacingExtra="8dp"
+                android:paddingStart="4dp"
+                android:layout_marginTop="4dp"
+                android:paddingEnd="4dp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/background_category"
+                android:text="காணிக்கை பாடல்கள்"
+                android:textSize="12sp"
+                android:layout_marginLeft="16dp" />
             <TextView
                 android:id="@+id/textLyrics"
                 android:layout_width="match_parent"

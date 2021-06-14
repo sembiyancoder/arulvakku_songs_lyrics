@@ -49,7 +49,8 @@ class LyricsFragment : Fragment() {
     private lateinit var viewModel: LyricsViewModel
     private lateinit var binding: LyricsFragmentBinding
     private val databaseViewModel: DatabaseViewModel by viewModels()
-    lateinit var favoriteView: LottieAnimationView
+    var favoriteView: LottieAnimationView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,66 +64,11 @@ class LyricsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
         viewModel = ViewModelProvider(this).get(LyricsViewModel::class.java)
+
+
         binding.textLyrics.text = requireArguments().getString("lyrics")
-//        binding.txtTitle.text = requireArguments().getString("title")+" "+ requireArguments().getString("category")
-        val spannableString = SpannableString(
-            requireArguments().getString("title") + " " + requireArguments().getString("category")
-        )
-
-
-
-        val count = requireArguments().getString("category")!!.length
-        //set the back ground color
-        val backgroundSpan = BackgroundColorSpan(Color.WHITE)
-        spannableString.setSpan(
-            backgroundSpan,
-            spannableString.length - count,
-            spannableString.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        //Set the text color to white
-        spannableString.setSpan(
-            ForegroundColorSpan(requireActivity().getColor(R.color.blue)), spannableString.length - count,
-            spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        //Align the text to center
-        spannableString.setSpan(
-            AlignmentSpan.Standard(Layout.Alignment.ALIGN_NORMAL), spannableString.length - count,
-            spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        //Set the text size
-        spannableString.setSpan(
-            RelativeSizeSpan(1.3f), 0,
-            spannableString.length - count,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-
-        val clickableSpan: ClickableSpan = object : ClickableSpan() {
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.isUnderlineText = false
-            }
-
-            override fun onClick(widget: View) {
-                Toast.makeText(context,"Clicked",Toast.LENGTH_LONG).show()
-            }
-        }
-        spannableString.setSpan(
-            clickableSpan,
-            spannableString.length - count,
-            spannableString.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-       /* //Set padding
-        val bgColor = Color.parseColor("#000000")
-        val textColor = Color.parseColor("#ffffff")
-        spannableString.setSpan(
-            RoundedBackgroundSpan(bgColor,textColor,10), spannableString.length - count,
-            spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )*/
-        binding.txtTitle.text = spannableString
-        binding.txtTitle.movementMethod = LinkMovementMethod.getInstance()
-//        binding.txtCategory.text = requireArguments().getString("category")
+        binding.txtTitle.text = requireArguments().getString("title")
+        binding.txtCategory.text = requireArguments().getString("category")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -135,11 +81,12 @@ class LyricsFragment : Fragment() {
 
         val favoriteItem = menu.findItem(R.id.action_make_favorite)
         favoriteView = favoriteItem.actionView as LottieAnimationView
-        favoriteView.setAnimation(R.raw.heartpop)
 
-        favoriteView.setOnClickListener {
+        favoriteView?.setAnimation(R.raw.heartpop)
+
+        favoriteView?.setOnClickListener {
             val id = requireArguments().getInt("id")
-            if (favoriteView.isActivated) {
+            if (favoriteView?.isActivated == true) {
                 databaseViewModel.removeFavouriteSong(id)
             } else {
                 databaseViewModel.setFavouriteSong(id)
@@ -249,13 +196,20 @@ class LyricsFragment : Fragment() {
     }
 
     private fun unFavouriteAnimation() {
-        favoriteView.isActivated = false
-        favoriteView.playAnimation();
-        favoriteView.cancelAnimation();
+
+        if (favoriteView != null){
+            favoriteView!!.isActivated = false
+            favoriteView!!.playAnimation();
+            favoriteView!!.cancelAnimation();
+        }
+
     }
 
     private fun setFavouriteAnimation() {
-        favoriteView.isActivated = true
-        favoriteView.playAnimation()
+        if (favoriteView!=null){
+            favoriteView!!.isActivated = true
+            favoriteView!!.playAnimation()
+        }
+
     }
 }
