@@ -44,6 +44,9 @@ class SearchFragment : Fragment(), CellClickListenerSongs {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        songsList = ArrayList()
+
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         subscribe()
 
