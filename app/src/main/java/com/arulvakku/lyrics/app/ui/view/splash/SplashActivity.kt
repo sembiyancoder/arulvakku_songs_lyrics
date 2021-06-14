@@ -92,6 +92,7 @@ class SplashActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d(TAG,dataSnapshot.toString())
                 val settings = dataSnapshot.getValue(AppSetting::class.java)
+                startScreen(status)
                 if (settings != null) {
                     /*if (settings.isOpen) {
                         startScreen(status)

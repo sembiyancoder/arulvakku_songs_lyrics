@@ -106,10 +106,11 @@ class HomeFragment : Fragment(), CellClickListenerCategory {
                 binding.layoutInfo.setBackgroundColor(Color.parseColor(globalInfo.bgColor))
 
                 //dataStoreViewModel.setUserClosedGlobalInfoKey(false)
+                //dataStoreViewModel.setUserGlobalMessage(globalInfo.message)
             }
         }
 
-        //dataStoreViewModel.setUserGlobalMessage(globalInfo.message)
+
     }
 
     private fun isClosed(globalInfo: GlobalInfo) {

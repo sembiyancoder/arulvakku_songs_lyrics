@@ -5,8 +5,6 @@
     android:padding="@dimen/dimen_8"
     android:orientation="vertical">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,7 +14,6 @@
                 android:id="@+id/textViewNumber"
                 android:layout_gravity="center"
                 android:textAppearance="?textAppearanceListItem"
-                android:fontFamily="@font/montserrat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1. " />
@@ -31,11 +28,11 @@
                     android:textAppearance="?textAppearanceListItem"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:fontFamily="@font/montserrat"
                     android:paddingStart="@dimen/dimen_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ஆன்ம உணவாக நீயே" />
+                    android:text="ஆன்ம உணவாக நீயே"
+                    android:paddingLeft="@dimen/dimen_8" />
 
                 <TextView
                     android:id="@+id/textViewSongDesc"
@@ -43,9 +40,10 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:fontFamily="@font/regular"
                     android:paddingStart="@dimen/dimen_8"
                     android:text="ஆன்ம உணவாக நீயே"
-                    />
+                    android:paddingLeft="@dimen/dimen_8" />
 
             </LinearLayout>
             <ImageView
@@ -54,7 +52,8 @@
                 android:src="@drawable/ic_favorite"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dimen_8"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_8" />
         </LinearLayout>
 
 </FrameLayout>
