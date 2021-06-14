@@ -3,13 +3,15 @@ package com.arulvakku.lyrics.app.ui.view.splash
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.arulvakku.lyrics.app.data.model.AppSetting
 import com.arulvakku.lyrics.app.ui.view.MainActivity
 import com.arulvakku.lyrics.app.ui.view.download.CacheActivity
 import com.arulvakku.lyrics.app.ui.viewmodels.DatabaseViewModel
-import com.arulvakku.lyrics.app.utilities.NetworkHelper
+import com.arulvakku.lyrics.app.utilities.ConnectionType
+import com.arulvakku.lyrics.app.utilities.NetworkMonitorUtil
 import com.arulvakku.lyrics.app.utilities.Status
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,29 +29,73 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private val viewModel: DatabaseViewModel by viewModels()
-
+    private val networkMonitor = NetworkMonitorUtil(this)
+    private var isNetworkAvailable: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_splash)
 
-        if (NetworkHelper(this).isNetworkConnected()) {
-            checkAppStatus()
-        } else {
-            subscribe()
+        /*    if (NetworkHelper(this).isNetworkConnected()) {
+                checkAppStatus()
+            } else {
+                subscribe()
+            }*/
+        networkMonitor.result = { isAvailable, type ->
+            runOnUiThread {
+                when (isAvailable) {
+                    true -> {
+                        when (type) {
+                            ConnectionType.Wifi -> {
+                                Log.d(TAG, "Wifi Connection")
+                                if (!isNetworkAvailable) {
+                                    isNetworkAvailable = true
+                                    subscribe()
+                                }
+                            }
+                            ConnectionType.Cellular -> {
+                                Log.d(TAG, "Cellular Connection")
+                                if (!isNetworkAvailable) {
+                                    isNetworkAvailable = true
+                                    subscribe()
+                                }
+                            }
+                            else -> {
+                            }
+                        }
+                    }
+                    false -> {
+                        Log.d(TAG, "No Connection")
+                        isNetworkAvailable = false
+                        subscribe()
+                    }
+                }
+            }
         }
     }
 
-    private fun checkAppStatus() {
+    override fun onResume() {
+        super.onResume()
+        networkMonitor.register()
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        networkMonitor.unregister()
+    }
+
+
+    private fun checkAppStatus(status: Boolean) {
         val database = Firebase.database
         val myRef = database.getReference("settings")
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                Log.d(TAG,dataSnapshot.toString())
                 val settings = dataSnapshot.getValue(AppSetting::class.java)
                 if (settings != null) {
-                    if (settings.isOpen) {
-                        subscribe()
-                    }
+                    /*if (settings.isOpen) {
+                        startScreen(status)
+                    }*/
                 }
             }
 
@@ -62,7 +108,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun subscribe() {
         viewModel.getSongCategoriesCount() // get count
-
         viewModel.countResult.observe(this) { it ->
             when (it.status) {
                 Status.LOADING -> {
@@ -72,11 +117,28 @@ class SplashActivity : AppCompatActivity() {
                     Timber.d("success: ${it.data}")
                     it.data?.let {
                         if ((it.categoryCount.toInt() != 0) && (it.songCount.toInt() != 0)) {
-                            startIntentActivity(true)
+                            checkAppStatus(true)
                         } else {
-                            startIntentActivity(false)
+                            if (isNetworkAvailable) {
+                                startIntentActivity(false)
+                                checkAppStatus(false)
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "No Connection. Please enable internet connection",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
-                    } ?: startIntentActivity(false)
+                    } ?: if (isNetworkAvailable) {
+                        checkAppStatus(false)
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "No Connection. Please enable internet connection",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
                 Status.ERROR -> {
                     startIntentActivity(false)
@@ -86,13 +148,51 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun checkForNetworkConnection() {
+        networkMonitor.result = { isAvailable, type ->
+            runOnUiThread {
+                when (isAvailable) {
+                    true -> {
+                        when (type) {
+                            ConnectionType.Wifi -> {
+                                Log.d(TAG, "Wifi Connection")
+                                startIntentActivity(true)
+                            }
+                            ConnectionType.Cellular -> {
+                                Log.d(TAG, "Cellular Connection")
+                                startIntentActivity(true)
+                            }
+                            else -> {
+                            }
+                        }
+                    }
+                    false -> {
+                        Log.d(TAG, "No Connection")
+                        Toast.makeText(
+                            this,
+                            "No Connection. Please enable internet connection",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+    }
+
     private fun startIntentActivity(startMainActivity: Boolean) {
+        checkAppStatus(startMainActivity)
+    }
+
+    private fun startScreen(startMainActivity: Boolean) {
+
         val intent: Intent = if (startMainActivity) {
             Intent(this, MainActivity::class.java)
         } else {
             Intent(this, CacheActivity::class.java)
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent)
-        finish()
     }
 }

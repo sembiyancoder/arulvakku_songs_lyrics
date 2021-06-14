@@ -1,5 +1,7 @@
 package com.arulvakku.lyrics.app.data.model
 
-data class AppSetting(
-    var isOpen: Boolean = true
+
+class AppSetting(
+    val isNewSongAvailable: String = "",
+    val isOpen: String = ""
 )
