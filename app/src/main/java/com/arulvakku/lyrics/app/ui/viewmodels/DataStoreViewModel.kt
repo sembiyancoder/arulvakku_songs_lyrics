@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.arulvakku.lyrics.app.preferences.PreferenceStorage
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ constructor(private val preferenceStorage: PreferenceStorage) :
     val userMessage = preferenceStorage.getGlobalMessage().asLiveData()
 
     fun setUserClosedGlobalInfoKey(key: Boolean) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             preferenceStorage.setUserClosedGlobalInfoKey(key)
         }
     }

@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
@@ -60,7 +61,7 @@ class PreferenceImpl @Inject constructor(@ApplicationContext context: Context) :
         }
     }
 
-    override fun getGlobalMessage() = dataStore.data.catch { it ->
+    override fun getGlobalMessage(): Flow<String> = dataStore.data.catch { it ->
         if (it is IOException) {
             emit(emptyPreferences())
         } else {

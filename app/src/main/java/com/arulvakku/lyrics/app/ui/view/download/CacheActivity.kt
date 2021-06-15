@@ -67,6 +67,7 @@ class CacheActivity : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent)
+        finish()
     }
 
     private fun hideProgressBar() {
